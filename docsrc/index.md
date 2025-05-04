@@ -2,8 +2,14 @@
 
 ## Sample Library (a+b)
 
-```cpp
-#include "sample.hpp"
+!!! note "ノート"
+    これはMaterialテーマ専用のブロックです
 
-int result = add(3,4); // result = 7
+```cpp
+#pragma once
+
+// sample.hpp
+int add(int a, int b){
+    return a + b;
+}
 ```
