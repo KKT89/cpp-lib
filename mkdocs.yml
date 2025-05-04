@@ -1,9 +1,9 @@
 site_name: KKT89's Library
 docs_dir: docsrc
-site_dir: docs
 nav:
   - Home: index.md
-  - Library: library.md
+  - Library:
+      - sample: library/sample.md
 
 theme:
   name: material

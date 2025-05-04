@@ -1,15 +1,5 @@
-# My Competitive Programming Library
+# 📚 Library Files
 
-## Sample Library (a+b)
+## sample
 
-!!! note "ノート"
-    これはMaterialテーマ専用のブロックです
-
-```cpp
-#pragma once
-
-// sample.hpp
-int add(int a, int b){
-    return a + b;
-}
-```
+- [`sample.hpp`](library/sample.md)
