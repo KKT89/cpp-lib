@@ -1,24 +1,33 @@
-name: Deploy MkDocs to GitHub Pages
+# .github/workflows/build-docs.yml
+
+name: Build MkDocs into docs/
 
 on:
   push:
     branches:
-      - main  # ← main ブランチに push されたら実行
+      - main
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.12
+          python-version: "3.12"
 
       - name: Install dependencies
         run: pip install mkdocs-material pymdown-extensions
 
-      - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force
+      - name: Build MkDocs to docs/
+        run: mkdocs build --clean --site-dir docs
+
+      - name: Commit built site
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add docs
+          git commit -m "Auto-build site"
+          git push
