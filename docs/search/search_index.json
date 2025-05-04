@@ -1,0 +1,1 @@
+{"config":{"lang":["en"],"separator":"[\\s\\-]+","pipeline":["stopWordFilter"]},"docs":[{"location":"","title":"My Competitive Programming Library","text":""},{"location":"#sample-library-ab","title":"Sample Library (a+b)","text":"<pre><code>#include \"sample.hpp\"\n\nint result = add(3,4); // result = 7\n</code></pre>"}]}
