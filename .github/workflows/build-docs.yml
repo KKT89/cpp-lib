@@ -1,36 +1,37 @@
-name: Build MkDocs into docs/
+name: Deploy MkDocs
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]       # main ブランチへの push で自動実行
+  workflow_dispatch:       # 手動実行も可
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write  # ← git push を許可
 
     steps:
-      - uses: actions/checkout@v3
+      # ① リポジトリ取得
+      - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # ← これがないと403で止まる
+          fetch-depth: 1
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      # ② Python + MkDocs (Material) をセットアップ
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: '3.x'
 
-      - name: Install dependencies
-        run: pip install mkdocs-material pymdown-extensions
-
-      - name: Build MkDocs to docs/
-        run: mkdocs build --clean --site-dir docs
-
-      - name: Commit built site
+      - name: Install MkDocs
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add docs
-          git commit -m "Auto-build site" || echo "No changes to commit"
-          git push
+          pip install mkdocs-material          # 必要に応じてテーマ・プラグインを追加
+
+      # ③ ドキュメントをビルド
+      - name: Build site
+        run: mkdocs build --clean              # 出力先はデフォルトで ./site
+
+      # ④ gh-pages ブランチへデプロイ
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # リポジトリ自動付与の token
+          publish_dir: ./site                        # ③で生成されたディレクトリ
+          publish_branch: gh-pages                   # デフォルト。好きに変更可
