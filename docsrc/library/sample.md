@@ -1,5 +1,7 @@
 # Sample Library (a+b)
 
+サンプル文章です。
+
 !!! note "ノート"
     これはMaterialテーマ専用のブロックです
 
