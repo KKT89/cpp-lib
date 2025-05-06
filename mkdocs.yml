@@ -32,8 +32,20 @@ markdown_extensions:
   - pymdownx.highlight
   - pymdownx.inlinehilite
   - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
   - codehilite:
       guess_lang: false
   - toc:
       permalink: true
 
+extra_css:
+  - https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css
+
+extra_javascript:
+  # KaTeX 本体
+  - https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js
+  # $…$ を検出→描画するためのヘルパ
+  - https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js
+  # SPA (instant loading) でも毎ページ描画させる初期化コード
+  - js/katex_init.js
