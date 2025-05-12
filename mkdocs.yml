@@ -1,4 +1,6 @@
 site_name: KKT89's Library
+repo_url: https://github.com/KKT89/cpp-lib
+repo_name: KKT89/cpp-lib
 docs_dir: docsrc
 nav:
   - Home: index.md
@@ -7,6 +9,9 @@ nav:
 
 theme:
   name: material
+  font:
+    text: Noto Sans JP
+    code: Inconsolata
   language: ja
   features:
     - navigation.instant
@@ -14,18 +19,22 @@ theme:
     - navigation.sections
     - toc.integrate
     - content.code.copy
+  icon:
+    repo: fontawesome/brands/github
   palette:
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: blue
-      accent: indigo
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: blue
-      accent: indigo
-  font:
-    text: Roboto
-    code: Roboto Mono
+    - scheme: default
+      primary: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+plugins:
+  search:
+    lang: 'ja'
 
 markdown_extensions:
   - admonition

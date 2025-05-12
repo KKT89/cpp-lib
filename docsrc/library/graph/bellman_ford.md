@@ -1,4 +1,4 @@
-# Bellman Ford (負の有向閉路検出)
+# Bellman Ford (負閉路検出)
 
 ## Reference
 
