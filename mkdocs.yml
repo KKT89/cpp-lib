@@ -37,9 +37,6 @@ plugins:
   - search:
       lang: 'ja'
   - open-in-new-tab:
-      external_only: true
-      noopener: true
-      noreferrer: true
 
 markdown_extensions:
   - admonition
