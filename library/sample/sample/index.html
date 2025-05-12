@@ -9,6 +9,8 @@
       
       
       
+        <link rel="prev" href="../../..">
+      
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -16,7 +18,7 @@
     
     
       
-        <title>Sample Library (a+b) - KKT89's Library</title>
+        <title>sample - KKT89's Library</title>
       
     
     
@@ -43,6 +45,8 @@
     
     
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -104,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sample Library (a+b)
+              sample
             
           </span>
         </div>
@@ -232,11 +236,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../sample.md" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -321,26 +327,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -353,7 +364,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Library
@@ -364,10 +375,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../sample.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -378,6 +398,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -415,10 +436,19 @@ $$
 \sum_{i=1}^{n} = n(n+1)/2
 $$
 あああ</p>
-<div class="admonition note">
-<p class="admonition-title">ノート</p>
-<p>これはMaterialテーマ専用のブロックです</p>
+<div class="admonition failure">
+<p class="admonition-title">Failure</p>
+<p>これは失敗です。</p>
 </div>
+<div class="admonition bug">
+<p class="admonition-title">Bug</p>
+<p>これはバグです。</p>
+</div>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>これは概要です。</p>
+</div>
+<p><i class="fa fa-check-circle text-success"></i> ビルド成功 (<a href="https://fontawesome.com/v4/icons/">アイコン</a>も使えます)</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#pragma once</span>
 
 <span class="c1">// sample.hpp</span>
