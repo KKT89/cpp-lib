@@ -1,6 +1,7 @@
 site_name: KKT89's Library
 repo_url: https://github.com/KKT89/cpp-lib
 repo_name: KKT89/cpp-lib
+
 docs_dir: docsrc
 nav:
   - Home: index.md
@@ -33,8 +34,12 @@ theme:
         name: Switch to light mode
 
 plugins:
-  search:
-    lang: 'ja'
+  - search:
+      lang: 'ja'
+  - open-in-new-tab:        # ← プラグイン名
+      external_only: true   # 内部リンクはそのまま
+      noopener: true        # rel="noopener"
+      noreferrer: true      # rel="noreferrer"
 
 markdown_extensions:
   - admonition
