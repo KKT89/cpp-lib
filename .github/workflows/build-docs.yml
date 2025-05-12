@@ -8,32 +8,32 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:        # ←★ これを追加
-      contents: write   #    (リポジトリへの push を許可)
+    permissions:
+      contents: write   # リポジトリへの push を許可
 
     steps:
-      # ① リポジトリ取得
+      # リポジトリ取得
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
-      # ② Python + MkDocs (Material) をセットアップ
+      # Python + MkDocs をセットアップ
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
       - name: Install MkDocs
-        run: |
-          pip install mkdocs-material          # 必要に応じてテーマ・プラグインを追加
+        run:
+          pip install mkdocs-material
 
-      # ③ ドキュメントをビルド
+      # ドキュメントをビルド
       - name: Build site
-        run: mkdocs build --clean              # 出力先はデフォルトで ./site
+        run: mkdocs build --clean
 
-      # ④ gh-pages ブランチへデプロイ
+      # gh-pages ブランチへデプロイ
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}  # リポジトリ自動付与の token
-          publish_dir: ./site                        # ③で生成されたディレクトリ
-          publish_branch: gh-pages                   # デフォルト。好きに変更可
+          publish_dir: ./site                        # デフォルトの出力先ディレクトリ
+          publish_branch: gh-pages
