@@ -6,8 +6,16 @@ $$
 $$
 あああ
 
-!!! note "ノート"
-    これはMaterialテーマ専用のブロックです
+!!! Failure
+    これは失敗です。
+
+!!! Bug
+    これはバグです。
+
+!!! summary 
+    これは概要です。
+
+<i class="fa fa-check-circle text-success"></i> ビルド成功 ([アイコン](https://fontawesome.com/v4/icons/)も使えます)
 
 ```cpp
 #pragma once

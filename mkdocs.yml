@@ -6,7 +6,7 @@ docs_dir: docsrc
 nav:
   - Home: index.md
   - Library:
-      - sample: library/sample.md
+      - sample: library/sample/sample.md
 
 theme:
   name: material
@@ -36,10 +36,10 @@ theme:
 plugins:
   - search:
       lang: 'ja'
-  - open-in-new-tab:        # ← プラグイン名
-      external_only: true   # 内部リンクはそのまま
-      noopener: true        # rel="noopener"
-      noreferrer: true      # rel="noreferrer"
+  - open-in-new-tab:
+      external_only: true
+      noopener: true
+      noreferrer: true
 
 markdown_extensions:
   - admonition
@@ -54,7 +54,8 @@ markdown_extensions:
       permalink: true
 
 extra_css:
-  - https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css
+  - "https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css"
+  - "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 
 extra_javascript:
   # KaTeX 本体
