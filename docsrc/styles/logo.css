@@ -3,8 +3,12 @@
 }
 
 .md-logo img {
-    width: 26px !important;
-    height: 26px !important;
+    width: 24px !important;
+    height: 24px !important;
     border-radius: 14px;
     box-shadow: 0 0 4px rgba(0, 0, 0, .25);
+}
+
+.md-logo:hover img {
+    transform: scale(1.07);
 }
