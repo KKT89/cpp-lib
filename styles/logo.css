@@ -1,0 +1,10 @@
+.md-logo {
+    padding: 0 !important;
+}
+
+.md-logo img {
+    width: 26px !important;
+    height: 26px !important;
+    border-radius: 14px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .25);
+}
