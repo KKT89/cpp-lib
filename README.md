@@ -5,7 +5,7 @@
 
 ## リファレンス生成方法
 
-[MkDocs](https://www.mkdocs.org/)を使用して作成しています。
+[MkDocs](https://www.mkdocs.org/)を用いて作成しています。
 
 ### セットアップ
 
@@ -15,7 +15,7 @@ $ source .venv/bin/activate
 $ uv pip install -r requirements.txt
 ```
 
-以下のコマンドが正しく実行出来ていれば、OKです。
+以下のコマンドが正しく実行出来ればOKです。
 
 ```shell
 $ mkdocs serve
