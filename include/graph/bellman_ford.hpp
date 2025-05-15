@@ -1,8 +1,10 @@
 #pragma once
+#include <queue>
+#include <vector>
 
 template <typename T> struct BellmanFord {
   private:
-    static constexpr T INF = numeric_limits<T>::max() / 2 - 1;
+    static constexpr T INF = std::numeric_limits<T>::max() / 2 - 1;
 
     struct Edge {
         int to;
@@ -10,8 +12,8 @@ template <typename T> struct BellmanFord {
     };
 
     int n;
-    vector<vector<Edge>> G;
-    vector<T> dist;
+    std::vector<std::vector<Edge>> G;
+    std::vector<T> dist;
 
   public:
     explicit BellmanFord(int n) : n(n), G(n), dist(n, INF) {}
@@ -52,8 +54,8 @@ template <typename T> struct BellmanFord {
     }
     // 負閉路をBFSで伝播させる
     void spread_neg_cycles() {
-        queue<int> q;
-        vector<bool> used(n, false);
+        std::queue<int> q;
+        std::vector<bool> used(n, false);
         for (int i = 0; i < n; ++i) {
             if (dist[i] == -INF) {
                 used[i] = true;
