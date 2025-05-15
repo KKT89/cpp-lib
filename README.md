@@ -5,7 +5,7 @@
 
 ## リファレンス生成方法
 
-[MkDocs](https://www.mkdocs.org/) を使用して、リファレンスを生成しています。
+[MkDocs](https://www.mkdocs.org/)を使用して作成しています。
 
 ### セットアップ
 
