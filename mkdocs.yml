@@ -10,7 +10,8 @@ nav:
 
 theme:
   name: material
-  logo: img/kkt89.jfif
+  logo: img/kkt89.jpg
+  favicon: img/kkt89.jpg
   font:
     text: Noto Sans JP
     code: Inconsolata
@@ -54,7 +55,9 @@ markdown_extensions:
 extra_css:
   - "https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css"
   - "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-  - styles/logo.css
+  - css/logo.css
+  - css/layout.css
+  - css/code.css
 
 extra_javascript:
   # KaTeX 本体
