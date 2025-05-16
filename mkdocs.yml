@@ -28,11 +28,11 @@ theme:
     - scheme: default
       primary: cyan
       toggle:
-        icon: material/brightness-7
+        icon: material/toggle-switch
         name: Switch to dark mode
     - scheme: slate
       toggle:
-        icon: material/brightness-4
+        icon: material/toggle-switch-off
         name: Switch to light mode
 
 plugins:
