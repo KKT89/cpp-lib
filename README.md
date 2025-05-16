@@ -5,7 +5,7 @@
 
 ## リファレンス生成方法
 
-[MkDocs](https://www.mkdocs.org/)を用いて作成しています。
+[Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) を用いて作成しています。
 
 ### セットアップ
 
