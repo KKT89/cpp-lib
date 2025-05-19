@@ -20,3 +20,17 @@ $ uv pip install -r requirements.txt
 ```shell
 $ mkdocs serve
 ```
+
+## ライブラリ使用方法
+
+### CMakeLists を使用する場合
+
+以下のように追記すればOK。
+
+```
+add_library(cpplib INTERFACE)
+target_include_directories(cpplib INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+add_executable(main main.cpp)
+target_link_libraries(main PRIVATE cpp)
+```
