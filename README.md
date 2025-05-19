@@ -23,7 +23,7 @@ $ mkdocs serve
 
 ## ライブラリ使用方法
 
-### CMakeLists を使用する場合
+### CMakeListsを使用する場合
 
 以下のように追記すればOK。
 
