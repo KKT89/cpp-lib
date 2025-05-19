@@ -38,6 +38,7 @@ plugins:
   - search:
       lang: 'ja'
   - open-in-new-tab:
+  - tags:
 
 # Additional configuration
 extra_css:

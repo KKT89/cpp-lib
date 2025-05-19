@@ -1,3 +1,8 @@
+---
+tags:
+    - sample
+---
+
 # Sample Library (a+b)
 
 サンプル文章です。数式も書けるようになりました。$a+b$
