@@ -55,8 +55,10 @@ extra_javascript:
 
 # Extensions
 markdown_extensions:
+  - footnotes # 脚注
   - admonition # 注釈ブロック
-  - pymdownx.highlight # 通常の python などのコードハイライトに加え、hl_lines="1 3" 等で特定行強調、linenums など多機能化。
+  - pymdownx.highlight:
+      linenums: true # コードブロックに行番号を表示
   - pymdownx.inlinehilite # 行内コード ==var== のように書くとハイライト色付きで強調。
   - pymdownx.superfences # トリプルフェンス内でタブ切替 (=== "C++" など) を実装。複合的なコードブロックや Markdown in code も可。
   - pymdownx.arithmatex: # $ ... $ / $$ ... $$ で LaTeX 数式を埋め込む。
@@ -72,3 +74,4 @@ nav:
   - Library:
       - sample: library/sample/sample.md
       - Bell: library/graph/bellman_ford.md
+  - Note: note/note.md
