@@ -1,5 +1,6 @@
 # Library Files
 
+いろいろ整備中です・・・（　＾ω＾）
 ## sample
 
 - [sample.hpp](library/sample/sample.md)
