@@ -9,8 +9,6 @@
       
       
       
-        <link rel="prev" href="../../library/graph/bellman_ford/">
-      
       
       
       <link rel="icon" href="../../img/kkt89.jpg">
@@ -18,7 +16,7 @@
     
     
       
-        <title>Note - KKT89's Library</title>
+        <title>ビット演算あれこれ - KKT89's Library</title>
       
     
     
@@ -80,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#note" class="md-skip">
+        <a href="#_1" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -113,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Note
+              ビット演算あれこれ
             
           </span>
         </div>
@@ -261,11 +259,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../note/" class="md-tabs__link">
         
   
   
@@ -444,32 +440,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Note
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../note/" class="md-nav__link">
         
   
   
@@ -480,44 +454,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目次">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#math" class="md-nav__link">
-    <span class="md-ellipsis">
-      Math
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bitwise-operation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Bitwise operation
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -541,15 +477,25 @@
   
 
 
-<h1 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h1>
-<p>いろいろメモ　旧scrapboxに書いてた内容を引っ越し予定</p>
-<h2 id="math">Math<a class="headerlink" href="#math" title="Permanent link">&para;</a></h2>
+<h1 id="_1">ビット演算あれこれ<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="0">末尾の0個数<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
+<p>c++20以降ならば、<a href="https://cpprefjp.github.io/reference/bit/countr_zero.html">std::countr_zero</a> を使うのが良い。</p>
+<h2 id="1">1が立っているビットを全て知りたい<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>以下のようなコードが定数倍軽くておススメ。TODO：↑で書き換える。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__builtin_ctz</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="w">  </span><span class="n">n</span><span class="w"> </span><span class="o">^=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="__builtin_clz">__builtin_clz の高速化について<a class="headerlink" href="#__builtin_clz" title="Permanent link">&para;</a></h2>
+<p><code>target("lzcnt")</code> で速くなるらしい。tzcnt が入ってる命令セットが BMI1 なので、 <code>target("bmi")</code>を用いる。</p>
+<h3 id="_2">参考<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="../digital_fps_theory/">デジタル冪級数 ~理論編~</a></li>
-</ul>
-<h2 id="bitwise-operation">Bitwise operation<a class="headerlink" href="#bitwise-operation" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="../bitwise_operation/">ビット演算あれこれ</a></li>
+<li><a href="https://twitter.com/noshi91/status/1645808228067078144">https://twitter.com/noshi91/status/1645808228067078144</a></li>
+<li><a href="https://en.wikipedia.org/wiki/X86_Bit_manipulation_instruction_set">x86 Bit manipulation instruction set - Wikipedeia</a></li>
 </ul>
 
 
