@@ -10,15 +10,13 @@
 ### セットアップ
 
 ```shell
-$ uv venv .venv
-$ source .venv/bin/activate
-$ uv pip install -r requirements.txt
+$ uv sync
 ```
 
 以下のコマンドが正しく実行出来ればOKです。
 
 ```shell
-$ mkdocs serve
+$ uv run mkdocs serve
 ```
 
 ## ライブラリ使用方法

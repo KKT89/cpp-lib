@@ -17,19 +17,19 @@ jobs:
         with:
           fetch-depth: 1
 
-      # Python + MkDocs をセットアップ
+      # uv + Python をセットアップ
+      - uses: astral-sh/setup-uv@v5
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Install MkDocs
-        run: |
-          pip install -U pip
-          pip install mkdocs-material mkdocs-open-in-new-tab
+      - name: Install dependencies
+        run: uv sync
 
       # ドキュメントをビルド
       - name: Build site
-        run: mkdocs build --clean
+        run: uv run mkdocs build --clean
 
       # gh-pages ブランチへデプロイ
       - name: Deploy to GitHub Pages

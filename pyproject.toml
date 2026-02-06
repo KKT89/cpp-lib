@@ -1,0 +1,10 @@
+[project]
+name = "cpp-lib-docs"
+version = "0.1.0"
+description = "Documentation environment for cpp-lib"
+requires-python = ">=3.12"
+dependencies = [
+    "mkdocs>=1.6.0",
+    "mkdocs-material>=9.5.0",
+    "mkdocs-open-in-new-tab>=1.0.8",
+]
