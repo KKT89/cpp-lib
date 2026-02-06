@@ -1,6 +1,3 @@
-↓整備中・・・
-取り合えず今まで使ってきたライブラリの整理をしたいなぁ～というステータスです。
-
 [![pages](https://img.shields.io/badge/pages-GitHub%20Pages-blue)](https://kkt89.github.io/cpp-lib/)
 
 ## リファレンス生成方法
