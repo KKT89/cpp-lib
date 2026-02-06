@@ -7,17 +7,15 @@
 
 [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) を用いて作成しています。
 
-### セットアップ
+### クイックスタート
 
 ```shell
 $ uv sync
-```
-
-以下のコマンドが正しく実行出来ればOKです。
-
-```shell
+$ uv run python scripts/sync_library_index.py --write
 $ uv run mkdocs serve
 ```
+
+`mkdocs.yml` の `nav` を変更していない場合は、2行目（`sync_library_index.py --write`）は省略可能です。
 
 ## ライブラリ使用方法
 

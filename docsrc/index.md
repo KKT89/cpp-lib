@@ -1,10 +1,14 @@
-# Library Files
+# Home
 
-いろいろ整備中です・・・（　＾ω＾）
-## sample
+`cpp-lib` の入口ページです。  
+上部タブは次の役割で分けています。
 
-- [sample.hpp](library/sample/sample.md)
+- `Library`: 実装と API リファレンス
+- `Verify`: 検証コードと検証状況
+- `Note`: 理論メモと雑記
 
-## Graph
+## Quick Links
 
-- [Bellman Ford (負閉路検出)](library/graph/bellman_ford.md)
+- [Library Top](library/index.md)
+- [Verify Top](verify/index.md)
+- [Note Top](note/note.md)

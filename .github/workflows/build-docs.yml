@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: uv sync
 
+      - name: Check Library Top sync
+        run: uv run python scripts/sync_library_index.py
+
       # ドキュメントをビルド
       - name: Build site
         run: uv run mkdocs build --clean

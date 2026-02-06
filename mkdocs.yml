@@ -76,7 +76,18 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Library:
-      - sample: library/sample/sample.md
-      - Bell: library/graph/bellman_ford.md
-      - Schieber-Vishkin LCA: library/tree/schieber_vishkin_lca.md
-  - Note: note/note.md
+      - Library Top: library/index.md
+      - Tree:
+          - Schieber-Vishkin LCA: library/tree/schieber_vishkin_lca.md
+      - Graph:
+          - Bellman Ford (負閉路検出): library/graph/bellman_ford.md
+      - Sample:
+          - sample.hpp: library/sample/sample.md
+  - Verify:
+      - Verify Top: verify/index.md
+      - Tree:
+          - Schieber-Vishkin LCA: verify/tree/schieber_vishkin_lca.md
+  - Note:
+      - Note Top: note/note.md
+      - デジタル冪級数 ~理論編~: note/digital_fps_theory.md
+      - ビット演算あれこれ: note/bitwise_operation.md
