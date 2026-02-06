@@ -61,6 +61,10 @@ markdown_extensions:
       linenums: true # コードブロックに行番号を表示
   - pymdownx.inlinehilite # 行内コード ==var== のように書くとハイライト色付きで強調。
   - pymdownx.superfences # トリプルフェンス内でタブ切替 (=== "C++" など) を実装。複合的なコードブロックや Markdown in code も可。
+  - pymdownx.snippets:
+      check_paths: true
+      base_path:
+        - .
   - pymdownx.arithmatex: # $ ... $ / $$ ... $$ で LaTeX 数式を埋め込む。
       generic: true
   - codehilite: # Python-Markdown 標準のハイライト拡張。
@@ -74,4 +78,5 @@ nav:
   - Library:
       - sample: library/sample/sample.md
       - Bell: library/graph/bellman_ford.md
+      - Schieber-Vishkin LCA: library/tree/schieber_vishkin_lca.md
   - Note: note/note.md
