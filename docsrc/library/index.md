@@ -7,6 +7,7 @@
 ## Tree
 
 - [Schieber-Vishkin LCA](tree/schieber_vishkin_lca.md)
+- [Auxiliary Tree (Virtual Tree)](tree/auxiliary_tree.md)
 
 ## Graph
 

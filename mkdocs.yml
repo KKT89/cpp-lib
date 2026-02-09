@@ -40,6 +40,10 @@ plugins:
   - open-in-new-tab:
   - tags:
 
+# Hooks
+hooks:
+  - scripts/mkdocs_hooks.py
+
 # Additional configuration
 extra_css:
   - "https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css"
@@ -79,6 +83,7 @@ nav:
       - Library Top: library/index.md
       - Tree:
           - Schieber-Vishkin LCA: library/tree/schieber_vishkin_lca.md
+          - Auxiliary Tree (Virtual Tree): library/tree/auxiliary_tree.md
       - Graph:
           - Bellman Ford (負閉路検出): library/graph/bellman_ford.md
       - Sample:
