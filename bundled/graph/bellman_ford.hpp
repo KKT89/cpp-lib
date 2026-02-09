@@ -1,6 +1,7 @@
 // bundled by scripts/bundle_header.py
 
 // ---- begin: include/graph/bellman_ford.hpp
+#include <limits>
 #include <queue>
 #include <vector>
 
