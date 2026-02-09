@@ -14,6 +14,11 @@ $ uv run mkdocs serve
 
 `mkdocs.yml` の `nav` を変更していない場合は、2行目（`sync_library_index.py --write`）は省略可能です。
 
+### ヘッダ結合（1ファイル化）について
+
+- `mkdocs serve/build` の前に `include/**/*.hpp` から `bundled/` を自動生成します（`scripts/mkdocs_hooks.py`）。
+- 各ライブラリページの「Bundled (Copy & Paste)」はこの `bundled/` を参照します。
+
 ## ライブラリ使用方法
 
 ### CMakeListsを使用する場合

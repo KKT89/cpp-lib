@@ -1,0 +1,27 @@
+from __future__ import annotations
+
+import importlib.util
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+INCLUDE_ROOT = ROOT / "include"
+BUNDLE_ROOT = ROOT / "bundled"
+BUNDLE_SCRIPT = ROOT / "scripts" / "bundle_header.py"
+
+
+def _load_bundler():
+    spec = importlib.util.spec_from_file_location("bundle_header", BUNDLE_SCRIPT)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"failed to load: {BUNDLE_SCRIPT}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.bundle_header
+
+
+def on_pre_build(config):
+    bundle_header = _load_bundler()
+    for path in INCLUDE_ROOT.rglob("*.hpp"):
+        rel = path.relative_to(INCLUDE_ROOT)
+        out_path = BUNDLE_ROOT / rel
+        bundle_header(path, out_path, include_dirs=[INCLUDE_ROOT])

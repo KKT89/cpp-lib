@@ -1,4 +1,6 @@
-#pragma once
+// bundled by scripts/bundle_header.py
+
+// ---- begin: include/graph/bellman_ford.hpp
 #include <limits>
 #include <queue>
 #include <vector>
@@ -76,3 +78,4 @@ template <typename T> struct BellmanFord {
         }
     }
 };
+// ---- end: include/graph/bellman_ford.hpp

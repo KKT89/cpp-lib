@@ -27,3 +27,9 @@ int a = lca.lca(u, v);
 ```cpp
 --8<-- "include/tree/schieber_vishkin_lca.hpp"
 ```
+
+## Bundled (Copy & Paste)
+
+```cpp
+--8<-- "bundled/tree/schieber_vishkin_lca.hpp"
+```
