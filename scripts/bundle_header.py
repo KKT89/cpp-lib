@@ -76,6 +76,11 @@ def bundle_header(input_path: Path, output_path: Path, include_dirs: list[Path] 
     out_text = "\n".join(out_lines).rstrip() + "\n"
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
+    # Avoid touching timestamps when generated content is unchanged.
+    if output_path.exists():
+        current = output_path.read_text(encoding="utf-8")
+        if current == out_text:
+            return
     output_path.write_text(out_text, encoding="utf-8")
 
 
