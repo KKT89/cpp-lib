@@ -1,5 +1,3 @@
-// verification-helper: PROBLEM https://judge.yosupo.jp/problem/lca
-
 #include <iostream>
 
 #include "../../../include/tree/schieber_vishkin_lca.hpp"

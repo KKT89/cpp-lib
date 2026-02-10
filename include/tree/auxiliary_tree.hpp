@@ -1,47 +1,56 @@
 #pragma once
 
 #include <algorithm>
+#include <cassert>
 #include <vector>
 
 #include "schieber_vishkin_lca.hpp"
 
 struct AuxiliaryTree {
-    const SchieberVishkinLCA* lca = nullptr;
+    const SchieberVishkinLCA *lca = nullptr;
     int n = 0;
     int root = -1;
 
-    std::vector<int> depth;          // depth in original tree
-    std::vector<int> tin;            // preorder index (1..N)
-    std::vector<std::vector<int>> g_aux;  // directed: parent -> child (only valid for nodes in 'nodes')
-    std::vector<int> nodes;          // nodes in current auxiliary tree (sorted by tin)
+    std::vector<int> depth;              // depth in original tree
+    std::vector<int> preorder;           // preorder index (1..N)
+    std::vector<std::vector<int>> g_aux; // directed: parent -> child (only valid for nodes in 'nodes')
+    std::vector<int> nodes;              // nodes in current auxiliary tree (sorted by preorder)
 
     AuxiliaryTree() = default;
-    explicit AuxiliaryTree(const SchieberVishkinLCA& l, int r = -1) { init(l, r); }
+    explicit AuxiliaryTree(const SchieberVishkinLCA &l) { init(l); }
 
-    // l.build(root) 済み前提
-    void init(const SchieberVishkinLCA& l, int r = -1) {
+    // l.build(...) 済み
+    void init(const SchieberVishkinLCA &l) {
         lca = &l;
         n = l.n;
-        root = (r >= 0 ? r : l.root);
-        if (root < 0) root = 0;
+        root = l.root;
+
+        assert(n > 0);
+        assert(0 <= root && root < n);
+        assert((int)l.preorder.size() == n);
 
         depth.assign(n, 0);
-        tin.assign(n, 0);
+        preorder.assign(n, 0);
         g_aux.assign(n, std::vector<int>());
         nodes.clear();
 
-        for (int v = 0; v < n; ++v) tin[v] = (int)l.idx[v];
+        for (int v = 0; v < n; ++v) {
+            preorder[v] = (int)l.idx[v];
+        }
 
         depth[root] = 0;
-        for (int v : l.ord) {
+        for (int v : l.preorder) {
             if (v == root) continue;
+            assert(0 <= l.par[v] && l.par[v] < n);
             depth[v] = depth[l.par[v]] + 1;
         }
     }
 
     // 前回 build の結果を軽量クリア（O(|nodes|)）
     void clear() {
-        for (int v : nodes) g_aux[v].clear();
+        for (int v : nodes) {
+            g_aux[v].clear();
+        }
         nodes.clear();
     }
 
@@ -51,7 +60,7 @@ struct AuxiliaryTree {
         clear();
         if (X.empty()) return -1;
 
-        auto cmp = [&](int a, int b) { return tin[a] < tin[b]; };
+        auto cmp = [&](int a, int b) { return preorder[a] < preorder[b]; };
 
         std::sort(X.begin(), X.end(), cmp);
         X.erase(std::unique(X.begin(), X.end()), X.end());
@@ -74,7 +83,7 @@ struct AuxiliaryTree {
         st.reserve(nodes.size());
 
         auto add_edge = [&](int p, int c) {
-            g_aux[p].push_back(c);  // parent -> child
+            g_aux[p].push_back(c); // parent -> child
         };
 
         st.push_back(nodes[0]);

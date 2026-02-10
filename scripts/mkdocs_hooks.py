@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE_ROOT = ROOT / "include"
 BUNDLE_ROOT = ROOT / "bundled"
+VERIFY_ROOT = ROOT / "verify"
 BUNDLE_SCRIPT = ROOT / "scripts" / "bundle_header.py"
 
 
@@ -25,3 +26,7 @@ def on_pre_build(config):
         rel = path.relative_to(INCLUDE_ROOT)
         out_path = BUNDLE_ROOT / rel
         bundle_header(path, out_path, include_dirs=[INCLUDE_ROOT])
+    for path in VERIFY_ROOT.rglob("*.test.cpp"):
+        rel = path.relative_to(ROOT)
+        out_path = BUNDLE_ROOT / rel
+        bundle_header(path, out_path, include_dirs=[INCLUDE_ROOT, VERIFY_ROOT, ROOT])

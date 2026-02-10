@@ -15,11 +15,11 @@ struct SchieberVishkinLCA {
     int n;
     int root = -1;
     std::vector<std::vector<int>> g;
-    std::vector<int> ord, par;
+    std::vector<int> preorder, par;
     std::vector<uint> idx, inlabel, ascendant;
     std::vector<int> head;
 
-    explicit SchieberVishkinLCA(int n = 0) : n(n), g(n), par(n, -1), idx(n, 0) { ord.reserve(n); }
+    explicit SchieberVishkinLCA(int n = 0) : n(n), g(n), par(n, -1), idx(n, 0) { preorder.reserve(n); }
 
     void add_edge(int x, int y) {
         g[x].push_back(y);
@@ -30,7 +30,7 @@ struct SchieberVishkinLCA {
     void build(int r = 0) {
         if (n == 0) return;
 
-        ord.clear();
+        preorder.clear();
         std::fill(par.begin(), par.end(), -1);
         root = r;
 
@@ -42,7 +42,7 @@ struct SchieberVishkinLCA {
         while (!st.empty()) {
             int v = st.back();
             st.pop_back();
-            ord.push_back(v);
+            preorder.push_back(v);
             for (int i = (int)g[v].size() - 1; i >= 0; --i) {
                 int to = g[v][i];
                 if (to == par[v]) continue;
@@ -52,12 +52,12 @@ struct SchieberVishkinLCA {
         }
 
         for (int i = 0; i < n; ++i) {
-            idx[ord[i]] = (uint)(i + 1);
+            idx[preorder[i]] = (uint)(i + 1);
         }
 
         inlabel = idx;
         for (int i = n - 1; i > 0; --i) {
-            int v = ord[i];
+            int v = preorder[i];
             int p = par[v];
             if (lowbit(inlabel[p]) < lowbit(inlabel[v])) inlabel[p] = inlabel[v];
         }
@@ -69,12 +69,12 @@ struct SchieberVishkinLCA {
         head[0] = r;
 
         for (int i = 1; i < n; ++i) {
-            int v = ord[i];
+            int v = preorder[i];
             int p = par[v];
             ascendant[v] = ascendant[p] | lowbit(inlabel[v]);
         }
         for (int i = 1; i < n; ++i) {
-            int v = ord[i];
+            int v = preorder[i];
             int p = par[v];
             if (inlabel[v] != inlabel[p]) {
                 head[idx[v] - 1] = p;

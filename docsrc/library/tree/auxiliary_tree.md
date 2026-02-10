@@ -15,7 +15,7 @@ SchieberVishkinLCA lca(n);
 // ... add_edge
 lca.build(root);
 
-AuxiliaryTree aux(lca, root);
+AuxiliaryTree aux(lca);
 int aux_root = aux.build(nodes);
 // aux.g_aux: parent -> child, aux.nodes: aux木に含まれる頂点
 ```

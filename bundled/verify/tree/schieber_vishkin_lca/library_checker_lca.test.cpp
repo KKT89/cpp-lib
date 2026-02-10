@@ -1,4 +1,9 @@
-#pragma once
+// bundled by scripts/bundle_header.py
+
+// ---- begin: verify/tree/schieber_vishkin_lca/library_checker_lca.test.cpp
+#include <iostream>
+
+// ---- begin: include/tree/schieber_vishkin_lca.hpp
 
 #include <algorithm>
 #include <bit>
@@ -106,3 +111,28 @@ struct SchieberVishkinLCA {
         return idx[x] < idx[y] ? x : y;
     }
 };
+// ---- end: include/tree/schieber_vishkin_lca.hpp
+
+int main() {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int n, q;
+    std::cin >> n >> q;
+
+    SchieberVishkinLCA lca(n);
+    for (int i = 1; i < n; ++i) {
+        int p;
+        std::cin >> p;
+        lca.add_edge(i, p);
+    }
+    lca.build(0);
+
+    while (q--) {
+        int u, v;
+        std::cin >> u >> v;
+        std::cout << lca.lca(u, v) << '\n';
+    }
+    return 0;
+}
+// ---- end: verify/tree/schieber_vishkin_lca/library_checker_lca.test.cpp

@@ -4,7 +4,7 @@
 
 ## Math
 
-- [デジタル冪級数 ~理論編~](digital_fps_theory.md)
+- [デジタル冪級数](digital_fps_theory.md)
 
 ## Bitwise operation
 

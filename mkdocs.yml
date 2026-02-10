@@ -1,6 +1,7 @@
 # Project information
 site_name: KKT89's Library
 docs_dir: docsrc
+strict: true
 
 # Repository
 repo_name: KKT89/cpp-lib
@@ -36,7 +37,7 @@ theme:
 # Plugins
 plugins:
   - search:
-      lang: 'ja'
+      lang: ja
   - open-in-new-tab:
   - tags:
 
@@ -46,8 +47,8 @@ hooks:
 
 # Additional configuration
 extra_css:
-  - "https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css"
-  - "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  - https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css
+  - https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
   - css/logo.css
   - css/layout.css
   - css/code.css
@@ -63,16 +64,14 @@ markdown_extensions:
   - admonition # 注釈ブロック
   - pymdownx.highlight:
       linenums: true # コードブロックに行番号を表示
-  - pymdownx.inlinehilite # 行内コード ==var== のように書くとハイライト色付きで強調。
-  - pymdownx.superfences # トリプルフェンス内でタブ切替 (=== "C++" など) を実装。複合的なコードブロックや Markdown in code も可。
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
   - pymdownx.snippets:
       check_paths: true
       base_path:
         - .
   - pymdownx.arithmatex: # $ ... $ / $$ ... $$ で LaTeX 数式を埋め込む。
       generic: true
-  - codehilite: # Python-Markdown 標準のハイライト拡張。
-      guess_lang: false
   - toc: # 各ページ冒頭に自動で目次を生成。
       permalink: true
 
@@ -93,5 +92,5 @@ nav:
           - Schieber-Vishkin LCA: verify/tree/schieber_vishkin_lca.md
   - Note:
       - Note Top: note/note.md
-      - デジタル冪級数 ~理論編~: note/digital_fps_theory.md
+      - デジタル冪級数: note/digital_fps_theory.md
       - ビット演算あれこれ: note/bitwise_operation.md

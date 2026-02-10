@@ -3,6 +3,7 @@
 // ---- begin: include/tree/auxiliary_tree.hpp
 
 #include <algorithm>
+#include <cassert>
 #include <vector>
 
 // ---- begin: include/tree/schieber_vishkin_lca.hpp
@@ -20,11 +21,11 @@ struct SchieberVishkinLCA {
     int n;
     int root = -1;
     std::vector<std::vector<int>> g;
-    std::vector<int> ord, par;
+    std::vector<int> preorder, par;
     std::vector<uint> idx, inlabel, ascendant;
     std::vector<int> head;
 
-    explicit SchieberVishkinLCA(int n = 0) : n(n), g(n), par(n, -1), idx(n, 0) { ord.reserve(n); }
+    explicit SchieberVishkinLCA(int n = 0) : n(n), g(n), par(n, -1), idx(n, 0) { preorder.reserve(n); }
 
     void add_edge(int x, int y) {
         g[x].push_back(y);
@@ -35,7 +36,7 @@ struct SchieberVishkinLCA {
     void build(int r = 0) {
         if (n == 0) return;
 
-        ord.clear();
+        preorder.clear();
         std::fill(par.begin(), par.end(), -1);
         root = r;
 
@@ -47,7 +48,7 @@ struct SchieberVishkinLCA {
         while (!st.empty()) {
             int v = st.back();
             st.pop_back();
-            ord.push_back(v);
+            preorder.push_back(v);
             for (int i = (int)g[v].size() - 1; i >= 0; --i) {
                 int to = g[v][i];
                 if (to == par[v]) continue;
@@ -57,12 +58,12 @@ struct SchieberVishkinLCA {
         }
 
         for (int i = 0; i < n; ++i) {
-            idx[ord[i]] = (uint)(i + 1);
+            idx[preorder[i]] = (uint)(i + 1);
         }
 
         inlabel = idx;
         for (int i = n - 1; i > 0; --i) {
-            int v = ord[i];
+            int v = preorder[i];
             int p = par[v];
             if (lowbit(inlabel[p]) < lowbit(inlabel[v])) inlabel[p] = inlabel[v];
         }
@@ -74,12 +75,12 @@ struct SchieberVishkinLCA {
         head[0] = r;
 
         for (int i = 1; i < n; ++i) {
-            int v = ord[i];
+            int v = preorder[i];
             int p = par[v];
             ascendant[v] = ascendant[p] | lowbit(inlabel[v]);
         }
         for (int i = 1; i < n; ++i) {
-            int v = ord[i];
+            int v = preorder[i];
             int p = par[v];
             if (inlabel[v] != inlabel[p]) {
                 head[idx[v] - 1] = p;
@@ -116,42 +117,50 @@ struct SchieberVishkinLCA {
 // ---- end: include/tree/schieber_vishkin_lca.hpp
 
 struct AuxiliaryTree {
-    const SchieberVishkinLCA* lca = nullptr;
+    const SchieberVishkinLCA *lca = nullptr;
     int n = 0;
     int root = -1;
 
-    std::vector<int> depth;          // depth in original tree
-    std::vector<int> tin;            // preorder index (1..N)
-    std::vector<std::vector<int>> g_aux;  // directed: parent -> child (only valid for nodes in 'nodes')
-    std::vector<int> nodes;          // nodes in current auxiliary tree (sorted by tin)
+    std::vector<int> depth;              // depth in original tree
+    std::vector<int> preorder;           // preorder index (1..N)
+    std::vector<std::vector<int>> g_aux; // directed: parent -> child (only valid for nodes in 'nodes')
+    std::vector<int> nodes;              // nodes in current auxiliary tree (sorted by preorder)
 
     AuxiliaryTree() = default;
-    explicit AuxiliaryTree(const SchieberVishkinLCA& l, int r = -1) { init(l, r); }
+    explicit AuxiliaryTree(const SchieberVishkinLCA &l) { init(l); }
 
-    // l.build(root) 済み前提
-    void init(const SchieberVishkinLCA& l, int r = -1) {
+    // l.build(...) 済み
+    void init(const SchieberVishkinLCA &l) {
         lca = &l;
         n = l.n;
-        root = (r >= 0 ? r : l.root);
-        if (root < 0) root = 0;
+        root = l.root;
+
+        assert(n > 0);
+        assert(0 <= root && root < n);
+        assert((int)l.preorder.size() == n);
 
         depth.assign(n, 0);
-        tin.assign(n, 0);
+        preorder.assign(n, 0);
         g_aux.assign(n, std::vector<int>());
         nodes.clear();
 
-        for (int v = 0; v < n; ++v) tin[v] = (int)l.idx[v];
+        for (int v = 0; v < n; ++v) {
+            preorder[v] = (int)l.idx[v];
+        }
 
         depth[root] = 0;
-        for (int v : l.ord) {
+        for (int v : l.preorder) {
             if (v == root) continue;
+            assert(0 <= l.par[v] && l.par[v] < n);
             depth[v] = depth[l.par[v]] + 1;
         }
     }
 
     // 前回 build の結果を軽量クリア（O(|nodes|)）
     void clear() {
-        for (int v : nodes) g_aux[v].clear();
+        for (int v : nodes) {
+            g_aux[v].clear();
+        }
         nodes.clear();
     }
 
@@ -161,7 +170,7 @@ struct AuxiliaryTree {
         clear();
         if (X.empty()) return -1;
 
-        auto cmp = [&](int a, int b) { return tin[a] < tin[b]; };
+        auto cmp = [&](int a, int b) { return preorder[a] < preorder[b]; };
 
         std::sort(X.begin(), X.end(), cmp);
         X.erase(std::unique(X.begin(), X.end()), X.end());
@@ -184,7 +193,7 @@ struct AuxiliaryTree {
         st.reserve(nodes.size());
 
         auto add_edge = [&](int p, int c) {
-            g_aux[p].push_back(c);  // parent -> child
+            g_aux[p].push_back(c); // parent -> child
         };
 
         st.push_back(nodes[0]);
