@@ -8,16 +8,12 @@
 
 ```shell
 $ uv sync
-$ uv run python scripts/sync_library_index.py --write
 $ uv run mkdocs serve
 ```
 
-`mkdocs.yml` の `nav` を変更していない場合は、2行目（`sync_library_index.py --write`）は省略可能です。
+### 開発用スクリプト
 
-### ヘッダ結合（1ファイル化）について
-
-- `mkdocs serve/build` の前に `include/**/*.hpp` から `bundled/` を自動生成します（`scripts/mkdocs_hooks.py`）。
-- 各ライブラリページの「Bundled (Copy & Paste)」はこの `bundled/` を参照します。
+スクリプトに関する説明は [`scripts/README.md`](scripts/README.md) に記載しています。
 
 ## ライブラリ使用方法
 

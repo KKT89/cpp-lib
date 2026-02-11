@@ -75,21 +75,33 @@ def render_library_index(groups: list[tuple[str, list[tuple[str, str]]]]) -> str
     return "\n".join(lines).rstrip() + "\n"
 
 
+def sync_library_index(*, write: bool) -> tuple[bool, str, str]:
+    expected = render_library_index(load_library_nav_groups())
+    current = LIBRARY_INDEX_MD.read_text(encoding="utf-8") if LIBRARY_INDEX_MD.exists() else ""
+    changed = current != expected
+
+    if write and changed:
+        LIBRARY_INDEX_MD.parent.mkdir(parents=True, exist_ok=True)
+        LIBRARY_INDEX_MD.write_text(expected, encoding="utf-8")
+
+    return changed, current, expected
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--write", action="store_true", help="docsrc/library/index.md を更新する")
     args = parser.parse_args()
 
-    expected = render_library_index(load_library_nav_groups())
-    current = LIBRARY_INDEX_MD.read_text(encoding="utf-8") if LIBRARY_INDEX_MD.exists() else ""
+    changed, current, expected = sync_library_index(write=args.write)
 
     if args.write:
-        LIBRARY_INDEX_MD.parent.mkdir(parents=True, exist_ok=True)
-        LIBRARY_INDEX_MD.write_text(expected, encoding="utf-8")
-        print(f"updated: {LIBRARY_INDEX_MD}")
+        if changed:
+            print(f"updated: {LIBRARY_INDEX_MD}")
+        else:
+            print(f"already up-to-date: {LIBRARY_INDEX_MD}")
         return 0
 
-    if current == expected:
+    if not changed:
         print("OK: docsrc/library/index.md is in sync with mkdocs.yml")
         return 0
 
