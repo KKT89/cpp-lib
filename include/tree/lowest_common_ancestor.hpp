@@ -1,12 +1,10 @@
-// bundled by scripts/bundle_header.py
-
-// ---- begin: include/tree/schieber_vishkin_lca.hpp
+#pragma once
 
 #include <algorithm>
 #include <bit>
 #include <vector>
 
-struct SchieberVishkinLCA {
+struct LowestCommonAncestor {
     using uint = unsigned int;
 
     static uint lowbit(uint x) { return x & (~x + 1); }
@@ -19,7 +17,7 @@ struct SchieberVishkinLCA {
     std::vector<uint> idx, inlabel, ascendant;
     std::vector<int> head;
 
-    explicit SchieberVishkinLCA(int n = 0) : n(n), g(n), par(n, -1), idx(n, 0) { preorder.reserve(n); }
+    explicit LowestCommonAncestor(int n = 0) : n(n), g(n), par(n, -1), idx(n, 0) { preorder.reserve(n); }
 
     void add_edge(int x, int y) {
         g[x].push_back(y);
@@ -108,4 +106,3 @@ struct SchieberVishkinLCA {
         return idx[x] < idx[y] ? x : y;
     }
 };
-// ---- end: include/tree/schieber_vishkin_lca.hpp

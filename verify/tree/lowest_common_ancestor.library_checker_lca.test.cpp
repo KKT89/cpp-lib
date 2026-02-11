@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../../../include/tree/schieber_vishkin_lca.hpp"
+#include "../../include/tree/lowest_common_ancestor.hpp"
 
 int main() {
     std::ios::sync_with_stdio(false);
@@ -9,7 +9,7 @@ int main() {
     int n, q;
     std::cin >> n >> q;
 
-    SchieberVishkinLCA lca(n);
+    LowestCommonAncestor lca(n);
     for (int i = 1; i < n; ++i) {
         int p;
         std::cin >> p;

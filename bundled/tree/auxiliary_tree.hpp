@@ -6,13 +6,13 @@
 #include <cassert>
 #include <vector>
 
-// ---- begin: include/tree/schieber_vishkin_lca.hpp
+// ---- begin: include/tree/lowest_common_ancestor.hpp
 
 #include <algorithm>
 #include <bit>
 #include <vector>
 
-struct SchieberVishkinLCA {
+struct LowestCommonAncestor {
     using uint = unsigned int;
 
     static uint lowbit(uint x) { return x & (~x + 1); }
@@ -25,7 +25,7 @@ struct SchieberVishkinLCA {
     std::vector<uint> idx, inlabel, ascendant;
     std::vector<int> head;
 
-    explicit SchieberVishkinLCA(int n = 0) : n(n), g(n), par(n, -1), idx(n, 0) { preorder.reserve(n); }
+    explicit LowestCommonAncestor(int n = 0) : n(n), g(n), par(n, -1), idx(n, 0) { preorder.reserve(n); }
 
     void add_edge(int x, int y) {
         g[x].push_back(y);
@@ -114,10 +114,10 @@ struct SchieberVishkinLCA {
         return idx[x] < idx[y] ? x : y;
     }
 };
-// ---- end: include/tree/schieber_vishkin_lca.hpp
+// ---- end: include/tree/lowest_common_ancestor.hpp
 
 struct AuxiliaryTree {
-    const SchieberVishkinLCA *lca = nullptr;
+    const LowestCommonAncestor *lca = nullptr;
     int n = 0;
     int root = -1;
 
@@ -127,10 +127,10 @@ struct AuxiliaryTree {
     std::vector<int> nodes;              // nodes in current auxiliary tree (sorted by preorder)
 
     AuxiliaryTree() = default;
-    explicit AuxiliaryTree(const SchieberVishkinLCA &l) { init(l); }
+    explicit AuxiliaryTree(const LowestCommonAncestor &l) { init(l); }
 
     // l.build(...) 済み
-    void init(const SchieberVishkinLCA &l) {
+    void init(const LowestCommonAncestor &l) {
         lca = &l;
         n = l.n;
         root = l.root;

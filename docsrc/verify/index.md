@@ -11,4 +11,4 @@
 
 ## Verify 一覧
 
-- [Schieber-Vishkin LCA](tree/schieber_vishkin_lca.md)
+- [Lowest Common Ancestor / Library Checker - LCA](tree/lowest_common_ancestor.library_checker_lca.md)

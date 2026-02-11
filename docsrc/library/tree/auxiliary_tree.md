@@ -11,7 +11,7 @@ tags:
 ## Interface
 
 ```cpp
-SchieberVishkinLCA lca(n);
+LowestCommonAncestor lca(n);
 // ... add_edge
 lca.build(root);
 

@@ -6,7 +6,7 @@
 
 ## Tree
 
-- [Schieber-Vishkin LCA](tree/schieber_vishkin_lca.md)
+- [Lowest Common Ancestor](tree/lowest_common_ancestor.md)
 - [Auxiliary Tree (Virtual Tree)](tree/auxiliary_tree.md)
 
 ## Graph

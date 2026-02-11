@@ -1,15 +1,12 @@
 // bundled by scripts/bundle_header.py
 
-// ---- begin: verify/tree/schieber_vishkin_lca/library_checker_lca.test.cpp
-#include <iostream>
-
-// ---- begin: include/tree/schieber_vishkin_lca.hpp
+// ---- begin: include/tree/lowest_common_ancestor.hpp
 
 #include <algorithm>
 #include <bit>
 #include <vector>
 
-struct SchieberVishkinLCA {
+struct LowestCommonAncestor {
     using uint = unsigned int;
 
     static uint lowbit(uint x) { return x & (~x + 1); }
@@ -22,7 +19,7 @@ struct SchieberVishkinLCA {
     std::vector<uint> idx, inlabel, ascendant;
     std::vector<int> head;
 
-    explicit SchieberVishkinLCA(int n = 0) : n(n), g(n), par(n, -1), idx(n, 0) { preorder.reserve(n); }
+    explicit LowestCommonAncestor(int n = 0) : n(n), g(n), par(n, -1), idx(n, 0) { preorder.reserve(n); }
 
     void add_edge(int x, int y) {
         g[x].push_back(y);
@@ -111,28 +108,4 @@ struct SchieberVishkinLCA {
         return idx[x] < idx[y] ? x : y;
     }
 };
-// ---- end: include/tree/schieber_vishkin_lca.hpp
-
-int main() {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-
-    int n, q;
-    std::cin >> n >> q;
-
-    SchieberVishkinLCA lca(n);
-    for (int i = 1; i < n; ++i) {
-        int p;
-        std::cin >> p;
-        lca.add_edge(i, p);
-    }
-    lca.build(0);
-
-    while (q--) {
-        int u, v;
-        std::cin >> u >> v;
-        std::cout << lca.lca(u, v) << '\n';
-    }
-    return 0;
-}
-// ---- end: verify/tree/schieber_vishkin_lca/library_checker_lca.test.cpp
+// ---- end: include/tree/lowest_common_ancestor.hpp

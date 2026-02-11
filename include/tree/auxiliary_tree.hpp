@@ -4,10 +4,10 @@
 #include <cassert>
 #include <vector>
 
-#include "schieber_vishkin_lca.hpp"
+#include "lowest_common_ancestor.hpp"
 
 struct AuxiliaryTree {
-    const SchieberVishkinLCA *lca = nullptr;
+    const LowestCommonAncestor *lca = nullptr;
     int n = 0;
     int root = -1;
 
@@ -17,10 +17,10 @@ struct AuxiliaryTree {
     std::vector<int> nodes;              // nodes in current auxiliary tree (sorted by preorder)
 
     AuxiliaryTree() = default;
-    explicit AuxiliaryTree(const SchieberVishkinLCA &l) { init(l); }
+    explicit AuxiliaryTree(const LowestCommonAncestor &l) { init(l); }
 
     // l.build(...) 済み
-    void init(const SchieberVishkinLCA &l) {
+    void init(const LowestCommonAncestor &l) {
         lca = &l;
         n = l.n;
         root = l.root;

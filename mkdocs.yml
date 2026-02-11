@@ -80,7 +80,7 @@ nav:
   - Library:
       - Library Top: library/index.md
       - Tree:
-          - Schieber-Vishkin LCA: library/tree/schieber_vishkin_lca.md
+          - Lowest Common Ancestor: library/tree/lowest_common_ancestor.md
           - Auxiliary Tree (Virtual Tree): library/tree/auxiliary_tree.md
       - Graph:
           - Bellman Ford (負閉路検出): library/graph/bellman_ford.md
@@ -89,7 +89,7 @@ nav:
   - Verify:
       - Verify Top: verify/index.md
       - Tree:
-          - Schieber-Vishkin LCA: verify/tree/schieber_vishkin_lca.md
+          - Lowest Common Ancestor / Library Checker - LCA: verify/tree/lowest_common_ancestor.library_checker_lca.md
   - Note:
       - Note Top: note/note.md
       - デジタル冪級数: note/digital_fps_theory.md
