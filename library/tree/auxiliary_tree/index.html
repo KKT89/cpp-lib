@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../schieber_vishkin_lca/">
+        <link rel="prev" href="../lowest_common_ancestor/">
       
       
         <link rel="next" href="../../graph/bellman_ford/">
@@ -472,14 +472,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../schieber_vishkin_lca/" class="md-nav__link">
+      <a href="../lowest_common_ancestor/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Schieber-Vishkin LCA
+    Lowest Common Ancestor
   
 
     
@@ -923,14 +923,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/tree/schieber_vishkin_lca/" class="md-nav__link">
+      <a href="../../../verify/tree/lowest_common_ancestor.library_checker_lca/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Schieber-Vishkin LCA
+    Lowest Common Ancestor / Library Checker - LCA
   
 
     
@@ -1147,7 +1147,7 @@
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">SchieberVishkinLCA</span><span class="w"> </span><span class="nf">lca</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">LowestCommonAncestor</span><span class="w"> </span><span class="nf">lca</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
 <span class="c1">// ... add_edge</span>
 <span class="n">lca</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
 
@@ -1282,10 +1282,10 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;schieber_vishkin_lca.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;lowest_common_ancestor.hpp&quot;</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">AuxiliaryTree</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">SchieberVishkinLCA</span><span class="w"> </span><span class="o">*</span><span class="n">lca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">LowestCommonAncestor</span><span class="w"> </span><span class="o">*</span><span class="n">lca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
 
@@ -1295,10 +1295,10 @@
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nodes</span><span class="p">;</span><span class="w">              </span><span class="c1">// nodes in current auxiliary tree (sorted by preorder)</span>
 
 <span class="w">    </span><span class="n">AuxiliaryTree</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
-<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">AuxiliaryTree</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">SchieberVishkinLCA</span><span class="w"> </span><span class="o">&amp;</span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">init</span><span class="p">(</span><span class="n">l</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">AuxiliaryTree</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">LowestCommonAncestor</span><span class="w"> </span><span class="o">&amp;</span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">init</span><span class="p">(</span><span class="n">l</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// l.build(...) 済み</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">SchieberVishkinLCA</span><span class="w"> </span><span class="o">&amp;</span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">LowestCommonAncestor</span><span class="w"> </span><span class="o">&amp;</span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">lca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">l</span><span class="p">;</span>
 <span class="w">        </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="n">n</span><span class="p">;</span>
 <span class="w">        </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="n">root</span><span class="p">;</span>
@@ -1638,13 +1638,13 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
-<span class="c1">// ---- begin: include/tree/schieber_vishkin_lca.hpp</span>
+<span class="c1">// ---- begin: include/tree/lowest_common_ancestor.hpp</span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bit&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
-<span class="k">struct</span><span class="w"> </span><span class="nc">SchieberVishkinLCA</span><span class="w"> </span><span class="p">{</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">LowestCommonAncestor</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="p">;</span>
 
 <span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="nf">lowbit</span><span class="p">(</span><span class="n">uint</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="o">~</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
@@ -1657,7 +1657,7 @@
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">uint</span><span class="o">&gt;</span><span class="w"> </span><span class="n">idx</span><span class="p">,</span><span class="w"> </span><span class="n">inlabel</span><span class="p">,</span><span class="w"> </span><span class="n">ascendant</span><span class="p">;</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">SchieberVishkinLCA</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">n</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="n">g</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="n">par</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">),</span><span class="w"> </span><span class="n">idx</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">preorder</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">LowestCommonAncestor</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">n</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="n">g</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="n">par</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">),</span><span class="w"> </span><span class="n">idx</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">preorder</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">add_edge</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">g</span><span class="p">[</span><span class="n">x</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
@@ -1746,10 +1746,10 @@
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">idx</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">idx</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">};</span>
-<span class="c1">// ---- end: include/tree/schieber_vishkin_lca.hpp</span>
+<span class="c1">// ---- end: include/tree/lowest_common_ancestor.hpp</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">AuxiliaryTree</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">SchieberVishkinLCA</span><span class="w"> </span><span class="o">*</span><span class="n">lca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">LowestCommonAncestor</span><span class="w"> </span><span class="o">*</span><span class="n">lca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
 
@@ -1759,10 +1759,10 @@
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nodes</span><span class="p">;</span><span class="w">              </span><span class="c1">// nodes in current auxiliary tree (sorted by preorder)</span>
 
 <span class="w">    </span><span class="n">AuxiliaryTree</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
-<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">AuxiliaryTree</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">SchieberVishkinLCA</span><span class="w"> </span><span class="o">&amp;</span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">init</span><span class="p">(</span><span class="n">l</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">AuxiliaryTree</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">LowestCommonAncestor</span><span class="w"> </span><span class="o">&amp;</span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">init</span><span class="p">(</span><span class="n">l</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// l.build(...) 済み</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">SchieberVishkinLCA</span><span class="w"> </span><span class="o">&amp;</span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">LowestCommonAncestor</span><span class="w"> </span><span class="o">&amp;</span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">lca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">l</span><span class="p">;</span>
 <span class="w">        </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="n">n</span><span class="p">;</span>
 <span class="w">        </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="n">root</span><span class="p">;</span>
