@@ -21,8 +21,6 @@ $ uv run mkdocs serve
 
 ### CMakeListsを使用する場合
 
-以下のように追記すればOK。
-
 ```cmake
 add_library(cpplib INTERFACE)
 target_include_directories(cpplib INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
