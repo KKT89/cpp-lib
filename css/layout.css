@@ -28,3 +28,9 @@
     content: "\f0a9";
     margin-right: 5px;
 }
+
+/* テーブルのセル余白を広げる */
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+    padding: 0.6em 1.6em;
+}
