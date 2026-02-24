@@ -13,6 +13,10 @@
 
 - [Bellman Ford (負閉路検出)](graph/bellman_ford.md)
 
+## String
+
+- [Z Algorithm](string/z_algorithm.md)
+
 ## Sample
 
 - [sample.hpp](sample/sample.md)
