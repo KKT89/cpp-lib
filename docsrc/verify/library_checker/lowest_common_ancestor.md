@@ -7,7 +7,7 @@
 
 ## Judge
 
-- [Library Checker - LCA](https://judge.yosupo.jp/problem/lca)
+- [Lowest Common Ancestor (Library Checker)](https://judge.yosupo.jp/problem/lca)
 
 ## Verify Code
 
