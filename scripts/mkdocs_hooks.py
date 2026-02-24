@@ -24,7 +24,7 @@ def on_pre_build(config):
         rel = path.relative_to(INCLUDE_ROOT)
         out_path = BUNDLE_ROOT / rel
         bundle_header(path, out_path, include_dirs=[INCLUDE_ROOT])
-    for path in VERIFY_ROOT.rglob("*.test.cpp"):
+    for path in VERIFY_ROOT.rglob("*.cpp"):
         rel = path.relative_to(ROOT)
         out_path = BUNDLE_ROOT / rel
         bundle_header(path, out_path, include_dirs=[INCLUDE_ROOT, VERIFY_ROOT, ROOT])

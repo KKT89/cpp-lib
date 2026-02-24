@@ -11,4 +11,4 @@
 
 ## Verify 一覧
 
-- [Lowest Common Ancestor / Library Checker - LCA](library_checker/lca.md)
+- [Lowest Common Ancestor / Library Checker - LCA](library_checker/lowest_common_ancestor.md)

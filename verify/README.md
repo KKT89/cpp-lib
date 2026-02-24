@@ -29,4 +29,4 @@
 ## Lowest Common Ancestor
 
 - 問題: https://judge.yosupo.jp/problem/lca
-- コード: `verify/library_checker/lca.test.cpp`
+- コード: `verify/library_checker/lowest_common_ancestor.cpp`
