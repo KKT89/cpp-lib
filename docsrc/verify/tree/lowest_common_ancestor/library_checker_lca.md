@@ -11,8 +11,8 @@
 
 ## Verify Code
 
-Source: `verify/lowest_common_ancestor/library_checker/lca.test.cpp`
+Source: `verify/tree/lowest_common_ancestor/library_checker_lca.test.cpp`
 
 ```cpp
---8<-- "bundled/verify/lowest_common_ancestor/library_checker/lca.test.cpp"
+--8<-- "bundled/verify/tree/lowest_common_ancestor/library_checker_lca.test.cpp"
 ```

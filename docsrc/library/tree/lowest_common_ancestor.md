@@ -19,7 +19,7 @@ int a = lca.lca(u, v);
 
 ## Verify
 
-- [Library Checker - LCA](../../verify/lowest_common_ancestor/library_checker/lca.md)
+- [Library Checker - LCA](../../verify/library_checker/lca.md)
 
 ## Code
 
