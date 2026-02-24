@@ -1152,14 +1152,52 @@
 <h1 id="lowest-common-ancestor">Lowest Common Ancestor<a class="headerlink" href="#lowest-common-ancestor" title="Permanent link">&para;</a></h1>
 <p>木上の LCA を <code>build: O(N)</code>, <code>query: O(1)</code> で処理する実装です。</p>
 <h2 id="interface">Interface<a class="headerlink" href="#interface" title="Permanent link">&para;</a></h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">LowestCommonAncestor</span><span class="w"> </span><span class="nf">lca</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">LowestCommonAncestor</span><span class="w"> </span><span class="nf">lca</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+
+<span class="c1">// 木の辺を追加</span>
 <span class="n">lca</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">);</span>
+
+<span class="c1">// 根 root で前処理</span>
 <span class="n">lca</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lca</span><span class="p">.</span><span class="n">lca</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">);</span>
+
+<span class="c1">// LCA を取得</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lca</span><span class="p">.</span><span class="n">lca</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>計算量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LowestCommonAncestor(n)</code></td>
+<td><span class="arithmatex">\(O(n)\)</span></td>
+</tr>
+<tr>
+<td><code>add_edge(u, v)</code></td>
+<td><span class="arithmatex">\(O(1)\)</span></td>
+</tr>
+<tr>
+<td><code>build(root)</code></td>
+<td><span class="arithmatex">\(O(n)\)</span></td>
+</tr>
+<tr>
+<td><code>lca(u, v)</code></td>
+<td><span class="arithmatex">\(O(1)\)</span></td>
+</tr>
+</tbody>
+</table>
 <h2 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../../verify/library_checker/lowest_common_ancestor/">Lowest Common Ancestor (Library Checker)</a></li>
