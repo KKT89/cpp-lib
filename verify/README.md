@@ -1,12 +1,12 @@
 # verify 方針
 
-- verify コードは `verify/<category>/<library_key>/<judge>/` に置く。
+- verify コードは `verify/<library_key>/<judge>/` に置く。
 - verify コードは `<problem>.test.cpp` で命名する。
-  - 例: `verify/tree/lowest_common_ancestor/library_checker/lca.test.cpp`
-  - 例: `verify/tree/lowest_common_ancestor/atcoder/abc014_d.test.cpp`
-- verify ドキュメントは `docsrc/verify/<category>/<library_key>/<judge>/` に置く。
+  - 例: `verify/lowest_common_ancestor/library_checker/lca.test.cpp`
+  - 例: `verify/lowest_common_ancestor/atcoder/abc014_d.test.cpp`
+- verify ドキュメントは `docsrc/verify/<library_key>/<judge>/` に置く。
 - verify ドキュメントは `<problem>.md` で命名する。
-  - 例: `docsrc/verify/tree/lowest_common_ancestor/library_checker/lca.md`
+  - 例: `docsrc/verify/lowest_common_ancestor/library_checker/lca.md`
 - 1ライブラリに対して複数ジャッジの verify を並べる（1:多）。
 - verify コードが複数ライブラリにまたがる場合は primary ライブラリのディレクトリに置き、ドキュメントの Target Library に全て列挙する。
 - verify コードの `#include` は include ディレクトリ相対パスで記述する。
@@ -29,4 +29,4 @@
 ## Lowest Common Ancestor
 
 - 問題: https://judge.yosupo.jp/problem/lca
-- コード: `verify/tree/lowest_common_ancestor/library_checker/lca.test.cpp`
+- コード: `verify/lowest_common_ancestor/library_checker/lca.test.cpp`
