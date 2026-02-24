@@ -1,7 +1,15 @@
+# Editor / IDE
 .clang-format
-.idea
-cmake-build-debug
-.venv
-site
+.idea/
+
+# C++ build outputs
+cmake-build-debug/
+
+# MkDocs generated site
+site/
+
+# Python
+.venv/
 __pycache__/
 *.pyc
+*.pyo

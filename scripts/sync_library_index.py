@@ -46,9 +46,7 @@ def load_library_nav_groups() -> list[tuple[str, list[tuple[str, str]]]]:
             title, path = next(iter(child.items()))
             if not isinstance(path, str):
                 continue
-            if path.startswith("library/"):
-                path = path[len("library/") :]
-            links.append((title, path))
+            links.append((title, path.removeprefix("library/")))
 
         groups.append((name, links))
 

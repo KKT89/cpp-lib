@@ -15,14 +15,11 @@ def resolve_include(
     current_dir: Path,
     include_dirs: list[Path],
 ) -> Path | None:
-    cand = (current_dir / include).resolve()
-    if cand.exists():
-        return cand
-    for inc in include_dirs:
-        cand = (inc / include).resolve()
-        if cand.exists():
-            return cand
-    return None
+    candidates = (
+        (d / include).resolve()
+        for d in [current_dir, *include_dirs]
+    )
+    return next((c for c in candidates if c.exists()), None)
 
 
 def bundle_file(
@@ -61,7 +58,7 @@ def bundle_header(input_path: Path, output_path: Path, include_dirs: list[Path] 
     script_dir = Path(__file__).resolve().parent
     project_root = script_dir.parent
 
-    if include_dirs is None or not include_dirs:
+    if not include_dirs:
         include_dirs = [(project_root / "include").resolve()]
     include_dirs = [d.resolve() for d in include_dirs]
 
