@@ -86,8 +86,6 @@ nav:
           - Bellman Ford (負閉路検出): library/graph/bellman_ford.md
       - String:
           - Z Algorithm: library/string/z_algorithm.md
-      - Sample:
-          - sample.hpp: library/sample/sample.md
   - Verify:
       - Verify Top: verify/index.md
       - Tree:

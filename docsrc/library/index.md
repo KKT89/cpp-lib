@@ -16,7 +16,3 @@
 ## String
 
 - [Z Algorithm](string/z_algorithm.md)
-
-## Sample
-
-- [sample.hpp](sample/sample.md)
