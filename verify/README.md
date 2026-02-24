@@ -1,13 +1,16 @@
 # verify 方針
 
-- verify コードは `verify/<category>/` に置く。
-- verify コードは `(<library_key>).(<judge>)_(<problem_key>).test.cpp` で命名する。
-  - 例: `lowest_common_ancestor.library_checker_lca.test.cpp`, `lowest_common_ancestor.atc_abc014_d.test.cpp`
-- verify ドキュメントは `docsrc/verify/<category>/` に置く。
-- verify ドキュメントは `(<library_key>).(<judge>)_(<problem_key>).md` で命名する。
-  - 例: `lowest_common_ancestor.library_checker_lca.md`, `lowest_common_ancestor.atc_abc014_d.md`
+- verify コードは `verify/<category>/<library_key>/` に置く。
+- verify コードは `(<judge>)_(<problem_key>).test.cpp` で命名する。
+  - 例: `verify/tree/lowest_common_ancestor/library_checker_lca.test.cpp`
+  - 例: `verify/tree/lowest_common_ancestor/atc_abc014_d.test.cpp`
+- verify ドキュメントは `docsrc/verify/<category>/<library_key>/` に置く。
+- verify ドキュメントは `(<judge>)_(<problem_key>).md` で命名する。
+  - 例: `docsrc/verify/tree/lowest_common_ancestor/library_checker_lca.md`
 - 1ライブラリに対して複数ジャッジの verify を並べる（1:多）。
-- verify コードは `include/...` のライブラリを `#include` して使う。
+- verify コードが複数ライブラリにまたがる場合は primary ライブラリのディレクトリに置き、ドキュメントの Target Library に全て列挙する。
+- verify コードの `#include` は include ディレクトリ相対パスで記述する。
+  - 例: `#include "tree/lowest_common_ancestor.hpp"`
 - ライブラリ内部を変更しても、公開インタフェースが同じなら verify コードは原則そのままにする。
 
 ## ドキュメント導線ルール
@@ -26,4 +29,4 @@
 ## Lowest Common Ancestor
 
 - 問題: https://judge.yosupo.jp/problem/lca
-- コード: `verify/tree/lowest_common_ancestor.library_checker_lca.test.cpp`
+- コード: `verify/tree/lowest_common_ancestor/library_checker_lca.test.cpp`

@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../../include/tree/lowest_common_ancestor.hpp"
+#include "tree/lowest_common_ancestor.hpp"
 
 int main() {
     std::ios::sync_with_stdio(false);
