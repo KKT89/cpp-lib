@@ -1,4 +1,4 @@
-# Verify: Library Checker - LCA
+# Lowest Common Ancestor (Library Checker)
 
 ## Target Library
 

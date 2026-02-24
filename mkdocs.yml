@@ -91,7 +91,7 @@ nav:
   - Verify:
       - Verify Top: verify/index.md
       - Tree:
-          - Lowest Common Ancestor / Library Checker - LCA: verify/library_checker/lowest_common_ancestor.md
+          - Lowest Common Ancestor (Library Checker): verify/library_checker/lowest_common_ancestor.md
   - Note:
       - Note Top: note/note.md
       - デジタル冪級数: note/digital_fps_theory.md
