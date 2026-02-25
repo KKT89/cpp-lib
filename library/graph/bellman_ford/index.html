@@ -1258,13 +1258,13 @@
 <span class="normal">8</span>
 <span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">BellmanFord</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bf</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
 <span class="n">bf</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="p">,</span><span class="w"> </span><span class="n">cost</span><span class="p">);</span>
-<span class="n">bf</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="n">s</span><span class="p">);</span><span class="w">              </span><span class="c1">// 単一始点</span>
-<span class="n">bf</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">last</span><span class="p">);</span><span class="w">    </span><span class="c1">// 複数始点（イテレータ）</span>
+<span class="n">bf</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="n">s</span><span class="p">);</span><span class="w">                                </span><span class="c1">// 単一始点</span>
+<span class="n">bf</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="n">sources</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">sources</span><span class="p">.</span><span class="n">end</span><span class="p">());</span><span class="w">   </span><span class="c1">// 複数始点</span>
 
-<span class="kt">bool</span><span class="w"> </span><span class="n">ok</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="n">valid</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">              </span><span class="c1">// 到達可能かつ負閉路の影響なし</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">ok</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="n">valid</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
 <span class="kt">bool</span><span class="w"> </span><span class="n">reach</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="n">reachable</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
 <span class="kt">bool</span><span class="w"> </span><span class="n">neg</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="n">on_negative_cycle</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
-<span class="n">T</span><span class="w">    </span><span class="n">d</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="n">distance</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="kt">int</span><span class="w">  </span><span class="n">d</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="n">distance</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
 <table>
 <thead>
@@ -1287,7 +1287,7 @@
 <td><span class="arithmatex">\(O(VE)\)</span></td>
 </tr>
 <tr>
-<td>クエリ各種</td>
+<td><code>valid(v)</code>, <code>distance(v)</code> 等</td>
 <td><span class="arithmatex">\(O(1)\)</span></td>
 </tr>
 </tbody>
