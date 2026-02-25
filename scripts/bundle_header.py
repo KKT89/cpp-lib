@@ -34,7 +34,10 @@ def bundle_file(
         return
     visited.add(path)
 
-    rel = path.relative_to(project_root).as_posix()
+    try:
+        rel = path.relative_to(project_root).as_posix()
+    except ValueError:
+        rel = path.name
     out_lines.append(f"// ---- begin: {rel}")
 
     for line in path.read_text(encoding="utf-8").splitlines():
@@ -54,9 +57,15 @@ def bundle_file(
     out_lines.append(f"// ---- end: {rel}")
 
 
-def bundle_header(input_path: Path, output_path: Path, include_dirs: list[Path] | None = None) -> None:
+def bundle_header(
+    input_path: Path,
+    output_path: Path,
+    include_dirs: list[Path] | None = None,
+    project_root: Path | None = None,
+) -> None:
     script_dir = Path(__file__).resolve().parent
-    project_root = script_dir.parent
+    if project_root is None:
+        project_root = script_dir.parent
 
     if not include_dirs:
         include_dirs = [(project_root / "include").resolve()]
