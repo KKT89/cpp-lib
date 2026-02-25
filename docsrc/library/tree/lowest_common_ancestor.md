@@ -1,9 +1,3 @@
----
-tags:
-  - tree
-  - lca
----
-
 # Lowest Common Ancestor
 
 木上の LCA を `build: O(N)`, `query: O(1)` で処理する実装です。

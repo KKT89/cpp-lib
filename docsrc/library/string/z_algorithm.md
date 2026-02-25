@@ -1,9 +1,3 @@
----
-tags:
-  - string
-  - z_algorithm
----
-
 # Z Algorithm
 
 文字列（または任意の列） `s` に対して、`s` と `s[i..]` の最長共通接頭辞の長さを
