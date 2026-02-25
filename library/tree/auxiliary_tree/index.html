@@ -781,6 +781,120 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_5" id="__nav_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Math
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Math
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/gauss_jordan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gauss-Jordan 法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/linear_solve/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    連立一次方程式ソルバー
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1115,24 +1229,6 @@
                 
                   
 
-  <nav class="md-tags" >
-    
-      
-      
-      
-      
-        <span class="md-tag">tree</span>
-      
-    
-      
-      
-      
-      
-        <span class="md-tag">virtual_tree</span>
-      
-    
-  </nav>
-
 
   
   
@@ -1147,14 +1243,35 @@
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">LowestCommonAncestor</span><span class="w"> </span><span class="nf">lca</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">LowestCommonAncestor</span><span class="w"> </span><span class="nf">lca</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
 <span class="c1">// ... add_edge</span>
 <span class="n">lca</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
 
 <span class="n">AuxiliaryTree</span><span class="w"> </span><span class="nf">aux</span><span class="p">(</span><span class="n">lca</span><span class="p">);</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">aux_root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aux</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="n">nodes</span><span class="p">);</span>
-<span class="c1">// aux.g_aux: parent -&gt; child, aux.nodes: aux木に含まれる頂点</span>
+<span class="c1">// aux.g_aux: parent -&gt; child</span>
+<span class="c1">// aux.nodes: aux 木に含まれる頂点（preorder 順）</span>
 </code></pre></div></td></tr></table></div>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>計算量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AuxiliaryTree(lca)</code></td>
+<td><span class="arithmatex">\(O(n)\)</span></td>
+</tr>
+<tr>
+<td><code>build(X)</code></td>
+<td><span class="arithmatex">\(O(k \log k)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>(<span class="arithmatex">\(k = |X|\)</span>、LCA クエリは <span class="arithmatex">\(O(1)\)</span> を仮定)</p>
 <h2 id="code">Code<a class="headerlink" href="#code" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  1</span>
 <span class="normal">  2</span>
@@ -1869,9 +1986,6 @@
 
 
 
-
-  
-  
 
 
 

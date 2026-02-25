@@ -646,6 +646,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interface
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#reference" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -760,6 +771,120 @@
     
   
     Z Algorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_5" id="__nav_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Math
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Math
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/gauss_jordan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gauss-Jordan 法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/linear_solve/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    連立一次方程式ソルバー
   
 
     
@@ -1121,6 +1246,52 @@
 
 
 <h1 id="bellman-ford">Bellman Ford (負閉路検出)<a class="headerlink" href="#bellman-ford" title="Permanent link">&para;</a></h1>
+<p>単一始点（または複数始点）の最短路を求め、負閉路の影響を受ける頂点を検出する実装です。</p>
+<h2 id="interface">Interface<a class="headerlink" href="#interface" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">BellmanFord</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bf</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="n">bf</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="p">,</span><span class="w"> </span><span class="n">cost</span><span class="p">);</span>
+<span class="n">bf</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="n">s</span><span class="p">);</span><span class="w">              </span><span class="c1">// 単一始点</span>
+<span class="n">bf</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">last</span><span class="p">);</span><span class="w">    </span><span class="c1">// 複数始点（イテレータ）</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="n">ok</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="n">valid</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">              </span><span class="c1">// 到達可能かつ負閉路の影響なし</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">reach</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="n">reachable</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">neg</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="n">on_negative_cycle</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="n">T</span><span class="w">    </span><span class="n">d</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="n">distance</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>計算量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BellmanFord(n)</code></td>
+<td><span class="arithmatex">\(O(n)\)</span></td>
+</tr>
+<tr>
+<td><code>add_edge(from, to, cost)</code></td>
+<td><span class="arithmatex">\(O(1)\)</span></td>
+</tr>
+<tr>
+<td><code>build(s)</code></td>
+<td><span class="arithmatex">\(O(VE)\)</span></td>
+</tr>
+<tr>
+<td>クエリ各種</td>
+<td><span class="arithmatex">\(O(1)\)</span></td>
+</tr>
+</tbody>
+</table>
 <h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://sigma1113.hatenablog.com/entry/2019/08/12/130042">ABC137-E:Coins Respawn ~負閉路検出について~ - 思考の墓場</a></li>
