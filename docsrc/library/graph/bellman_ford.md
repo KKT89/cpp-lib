@@ -7,13 +7,13 @@
 ```cpp
 BellmanFord<int> bf(n);
 bf.add_edge(from, to, cost);
-bf.build(s);              // 単一始点
-bf.build(first, last);    // 複数始点（イテレータ）
+bf.build(s);                                // 単一始点
+bf.build(sources.begin(), sources.end());   // 複数始点
 
-bool ok    = bf.valid(v);              // 到達可能かつ負閉路の影響なし
+bool ok    = bf.valid(v);
 bool reach = bf.reachable(v);
 bool neg   = bf.on_negative_cycle(v);
-T    d     = bf.distance(v);
+int  d     = bf.distance(v);
 ```
 
 | 操作 | 計算量 |
@@ -21,7 +21,7 @@ T    d     = bf.distance(v);
 | `BellmanFord(n)` | $O(n)$ |
 | `add_edge(from, to, cost)` | $O(1)$ |
 | `build(s)` | $O(VE)$ |
-| クエリ各種 | $O(1)$ |
+| `valid(v)`, `distance(v)` 等 | $O(1)$ |
 
 ## Reference
 
