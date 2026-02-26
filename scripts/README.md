@@ -24,3 +24,31 @@
 - **通常運用**: `mkdocs serve/build` 実行時に `mkdocs_hooks.py` から自動実行されるため、手動実行は不要です。
 - **手動チェック**: `uv run python scripts/sync_library_index.py`
 - **手動更新**: `uv run python scripts/sync_library_index.py --write`
+
+## `combine.py`
+
+- **役割**: `main.cpp` の `#include` を展開し、提出用の単一ファイル (`submit.cpp`) を生成します。生成後、クリップボードへ自動コピーします。
+- **セットアップ**: プロジェクトルートにシェルラッパーを作成します。
+  ```shell
+  cat <<'EOF' > combine
+  #!/bin/sh
+  exec python3 "$(dirname "$0")/cpp-lib/scripts/combine.py" "$@"
+  EOF
+  chmod +x combine
+  ```
+- **実行**:
+  ```shell
+  ./combine                          # main.cpp -> submit.cpp (クリップボードにコピー)
+  ./combine sol.cpp -o out.cpp       # 入出力を指定
+  ./combine --no-clipboard           # クリップボードへのコピーをスキップ
+  ./combine --include-dir path/to/   # インクルードディレクトリを追加
+  ```
+
+**オプション**
+
+| オプション | 説明 |
+|------------|------|
+| `input` | 入力ファイル（省略時: `main.cpp`） |
+| `-o, --output` | 出力ファイル（省略時: `submit.cpp`） |
+| `--no-clipboard` | クリップボードへのコピーをスキップ |
+| `--include-dir` | インクルードディレクトリを追加（複数指定可） |
