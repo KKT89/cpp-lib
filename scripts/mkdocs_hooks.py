@@ -208,9 +208,13 @@ def _update_library_verify_sections(status: dict) -> None:
             verify_lines.append(f"- [{v_title}](../../verify/{v_doc})")
         new_section = "\n".join(verify_lines)
 
-        # Replace existing ## Verify section (up to next ## or end of file)
-        pattern = r"## Verify\n(?:.*?)(?=\n## |\Z)"
-        new_text = re.sub(pattern, new_section + "\n", text, count=1, flags=re.DOTALL)
+        if "## Verify" in text:
+            # Replace existing ## Verify section (up to next ## or end of file)
+            pattern = r"## Verify\n(?:.*?)(?=\n## |\Z)"
+            new_text = re.sub(pattern, new_section + "\n", text, count=1, flags=re.DOTALL)
+        else:
+            # Insert ## Verify before ## Code
+            new_text = text.replace("## Code", new_section + "\n\n## Code", 1)
 
         _write_if_changed(lib_doc, new_text)
 

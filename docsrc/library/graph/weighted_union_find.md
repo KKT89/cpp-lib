@@ -20,6 +20,10 @@ int  r   = uf.find(x);          // x の根
 | `unite(x, y, w)` | $O(\alpha(n))$ |
 | `same`, `diff`, `weight`, `size`, `find` | $O(\alpha(n))$ |
 
+## Verify
+
+- [AOJ 3327 - Beam Beam Beam](../../verify/aizu/3327.md)
+
 ## Code
 
 ```cpp
