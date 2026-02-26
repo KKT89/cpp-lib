@@ -1,0 +1,14 @@
+{
+  "verify/library_checker/lowest_common_ancestor.cpp": {
+    "bundled_hash": "sha256:3c50db02392cdf09d90535658da77bba4e3874fb7381b2e7651a00b8159683d0",
+    "verified_at": "2026-02-27T04:40:38+09:00",
+    "judge_url": "https://judge.yosupo.jp/problem/lca",
+    "title": "Lowest Common Ancestor"
+  },
+  "verify/aizu/3327.cpp": {
+    "bundled_hash": "sha256:63ff42acf87731af1bae4cd0fdb0bb23300468b13cdf30d3351afe1ac80ae9ed",
+    "verified_at": "2026-02-27T06:20:22+09:00",
+    "judge_url": "https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/HUPC/3327?year=2023",
+    "title": "AOJ 3327 - Beam Beam Beam"
+  }
+}

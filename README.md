@@ -28,3 +28,25 @@ target_include_directories(cpplib INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 add_executable(main main.cpp)
 target_link_libraries(main PRIVATE cpplib)
 ```
+
+## Verify (テストコード)
+
+ライブラリの正当性を確認するテストコードを `verify/` で管理しています。
+
+### テストの追加
+
+ジャッジで AC を確認した `.cpp` を登録します。
+
+```shell
+uv run scripts/verify_status.py add main.cpp \
+  --url https://judge.yosupo.jp/problem/lca \
+  --title "Lowest Common Ancestor"
+```
+
+### 検証済みとしてマーク
+
+ライブラリ変更後、ジャッジで再度 AC を確認したら実行します。
+
+```shell
+uv run scripts/verify_status.py mark --all
+```

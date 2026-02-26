@@ -1,0 +1,8 @@
+{
+  "library_checker": {
+    "url_pattern": "https?://judge\\.yosupo\\.jp/problem/(\\w+)"
+  },
+  "aizu": {
+    "url_pattern": "https?://onlinejudge\\.u-aizu\\.ac\\.jp/.+/(\\w+)"
+  }
+}

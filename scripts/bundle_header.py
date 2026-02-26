@@ -57,12 +57,12 @@ def bundle_file(
     out_lines.append(f"// ---- end: {rel}")
 
 
-def bundle_header(
+def _bundle_to_string(
     input_path: Path,
-    output_path: Path,
     include_dirs: list[Path] | None = None,
     project_root: Path | None = None,
-) -> None:
+) -> str:
+    """Bundle input_path and return the result as a string."""
     script_dir = Path(__file__).resolve().parent
     if project_root is None:
         project_root = script_dir.parent
@@ -79,7 +79,20 @@ def bundle_header(
     out_lines.append("// bundled by scripts/bundle_header.py")
     out_lines.append("")
     bundle_file(input_path, project_root, include_dirs, set(), out_lines)
-    out_text = "\n".join(out_lines).rstrip() + "\n"
+    return "\n".join(out_lines).rstrip() + "\n"
+
+
+# Public alias
+bundle_header_to_string = _bundle_to_string
+
+
+def bundle_header(
+    input_path: Path,
+    output_path: Path,
+    include_dirs: list[Path] | None = None,
+    project_root: Path | None = None,
+) -> None:
+    out_text = _bundle_to_string(input_path, include_dirs, project_root)
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     # Avoid touching timestamps when generated content is unchanged.

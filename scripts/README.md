@@ -8,6 +8,7 @@
 - **実行内容**:
   - `sync_library_index.py` で `docsrc/library/index.md` を同期
   - `bundle_header.py` で `bundled/` を生成
+  - `verify/status.json` から `docsrc/verify/index.md` を自動生成
 
 ## `bundle_header.py`
 
@@ -15,15 +16,15 @@
 - **通常運用**: `mkdocs serve/build` 実行時に `mkdocs_hooks.py` から自動実行されます。
 - **手動実行**:
   ```shell
-  uv run python scripts/bundle_header.py <input.hpp> <output.hpp>
+  uv run scripts/bundle_header.py <input.hpp> <output.hpp>
   ```
 
 ## `sync_library_index.py`
 
 - **役割**: `mkdocs.yml` の `nav` から `docsrc/library/index.md` を生成・同期します。
 - **通常運用**: `mkdocs serve/build` 実行時に `mkdocs_hooks.py` から自動実行されるため、手動実行は不要です。
-- **手動チェック**: `uv run python scripts/sync_library_index.py`
-- **手動更新**: `uv run python scripts/sync_library_index.py --write`
+- **手動チェック**: `uv run scripts/sync_library_index.py`
+- **手動更新**: `uv run scripts/sync_library_index.py --write`
 
 ## `combine.py`
 
@@ -52,3 +53,21 @@
 | `-o, --output` | 出力ファイル（省略時: `submit.cpp`） |
 | `--no-clipboard` | クリップボードへのコピーをスキップ |
 | `--include-dir` | インクルードディレクトリを追加（複数指定可） |
+
+## `verify_status.py`
+
+- **役割**: ライブラリ変更による verify コードの staleness を検出します。
+- **仕組み**: verify `.cpp` をバンドル → SHA-256 ハッシュ → `verify/status.json` の記録値と比較。
+- **新規登録**:
+  ```shell
+  uv run scripts/verify_status.py add main.cpp --url https://judge.yosupo.jp/problem/lca --title "Lowest Common Ancestor (Library Checker)"
+  ```
+- **チェック**:
+  ```shell
+  uv run scripts/verify_status.py check
+  ```
+- **検証済みとしてマーク**（ジャッジに手動提出して AC 確認後）:
+  ```shell
+  uv run scripts/verify_status.py mark verify/library_checker/lowest_common_ancestor.cpp
+  uv run scripts/verify_status.py mark --all
+  ```
