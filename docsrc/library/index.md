@@ -12,12 +12,8 @@
 ## Graph
 
 - [Bellman Ford (負閉路検出)](graph/bellman_ford.md)
+- [重み付き Union-Find](graph/weighted_union_find.md)
 
 ## String
 
 - [Z Algorithm](string/z_algorithm.md)
-
-## Math
-
-- [Gauss-Jordan 法](math/gauss_jordan.md)
-- [連立一次方程式ソルバー](math/linear_solve.md)

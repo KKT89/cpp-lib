@@ -84,11 +84,9 @@ nav:
           - Auxiliary Tree (Virtual Tree): library/tree/auxiliary_tree.md
       - Graph:
           - Bellman Ford (負閉路検出): library/graph/bellman_ford.md
+          - 重み付き Union-Find: library/graph/weighted_union_find.md
       - String:
           - Z Algorithm: library/string/z_algorithm.md
-      - Math:
-          - Gauss-Jordan 法: library/math/gauss_jordan.md
-          - 連立一次方程式ソルバー: library/math/linear_solve.md
   - Verify:
       - Verify Top: verify/index.md
       - Tree:
