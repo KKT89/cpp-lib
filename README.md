@@ -19,7 +19,7 @@ $ uv run mkdocs serve
 
 ## ライブラリ使用方法
 
-### CMakeListsを使用する場合
+### CMakeLists を使用する場合
 
 ```cmake
 add_library(cpplib INTERFACE)
@@ -32,6 +32,7 @@ target_link_libraries(main PRIVATE cpplib)
 ## Verify (テストコード)
 
 ライブラリの正当性を確認するテストコードを `verify/` で管理しています。
+ジャッジへの提出のみ手動で行う半自動運用です。ライブラリやテストコードに変更があると staleness を自動検知し、再検証が必要な箇所を把握できます。
 
 ### テストの追加
 
