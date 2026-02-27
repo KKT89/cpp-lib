@@ -190,33 +190,7 @@ def _build_verify_map(status: dict) -> dict[str, list[tuple[str, str]]]:
     return lib_to_verifies
 
 
-def _update_library_verify_sections(status: dict) -> None:
-    """Update ## Verify sections in library .md pages from status.json."""
-    verify_map = _build_verify_map(status)
-
-    for lib_header, verifies in verify_map.items():
-        # lib_header: "tree/lowest_common_ancestor.hpp"
-        lib_doc = DOCSRC / "library" / lib_header.replace(".hpp", ".md")
-        if not lib_doc.exists():
-            continue
-
-        text = lib_doc.read_text(encoding="utf-8")
-
-        # Build new Verify section content
-        verify_lines = ["## Verify", ""]
-        for v_title, v_doc in verifies:
-            verify_lines.append(f"- [{v_title}](../../verify/{v_doc})")
-        new_section = "\n".join(verify_lines)
-
-        if "## Verify" in text:
-            # Replace existing ## Verify section (up to next ## or end of file)
-            pattern = r"## Verify\n(?:.*?)(?=\n## |\Z)"
-            new_text = re.sub(pattern, new_section + "\n", text, count=1, flags=re.DOTALL)
-        else:
-            # Insert ## Verify before ## Code
-            new_text = text.replace("## Code", new_section + "\n\n## Code", 1)
-
-        _write_if_changed(lib_doc, new_text)
+_verify_map: dict[str, list[tuple[str, str]]] = {}
 
 
 def on_pre_build(config):
@@ -234,4 +208,27 @@ def on_pre_build(config):
     status = _load_status()
     _generate_verify_pages(status)
     _generate_verify_index(status)
-    _update_library_verify_sections(status)
+
+    global _verify_map
+    _verify_map = _build_verify_map(status)
+
+
+def on_page_markdown(markdown, page, config, files):
+    """Inject ## Verify sections into library pages in-memory."""
+    src_path = page.file.src_path  # e.g. "library/tree/lowest_common_ancestor.md"
+    if not src_path.startswith("library/"):
+        return markdown
+
+    lib_header = src_path.removeprefix("library/").replace(".md", ".hpp")
+    verifies = _verify_map.get(lib_header)
+    if not verifies:
+        return markdown
+
+    verify_lines = ["## Verify", ""]
+    for v_title, v_doc in verifies:
+        verify_lines.append(f"- [{v_title}](../../verify/{v_doc})")
+    new_section = "\n".join(verify_lines)
+
+    if "## Code" in markdown:
+        return markdown.replace("## Code", new_section + "\n\n## Code", 1)
+    return markdown

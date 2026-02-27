@@ -24,10 +24,6 @@ int p = lca.lca(u, v);
 | `build(root)` | $O(n)$ |
 | `lca(u, v)` | $O(1)$ |
 
-## Verify
-
-- [Lowest Common Ancestor](../../verify/library_checker/lowest_common_ancestor.md)
-
 ## Code
 
 ```cpp
