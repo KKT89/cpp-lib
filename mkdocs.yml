@@ -87,6 +87,8 @@ nav:
           - 重み付き Union-Find: library/data_structure/weighted_union_find.md
       - Graph:
           - Bellman Ford (負閉路検出): library/graph/bellman_ford.md
+      - Math:
+          - 線形篩: library/math/linear_sieve.md
       - String:
           - Z Algorithm: library/string/z_algorithm.md
   - Verify:

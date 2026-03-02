@@ -18,6 +18,10 @@
 
 - [Bellman Ford (負閉路検出)](graph/bellman_ford.md)
 
+## Math
+
+- [線形篩](math/linear_sieve.md)
+
 ## String
 
 - [Z Algorithm](string/z_algorithm.md)
