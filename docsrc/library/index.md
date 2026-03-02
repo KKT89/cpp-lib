@@ -11,6 +11,7 @@
 
 ## Data Structure
 
+- [Segment Tree](data_structure/segtree.md)
 - [重み付き Union-Find](data_structure/weighted_union_find.md)
 
 ## Graph
