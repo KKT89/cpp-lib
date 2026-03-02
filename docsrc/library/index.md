@@ -9,10 +9,13 @@
 - [Lowest Common Ancestor](tree/lowest_common_ancestor.md)
 - [Auxiliary Tree (Virtual Tree)](tree/auxiliary_tree.md)
 
+## Data Structure
+
+- [重み付き Union-Find](data_structure/weighted_union_find.md)
+
 ## Graph
 
 - [Bellman Ford (負閉路検出)](graph/bellman_ford.md)
-- [重み付き Union-Find](graph/weighted_union_find.md)
 
 ## String
 

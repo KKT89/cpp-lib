@@ -6,8 +6,8 @@
     "title": "Lowest Common Ancestor"
   },
   "verify/aizu/3327.cpp": {
-    "bundled_hash": "sha256:4ed1498d39b78be0c3931458ba15123f77adffd21c83c9696b6ac62e0db9c4ae",
-    "verified_at": "2026-02-28T07:07:23+09:00",
+    "bundled_hash": "sha256:5277afa20d29e708e3aff74b81e0b3db5ffb3b37d2e42b80aa1ae0e4c24cfee5",
+    "verified_at": "2026-03-03T00:03:21+09:00",
     "judge_url": "https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/HUPC/3327?year=2023",
     "title": "AOJ 3327 - Beam Beam Beam"
   }

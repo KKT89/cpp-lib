@@ -2,7 +2,7 @@
 using namespace std;
 typedef long long int ll;
 
-#include "graph/weighted_union_find.hpp"
+#include "data_structure/weighted_union_find.hpp"
 
 int main() {
     ios::sync_with_stdio(false);

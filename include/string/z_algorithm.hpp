@@ -3,13 +3,6 @@
 #include <string>
 #include <vector>
 
-/// @brief Z アルゴリズム
-///
-/// z[i] = s と s[i..] の最長共通接頭辞の長さ（z[0] = n）を O(n) で求める。
-/// std::string / std::vector<T> の両方に対応。
-///
-/// @param s  入力列
-/// @return   z 配列（長さ n、z[0] = n）
 template <class Container>
 std::vector<int> z_algorithm(const Container& s) {
     const int n = (int)s.size();

@@ -4,7 +4,7 @@
 
 ## Aizu
 
-- ✅ [AOJ 3327 - Beam Beam Beam](aizu/3327.md) — 2026-02-28
+- ✅ [AOJ 3327 - Beam Beam Beam](aizu/3327.md) — 2026-03-03
 
 ## Library Checker
 

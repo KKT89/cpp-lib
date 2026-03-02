@@ -23,11 +23,11 @@ int  r   = uf.find(x);          // x の根
 ## Code
 
 ```cpp
---8<-- "include/graph/weighted_union_find.hpp"
+--8<-- "include/data_structure/weighted_union_find.hpp"
 ```
 
 ## Bundled (Copy & Paste)
 
 ```cpp
---8<-- "bundled/graph/weighted_union_find.hpp"
+--8<-- "bundled/data_structure/weighted_union_find.hpp"
 ```
