@@ -550,7 +550,7 @@
   <span class="md-ellipsis">
     
   
-    Graph
+    Data Structure
   
 
     
@@ -566,7 +566,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Graph
+    Data Structure
   
 
           </label>
@@ -579,35 +579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../library/graph/bellman_ford/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Bellman Ford (負閉路検出)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../library/graph/weighted_union_find/" class="md-nav__link">
+      <a href="../../../library/data_structure/weighted_union_find/" class="md-nav__link">
         
   
   
@@ -664,7 +636,7 @@
   <span class="md-ellipsis">
     
   
-    String
+    Graph
   
 
     
@@ -677,6 +649,92 @@
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Graph
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../library/graph/bellman_ford/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bellman Ford (負閉路検出)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_5" id="__nav_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    String
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1239,7 +1297,7 @@
 
 <h2 id="target-library">Target Library<a class="headerlink" href="#target-library" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../../library/graph/weighted_union_find/">Weighted Union Find</a></li>
+<li><a href="../../../library/data_structure/weighted_union_find/">Weighted Union Find</a></li>
 </ul>
 <h2 id="judge">Judge<a class="headerlink" href="#judge" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1353,7 +1411,7 @@
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ll</span><span class="p">;</span>
 
-<span class="c1">// ---- begin: include/graph/weighted_union_find.hpp</span>
+<span class="c1">// ---- begin: include/data_structure/weighted_union_find.hpp</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;numeric&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
@@ -1398,7 +1456,7 @@
 <span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="n">diff</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">weight</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">weight</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">sz</span><span class="p">[</span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">)];</span><span class="w"> </span><span class="p">}</span>
 <span class="p">};</span>
-<span class="c1">// ---- end: include/graph/weighted_union_find.hpp</span>
+<span class="c1">// ---- end: include/data_structure/weighted_union_find.hpp</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
