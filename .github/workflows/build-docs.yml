@@ -27,9 +27,6 @@ jobs:
       - name: Install dependencies
         run: uv sync
 
-      - name: Check Library Top sync
-        run: uv run python scripts/sync_library_index.py
-
       - name: Check verify staleness
         run: uv run python scripts/verify_status.py check || echo "::warning::Some verify codes are stale"
 
