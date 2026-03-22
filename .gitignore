@@ -14,6 +14,7 @@ bundled/
 # Auto-generated docs (scripts/mkdocs_hooks.py)
 docsrc/verify/
 docsrc/library/index.md
+docsrc/note/index.md
 
 # Python
 .venv/

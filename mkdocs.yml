@@ -82,6 +82,4 @@ nav:
   - Verify:
       - Verify Top: verify/index.md
   - Note:
-      - Note Top: note/note.md
-      - デジタル冪級数: note/digital_fps_theory.md
-      - ビット演算あれこれ: note/bitwise_operation.md
+      - Note Top: note/index.md
