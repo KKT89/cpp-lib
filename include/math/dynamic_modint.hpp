@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
-// 動的 modint: id を変えることで複数 mod を同時に扱える (mod < 2^63)
+// 動的 modint: id を変えることで複数 mod を同時に扱える (mod は素数, mod < 2^63)
 template <int id>
 struct dynamic_modint {
     using mint = dynamic_modint;
@@ -12,6 +12,7 @@ struct dynamic_modint {
     u64 x;
 
     static void set_mod(u64 m) { mod = m; }
+    static u64 get_mod() { return mod; }
 
     dynamic_modint() : x(0) {}
     dynamic_modint(long long y) : x(y % (long long)mod + (y < 0 ? mod : 0)) {}
@@ -31,6 +32,18 @@ struct dynamic_modint {
         x = (u64)((u128)x * rhs.x % mod);
         return *this;
     }
+    mint& operator/=(const mint& rhs) { return *this *= rhs.inv(); }
+
+    mint pow(long long n) const {
+        mint a = *this, r = 1;
+        while (n > 0) {
+            if (n & 1) r *= a;
+            a *= a;
+            n >>= 1;
+        }
+        return r;
+    }
+    mint inv() const { return pow(mod - 2); }
 
     mint operator+() const { return *this; }
     mint operator-() const { return mint() - *this; }
@@ -38,6 +51,7 @@ struct dynamic_modint {
     friend mint operator+(const mint& lhs, const mint& rhs) { return mint(lhs) += rhs; }
     friend mint operator-(const mint& lhs, const mint& rhs) { return mint(lhs) -= rhs; }
     friend mint operator*(const mint& lhs, const mint& rhs) { return mint(lhs) *= rhs; }
+    friend mint operator/(const mint& lhs, const mint& rhs) { return mint(lhs) /= rhs; }
     friend bool operator==(const mint& lhs, const mint& rhs) { return lhs.x == rhs.x; }
     friend bool operator!=(const mint& lhs, const mint& rhs) { return lhs.x != rhs.x; }
 

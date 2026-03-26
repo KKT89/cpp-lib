@@ -10,5 +10,11 @@
     "verified_at": "2026-03-03T00:03:21+09:00",
     "judge_url": "https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/HUPC/3327?year=2023",
     "title": "AOJ 3327 - Beam Beam Beam"
+  },
+  "verify/library_checker/binomial_coefficient_prime_mod.cpp": {
+    "bundled_hash": "sha256:47af182c42f4362442af04e398a873d92edc4240e0304dbd0d1eb448dd6ad788",
+    "verified_at": "2026-03-27T03:49:12+09:00",
+    "judge_url": "https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod",
+    "title": "Binomial Coefficient (Prime Mod)"
   }
 }

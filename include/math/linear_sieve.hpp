@@ -13,7 +13,8 @@ struct LinearSieve {
         for (int i = 2; i <= N; i++) {
             if (lp[i] == 0) {
                 lp[i] = i;
-                primes[prime_cnt++] = i;
+                primes[prime_cnt] = i;
+                prime_cnt += 1;
             }
             for (int j = 0; j < prime_cnt && primes[j] <= lp[i] && (long long)i * primes[j] <= N; j++) {
                 lp[i * primes[j]] = primes[j];
