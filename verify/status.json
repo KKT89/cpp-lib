@@ -16,5 +16,11 @@
     "verified_at": "2026-03-27T03:49:12+09:00",
     "judge_url": "https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod",
     "title": "Binomial Coefficient (Prime Mod)"
+  },
+  "verify/library_checker/zalgorithm.cpp": {
+    "bundled_hash": "sha256:afba7d7e2760c0f2ba1159b43025a6c1683331c5ec88aef0808880b1e56d55b7",
+    "verified_at": "2026-03-27T04:19:17+09:00",
+    "judge_url": "https://judge.yosupo.jp/problem/zalgorithm",
+    "title": "Z Algorithm"
   }
 }
