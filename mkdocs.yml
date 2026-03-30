@@ -2,8 +2,6 @@
 site_name: KKT89's Library
 docs_dir: docsrc
 strict: true
-not_in_nav: |
-  note/*.md
 
 # Repository
 repo_name: KKT89/cpp-lib
@@ -24,6 +22,7 @@ theme:
     - navigation.instant # 画面全体をリロードしないようにする
     - navigation.tabs # 画面上部のタブに最上層のグループを表示する
     - content.code.copy # コードブロックにコピーを追加
+    - toc.integrate
   palette:
     - scheme: default
       primary: cyan

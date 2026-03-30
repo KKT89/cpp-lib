@@ -29,9 +29,6 @@
     margin-right: 5px;
 }
 
-/* 右サイドバー（TOC）を非表示 */
-.md-sidebar--secondary { display: none !important; }
-
 /* テーブルのセル余白を広げる */
 .md-typeset table:not([class]) th,
 .md-typeset table:not([class]) td {
