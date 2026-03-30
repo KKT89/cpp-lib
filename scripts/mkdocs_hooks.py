@@ -237,13 +237,6 @@ def _scan_note_docs() -> list[tuple[str, str]]:
     return entries
 
 
-def _build_note_nav(entries: list[tuple[str, str]]) -> list:
-    """Build Note nav entries from scanned docs."""
-    nav: list = [{"Note Top": "note/index.md"}]
-    nav.extend({t: p} for t, p in entries)
-    return nav
-
-
 def _generate_note_index(entries: list[tuple[str, str]]) -> None:
     """Auto-generate docsrc/note/index.md from scanned docs."""
     lines = [
@@ -267,7 +260,7 @@ _note_entries: list[tuple[str, str]] = []
 
 
 def on_config(config):
-    """Inject Library, Verify, and Note nav into mkdocs config."""
+    """Inject Library and Verify nav into mkdocs config."""
     global _library_groups, _note_entries
     _library_groups = _scan_library_docs()
     _note_entries = _scan_note_docs()
@@ -285,12 +278,6 @@ def on_config(config):
             if isinstance(item, dict) and "Verify" in item:
                 item["Verify"] = verify_nav
                 break
-
-    note_nav = _build_note_nav(_note_entries)
-    for item in config["nav"]:
-        if isinstance(item, dict) and "Note" in item:
-            item["Note"] = note_nav
-            break
 
     return config
 
