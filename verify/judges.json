@@ -4,5 +4,8 @@
   },
   "aizu": {
     "url_pattern": "https?://onlinejudge\\.u-aizu\\.ac\\.jp/.+/(\\w+)"
+  },
+  "atcoder": {
+    "url_pattern": "https?://atcoder\\.jp/contests/(\\w+)/tasks/(\\w+)"
   }
 }

@@ -5,7 +5,7 @@
     "judge_url": "https://judge.yosupo.jp/problem/lca",
     "title": "Lowest Common Ancestor"
   },
-  "verify/aizu/3327.cpp": {
+  "verify/aizu/aoj_3327_beam_beam_beam.cpp": {
     "bundled_hash": "sha256:5277afa20d29e708e3aff74b81e0b3db5ffb3b37d2e42b80aa1ae0e4c24cfee5",
     "verified_at": "2026-03-03T00:03:21+09:00",
     "judge_url": "https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/HUPC/3327?year=2023",
@@ -17,7 +17,7 @@
     "judge_url": "https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod",
     "title": "Binomial Coefficient (Prime Mod)"
   },
-  "verify/library_checker/zalgorithm.cpp": {
+  "verify/library_checker/z_algorithm.cpp": {
     "bundled_hash": "sha256:afba7d7e2760c0f2ba1159b43025a6c1683331c5ec88aef0808880b1e56d55b7",
     "verified_at": "2026-03-27T04:19:17+09:00",
     "judge_url": "https://judge.yosupo.jp/problem/zalgorithm",

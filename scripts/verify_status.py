@@ -98,12 +98,11 @@ def load_judge_patterns() -> list[tuple[re.Pattern, str]]:
     ]
 
 
-def parse_judge_url(url: str) -> tuple[str, str]:
-    """Parse judge URL → (judge_dir, problem_name)."""
+def parse_judge_dir(url: str) -> str:
+    """Parse judge URL → judge_dir."""
     for pattern, judge_dir in load_judge_patterns():
-        m = pattern.match(url)
-        if m:
-            return judge_dir, m.group(1)
+        if pattern.match(url):
+            return judge_dir
     raise ValueError(f"Unknown judge URL: {url}")
 
 
@@ -113,8 +112,9 @@ def cmd_add(args: argparse.Namespace) -> int:
         print(f"file not found: {src}", file=sys.stderr)
         return 1
 
-    judge_dir, problem = parse_judge_url(args.url)
-    dest = VERIFY_ROOT / judge_dir / f"{problem}.cpp"
+    judge_dir = parse_judge_dir(args.url)
+    filename = re.sub(r'[^a-z0-9]+', '_', args.title.lower()).strip('_')
+    dest = VERIFY_ROOT / judge_dir / f"{filename}.cpp"
 
     dest.parent.mkdir(parents=True, exist_ok=True)
     import shutil
