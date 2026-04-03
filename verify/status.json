@@ -22,5 +22,11 @@
     "verified_at": "2026-03-27T04:19:17+09:00",
     "judge_url": "https://judge.yosupo.jp/problem/zalgorithm",
     "title": "Z Algorithm"
+  },
+  "verify/atcoder/abc451_g_minimum_xor_walk.cpp": {
+    "bundled_hash": "sha256:d266f898b580d1197a7cf29a26e4ceb975c7bd33b2c8c50a455e51648d6770d8",
+    "verified_at": "2026-04-03T16:55:13+09:00",
+    "judge_url": "https://atcoder.jp/contests/abc451/tasks/abc451_g",
+    "title": "ABC451 G - Minimum XOR Walk"
   }
 }
