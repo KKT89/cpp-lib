@@ -28,5 +28,11 @@
     "verified_at": "2026-04-03T16:55:13+09:00",
     "judge_url": "https://atcoder.jp/contests/abc451/tasks/abc451_g",
     "title": "ABC451 G - Minimum XOR Walk"
+  },
+  "verify/atcoder/abc453_g_copy_query.cpp": {
+    "bundled_hash": "sha256:10a4a25a735def286f0530013a77bb06cb0f288d63d9af94f40e16fa40cef828",
+    "verified_at": "2026-04-15T09:50:27+09:00",
+    "judge_url": "https://atcoder.jp/contests/abc453/tasks/abc453_g",
+    "title": "ABC453 G - Copy Query"
   }
 }
