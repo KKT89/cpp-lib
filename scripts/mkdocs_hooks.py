@@ -16,6 +16,7 @@ from _internal.docs_catalog import (  # noqa: E402
     build_note_nav,
     generate_library_index,
     generate_note_index,
+    generate_site_map,
     scan_library_docs,
     scan_note_docs,
     strip_managed_library_sections,
@@ -103,6 +104,7 @@ def on_pre_build(config):
 
     generate_library_index(STATE.library_groups)
     generate_note_index(STATE.note_entries)
+    generate_site_map(STATE.library_groups, STATE.note_entries, status)
     _bundle_generated_sources()
     generate_verify_pages(status, STATE.library_titles)
     generate_verify_index(status)

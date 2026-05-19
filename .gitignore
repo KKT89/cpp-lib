@@ -15,6 +15,7 @@ bundled/
 docsrc/verify/
 docsrc/library/index.md
 docsrc/note/index.md
+docsrc/site-map.md
 
 # Python
 .venv/
