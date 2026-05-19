@@ -26,7 +26,7 @@ int main() {
             int x, y, z;
             cin >> x >> y >> z;
             x -= 1, y -= 1;
-            root[x] = seg.set(y, z, root[x]);
+            root[x] = seg.set(root[x], y, z);
         } else {
             int x, l, r;
             cin >> x >> l >> r;

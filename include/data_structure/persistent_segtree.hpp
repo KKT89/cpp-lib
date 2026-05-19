@@ -31,17 +31,21 @@ struct persistent_segtree {
 
     S get(int root_id, int k) { return query(root_id, k, k + 1); }
 
-    int set(int k, S x, int root_id = -1) {
+    int set(int root_id, int k, S x) {
         root_id = resolve(root_id);
         roots.push_back(set_(k, x, roots[root_id], 0, n));
         return (int)roots.size() - 1;
     }
 
-    int apply(int k, S x, int root_id = -1) {
+    int set(int k, S x) { return set(-1, k, x); }
+
+    int apply(int root_id, int k, S x) {
         root_id = resolve(root_id);
         roots.push_back(apply_(k, x, roots[root_id], 0, n));
         return (int)roots.size() - 1;
     }
+
+    int apply(int k, S x) { return apply(-1, k, x); }
 
     int version_count() const { return (int)roots.size(); }
 

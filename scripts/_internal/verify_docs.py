@@ -91,20 +91,36 @@ def generate_verify_index(status: dict, generator_name: str = "scripts/mkdocs_ho
         "",
     ]
 
+    stale_entries: list[tuple[str, str, str]] = []
+    grouped_lines: dict[str, list[str]] = {}
+
     for group_name, entries in sorted(groups.items()):
-        lines.extend([f"## {group_name}", ""])
+        group_lines: list[str] = []
         for title, doc_path, entry in entries:
             cpp_path = ROOT / ("verify/" + doc_path.replace(".md", ".cpp"))
             if not cpp_path.exists():
-                lines.append(f"- ❓ [{title}]({doc_path})")
+                group_lines.append(f"- ❓ [{title}]({doc_path})")
                 continue
 
             current_hash = compute_hash(cpp_path)
             date = entry.get("verified_at", "")[:10]
             if entry.get("bundled_hash") == current_hash:
-                lines.append(f"- ✅ [{title}]({doc_path}) — {date}")
+                group_lines.append(f"- ✅ [{title}]({doc_path}) — {date}")
             else:
-                lines.append(f"- ⚠️ [{title}]({doc_path}) — STALE ({date})")
+                stale_entries.append((title, doc_path, date))
+        grouped_lines[group_name] = group_lines
+
+    if stale_entries:
+        lines.extend(["## Stale", ""])
+        for title, doc_path, date in stale_entries:
+            lines.append(f"- ⚠️ [{title}]({doc_path}) — {date}")
+        lines.append("")
+
+    for group_name, group_lines in grouped_lines.items():
+        if not group_lines:
+            continue
+        lines.extend([f"## {group_name}", ""])
+        lines.extend(group_lines)
         lines.append("")
 
     write_if_changed(DOCSRC / "verify" / "index.md", "\n".join(lines).rstrip() + "\n")
