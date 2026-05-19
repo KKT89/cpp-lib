@@ -29,15 +29,13 @@ add_executable(main main.cpp)
 target_link_libraries(main PRIVATE cpplib)
 ```
 
-## Verify (テストコード)
-
-ライブラリの正当性を確認するテストコードを `verify/` で管理しています。
+## Verify
 
 ジャッジへの提出のみ手動で行う半自動運用です。ライブラリやテストコードに変更が入ると、自動検知を行う仕組みになっています。
 
-### テストの追加
+### テストコードの追加
 
-ジャッジで AC を確認した `.cpp` を登録します。
+提出コードと問題情報の登録を行います。
 
 ```shell
 uv run scripts/verify_status.py add main.cpp \
@@ -45,9 +43,9 @@ uv run scripts/verify_status.py add main.cpp \
   --title "Lowest Common Ancestor"
 ```
 
-### 検証済みとしてマーク
+### 検証
 
-ライブラリ変更後、ジャッジで再度 AC を確認したら実行します。
+ライブラリ変更後、ジャッジで再度 AC を確認したら次のスクリプトを実行します。
 
 ```shell
 uv run scripts/verify_status.py mark --all
