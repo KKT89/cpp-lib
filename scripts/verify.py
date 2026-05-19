@@ -25,31 +25,6 @@ def _resolve_verify_args(paths: list[Path]) -> list[Path]:
     return [path.resolve() for path in paths]
 
 
-def cmd_check(args: argparse.Namespace) -> int:
-    status = load_status()
-    files = _resolve_verify_args(list(args.verify)) if args.verify else discover_verify_files()
-
-    ok = stale = unverified = 0
-    for path in files:
-        key = to_status_key(path)
-        current_hash = compute_hash(path)
-        entry = status.get(key)
-
-        if entry is None:
-            print(f"  {key}  UNVERIFIED")
-            unverified += 1
-        elif entry["bundled_hash"] != current_hash:
-            date = entry.get("verified_at", "?")
-            print(f"  {key}  STALE  (last verified: {date})")
-            stale += 1
-        else:
-            print(f"  {key}  OK")
-            ok += 1
-
-    print(f"\n  {ok} ok, {stale} stale, {unverified} unverified")
-    return 0 if (stale == 0 and unverified == 0) else 1
-
-
 def cmd_add(args: argparse.Namespace) -> int:
     src = Path(args.cpp).resolve()
     if not src.exists():
@@ -125,9 +100,6 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Manage verify status")
     sub = parser.add_subparsers(dest="command", required=True)
 
-    p_check = sub.add_parser("check", help="check staleness of verify codes")
-    p_check.add_argument("verify", nargs="*", type=Path, help="specific verify files (default: all)")
-
     p_add = sub.add_parser("add", help="add a new verify code")
     p_add.add_argument("cpp", type=Path, help="source .cpp file")
     p_add.add_argument("--url", required=True, help="judge problem URL")
@@ -143,9 +115,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> int:
     args = build_parser().parse_args()
 
-    if args.command == "check":
-        return cmd_check(args)
-    elif args.command == "add":
+    if args.command == "add":
         return cmd_add(args)
     elif args.command == "mark":
         return cmd_mark(args)

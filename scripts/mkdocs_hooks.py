@@ -21,7 +21,7 @@ from _internal.docs_catalog import (  # noqa: E402
     strip_managed_library_sections,
 )
 from _internal.project_paths import BUNDLE_ROOT, INCLUDE_ROOT, ROOT, VERIFY_ROOT  # noqa: E402
-from _internal.verify_data import load_status  # noqa: E402
+from _internal.verify_data import load_status, stale_status_entries, unverified_files  # noqa: E402
 from _internal.verify_docs import (  # noqa: E402
     build_verify_map,
     build_verify_nav,
@@ -36,7 +36,6 @@ class HookState:
     library_titles: dict[str, str] = field(default_factory=dict)
     note_entries: list[tuple[str, str]] = field(default_factory=list)
     verify_map: dict[str, list[tuple[str, str]]] = field(default_factory=dict)
-
 
 STATE = HookState()
 
@@ -71,6 +70,25 @@ def _bundle_generated_sources() -> None:
         )
 
 
+def _report_verify_status(status: dict) -> None:
+    stale = stale_status_entries(status)
+    unverified = unverified_files(status)
+
+    if not stale and not unverified:
+        return
+
+    if stale:
+        print("[verify] stale verify detected:", file=sys.stderr)
+        for key, verified_at in stale:
+            suffix = f" (last verified: {verified_at})" if verified_at else ""
+            print(f"[verify]   - {key}{suffix}", file=sys.stderr)
+
+    if unverified:
+        print("[verify] unverified verify detected:", file=sys.stderr)
+        for key in unverified:
+            print(f"[verify]   - {key}", file=sys.stderr)
+
+
 def on_config(config):
     _refresh_doc_state()
     _refresh_nav(config, load_status())
@@ -81,6 +99,7 @@ def on_pre_build(config):
     _refresh_doc_state()
     status = load_status()
     _refresh_nav(config, status)
+    _report_verify_status(status)
 
     generate_library_index(STATE.library_groups)
     generate_note_index(STATE.note_entries)

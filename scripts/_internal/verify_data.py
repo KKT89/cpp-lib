@@ -72,3 +72,24 @@ def slugify_title(title: str) -> str:
 
 def to_status_key(path: Path) -> str:
     return str(path.relative_to(ROOT))
+
+
+def stale_status_entries(status: dict) -> list[tuple[str, str]]:
+    entries: list[tuple[str, str]] = []
+    for path in discover_verify_files():
+        key = to_status_key(path)
+        entry = status.get(key)
+        if entry is None:
+            continue
+        if entry.get("bundled_hash") != compute_hash(path):
+            entries.append((key, entry.get("verified_at", "")[:10]))
+    return entries
+
+
+def unverified_files(status: dict) -> list[str]:
+    files: list[str] = []
+    for path in discover_verify_files():
+        key = to_status_key(path)
+        if key not in status:
+            files.append(key)
+    return files
