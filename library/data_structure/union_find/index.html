@@ -23,7 +23,7 @@
     
     
       
-        <title>Union Find - KKT89's Library</title>
+        <title>Union-Find - KKT89's Library</title>
       
     
     
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Union Find
+              Union-Find
             
           </span>
         </div>
@@ -572,7 +572,7 @@
   <span class="md-ellipsis">
     
   
-    Union Find
+    Union-Find
   
 
     
@@ -590,7 +590,7 @@
   <span class="md-ellipsis">
     
   
-    Union Find
+    Union-Find
   
 
     
@@ -649,10 +649,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#bundled-copy-paste" class="md-nav__link">
+  <a href="#bundled" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Bundled (Copy &amp; Paste)
+        Bundled
       
     </span>
   </a>
@@ -1811,49 +1811,19 @@
   
 
 
-<h1 id="union-find">Union Find<a class="headerlink" href="#union-find" title="Permanent link">&para;</a></h1>
-<p>素集合データ構造です。経路圧縮とサイズによるマージを行います。</p>
+<h1 id="union-find">Union-Find<a class="headerlink" href="#union-find" title="Permanent link">&para;</a></h1>
+<p>グループ分けを効率的に管理する、根付き木を用いたデータ構造です。</p>
 <h2 id="interface">Interface<a class="headerlink" href="#interface" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">UnionFind</span><span class="w"> </span><span class="nf">uf</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w">           </span><span class="c1">// n 頂点で初期化</span>
-<span class="n">uf</span><span class="p">.</span><span class="n">unite</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">);</span><span class="w">            </span><span class="c1">// u と v を併合</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">UnionFind</span><span class="w"> </span><span class="nf">uf</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w">          </span><span class="c1">// n 頂点で初期化</span>
+<span class="n">uf</span><span class="p">.</span><span class="n">unite</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">);</span><span class="w">           </span><span class="c1">// u と v を併合</span>
 <span class="kt">bool</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uf</span><span class="p">.</span><span class="n">same</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">);</span><span class="w">   </span><span class="c1">// u と v が同じ連結成分か</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uf</span><span class="p">.</span><span class="n">size</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">        </span><span class="c1">// v の属する連結成分のサイズ</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uf</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">        </span><span class="c1">// v の根を取得</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uf</span><span class="p">.</span><span class="n">size</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">       </span><span class="c1">// v の属する連結成分のサイズ</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uf</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">       </span><span class="c1">// v の根を取得</span>
 </code></pre></div></td></tr></table></div>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>計算量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>UnionFind(n)</code></td>
-<td><span class="arithmatex">\(O(n)\)</span></td>
-</tr>
-<tr>
-<td><code>find(v)</code></td>
-<td><span class="arithmatex">\(O(\alpha(n))\)</span></td>
-</tr>
-<tr>
-<td><code>unite(u, v)</code></td>
-<td><span class="arithmatex">\(O(\alpha(n))\)</span></td>
-</tr>
-<tr>
-<td><code>same(u, v)</code></td>
-<td><span class="arithmatex">\(O(\alpha(n))\)</span></td>
-</tr>
-<tr>
-<td><code>size(v)</code></td>
-<td><span class="arithmatex">\(O(\alpha(n))\)</span></td>
-</tr>
-</tbody>
-</table>
 <h2 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../../verify/atcoder/abc451_g_minimum_xor_walk/">ABC451 G - Minimum XOR Walk</a></li>
@@ -1911,7 +1881,7 @@
 <span class="w">    </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="bundled-copy-paste">Bundled (Copy &amp; Paste)<a class="headerlink" href="#bundled-copy-paste" title="Permanent link">&para;</a></h2>
+<h2 id="bundled">Bundled<a class="headerlink" href="#bundled" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>

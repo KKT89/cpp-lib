@@ -563,7 +563,7 @@
   <span class="md-ellipsis">
     
   
-    Union Find
+    Union-Find
   
 
     
@@ -677,10 +677,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#bundled-copy-paste" class="md-nav__link">
+  <a href="#bundled" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Bundled (Copy &amp; Paste)
+        Bundled
       
     </span>
   </a>
@@ -1812,7 +1812,7 @@
 
 
 <h1 id="union-find">重み付き Union-Find<a class="headerlink" href="#union-find" title="Permanent link">&para;</a></h1>
-<p>各要素に重みを持たせた Union-Find。<code>unite(x, y, w)</code> で <span class="arithmatex">\(\text{weight}(y) - \text{weight}(x) = w\)</span> という差分制約を課し、矛盾検出を行う。</p>
+<p>各要素に重みを持たせた Union-Find です。</p>
 <h2 id="interface">Interface<a class="headerlink" href="#interface" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1828,28 +1828,6 @@
 <span class="kt">int</span><span class="w">  </span><span class="n">s</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">uf</span><span class="p">.</span><span class="n">size</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w">          </span><span class="c1">// x が属する連結成分のサイズ</span>
 <span class="kt">int</span><span class="w">  </span><span class="n">r</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">uf</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w">          </span><span class="c1">// x の根</span>
 </code></pre></div></td></tr></table></div>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>計算量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>WeightedUnionFind(n)</code></td>
-<td><span class="arithmatex">\(O(n)\)</span></td>
-</tr>
-<tr>
-<td><code>unite(x, y, w)</code></td>
-<td><span class="arithmatex">\(O(\alpha(n))\)</span></td>
-</tr>
-<tr>
-<td><code>same</code>, <code>diff</code>, <code>weight</code>, <code>size</code>, <code>find</code></td>
-<td><span class="arithmatex">\(O(\alpha(n))\)</span></td>
-</tr>
-</tbody>
-</table>
 <h2 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../../verify/aizu/aoj_3327_beam_beam_beam/">AOJ 3327 - Beam Beam Beam</a></li>
@@ -1945,7 +1923,7 @@
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">sz</span><span class="p">[</span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">)];</span><span class="w"> </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="bundled-copy-paste">Bundled (Copy &amp; Paste)<a class="headerlink" href="#bundled-copy-paste" title="Permanent link">&para;</a></h2>
+<h2 id="bundled">Bundled<a class="headerlink" href="#bundled" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
