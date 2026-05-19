@@ -1,5 +1,6 @@
 # Project information
 site_name: KKT89's Library
+site_url: https://kkt89.github.io/cpp-lib/
 docs_dir: docsrc
 strict: true
 
