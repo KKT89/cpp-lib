@@ -1817,33 +1817,11 @@
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">binary_trie</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">LOG</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bt</span><span class="p">;</span><span class="w">             </span><span class="c1">// 空の集合で初期化 (T は整数型, LOG はビット幅)</span>
-<span class="n">bt</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w">                       </span><span class="c1">// x を追加</span>
-<span class="n">bt</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w">                        </span><span class="c1">// x を 1 つ削除 (存在前提)</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">cnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bt</span><span class="p">.</span><span class="n">count_xor_leq</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">);</span><span class="w"> </span><span class="c1">// x XOR val &lt;= k を満たす x の個数</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">binary_trie</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">LOG</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bt</span><span class="p">;</span><span class="w">               </span><span class="c1">// 空の集合で初期化 (T は整数型, LOG はビット幅)</span>
+<span class="n">bt</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w">                         </span><span class="c1">// x を追加</span>
+<span class="n">bt</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w">                          </span><span class="c1">// x を 1 つ削除 (存在前提)</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">cnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bt</span><span class="p">.</span><span class="n">count_xor_leq</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">);</span><span class="w">   </span><span class="c1">// x XOR val &lt;= k を満たす x の個数</span>
 </code></pre></div></td></tr></table></div>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>計算量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>insert(x)</code></td>
-<td><span class="arithmatex">\(O(\text{LOG})\)</span></td>
-</tr>
-<tr>
-<td><code>erase(x)</code></td>
-<td><span class="arithmatex">\(O(\text{LOG})\)</span></td>
-</tr>
-<tr>
-<td><code>count_xor_leq(val, k)</code></td>
-<td><span class="arithmatex">\(O(\text{LOG})\)</span></td>
-</tr>
-</tbody>
-</table>
 <h2 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../../verify/atcoder/abc451_g_minimum_xor_walk/">ABC451 G - Minimum XOR Walk</a></li>

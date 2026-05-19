@@ -1812,36 +1812,15 @@
 
 
 <h1 id="z-algorithm">Z Algorithm<a class="headerlink" href="#z-algorithm" title="Permanent link">&para;</a></h1>
-<p>文字列（または任意の列） <code>s</code> に対して、<code>s</code> と <code>s[i..]</code> の最長共通接頭辞の長さを
-全インデックスについて O(n) で求める実装です。</p>
+<p>文字列（または任意の列） <code>s</code> に対して、<code>s</code> と <code>s[i..]</code> の最長共通接頭辞の長さを求めます。</p>
 <div class="arithmatex">\[
 z[i] = \max \{ k \mid s[0..k) = s[i..i+k) \}, \quad z[0] = n
 \]</div>
 <h2 id="interface">Interface<a class="headerlink" href="#interface" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// std::string</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z_algorithm</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
-
-<span class="c1">// std::vector&lt;T&gt;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z_algorithm</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z_algorithm</span><span class="p">(</span><span class="n">s</span><span class="p">);</span><span class="w">   </span><span class="c1">// std::string</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z_algorithm</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">   </span><span class="c1">// std::vector&lt;T&gt;</span>
 </code></pre></div></td></tr></table></div>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>計算量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>z_algorithm(s)</code></td>
-<td><span class="arithmatex">\(O(n)\)</span></td>
-</tr>
-</tbody>
-</table>
 <h2 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../../verify/library_checker/z_algorithm/">Z Algorithm</a></li>

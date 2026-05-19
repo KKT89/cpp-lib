@@ -1812,7 +1812,7 @@
 
 
 <h1 id="persistent-segment-tree">Persistent Segment Tree<a class="headerlink" href="#persistent-segment-tree" title="Permanent link">&para;</a></h1>
-<p>モノイド <span class="arithmatex">\((S, \text{op}, e)\)</span> 上の永続セグメント木です。更新のたびに新しいバージョンが作られ、過去の任意のバージョンに対してクエリや更新を行えます。</p>
+<p>モノイド <span class="arithmatex">\((S, \text{op}, e)\)</span> 上の永続セグメント木です。過去の任意のバージョンに対してクエリや更新を行えます。</p>
 <h2 id="interface">Interface<a class="headerlink" href="#interface" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1822,51 +1822,17 @@
 <span class="normal">6</span>
 <span class="normal">7</span>
 <span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">persistent_segtree</span><span class="o">&lt;</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seg</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w">            </span><span class="c1">// 長さ n, 全要素 e() で初期化 (version 0)</span>
-<span class="n">persistent_segtree</span><span class="o">&lt;</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="mi">10000000</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seg</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w">  </span><span class="c1">// プールサイズを指定 (デフォルト: 20000000)</span>
-<span class="n">persistent_segtree</span><span class="o">&lt;</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seg</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">            </span><span class="c1">// vector v で初期化 (version 0)</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">persistent_segtree</span><span class="o">&lt;</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seg</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w">             </span><span class="c1">// 長さ n, 全要素 e() で初期化 (version 0)</span>
+<span class="n">persistent_segtree</span><span class="o">&lt;</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="mi">10000000</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seg</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w">   </span><span class="c1">// プールサイズを指定 (デフォルト: 20000000)</span>
+<span class="n">persistent_segtree</span><span class="o">&lt;</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seg</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">             </span><span class="c1">// vector v で初期化 (version 0)</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">root_id</span><span class="p">);</span><span class="w">      </span><span class="c1">// version root_id の位置 k を x に変更した新 version を作成</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">apply</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">root_id</span><span class="p">);</span><span class="w">    </span><span class="c1">// version root_id の位置 k に op(x, cur) を適用した新 version を作成</span>
-<span class="n">S</span><span class="w">   </span><span class="n">x</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">root_id</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span><span class="w">    </span><span class="c1">// version root_id の [l, r) の op 集約値を取得</span>
-<span class="n">S</span><span class="w">   </span><span class="n">x</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">root_id</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">);</span><span class="w">         </span><span class="c1">// version root_id の位置 k の値を取得</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">vc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">version_count</span><span class="p">();</span><span class="w">          </span><span class="c1">// 現在のバージョン数</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">root_id</span><span class="p">);</span><span class="w">                 </span><span class="c1">// version root_id の位置 k を x に変更した新 version を作成</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">apply</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">root_id</span><span class="p">);</span><span class="w">               </span><span class="c1">// version root_id の位置 k に op(x, cur) を適用した新 version を作成</span>
+<span class="n">S</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">root_id</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span><span class="w">                  </span><span class="c1">// version root_id の [l, r) の op 集約値を取得</span>
+<span class="n">S</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">root_id</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">);</span><span class="w">                       </span><span class="c1">// version root_id の位置 k の値を取得</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">vc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">version_count</span><span class="p">();</span><span class="w">                    </span><span class="c1">// 現在のバージョン数</span>
 </code></pre></div></td></tr></table></div>
-<p><code>set</code>, <code>apply</code> の <code>root_id</code> を省略すると最新バージョンが使われます。</p>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>計算量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>persistent_segtree(n)</code></td>
-<td><span class="arithmatex">\(O(1)\)</span> (プール <span class="arithmatex">\(O(\text{POOL\_SIZE})\)</span> の reserve)</td>
-</tr>
-<tr>
-<td><code>persistent_segtree(v)</code></td>
-<td><span class="arithmatex">\(O(n)\)</span></td>
-</tr>
-<tr>
-<td><code>set(k, x, root_id)</code></td>
-<td><span class="arithmatex">\(O(\log n)\)</span></td>
-</tr>
-<tr>
-<td><code>apply(k, x, root_id)</code></td>
-<td><span class="arithmatex">\(O(\log n)\)</span></td>
-</tr>
-<tr>
-<td><code>query(root_id, l, r)</code></td>
-<td><span class="arithmatex">\(O(\log n)\)</span></td>
-</tr>
-<tr>
-<td><code>get(root_id, k)</code></td>
-<td><span class="arithmatex">\(O(\log n)\)</span></td>
-</tr>
-</tbody>
-</table>
+<p><code>set</code>, <code>apply</code> の <code>root_id</code> を省略すると最新バージョンを使用します。</p>
 <h2 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../../verify/atcoder/abc453_g_copy_query/">ABC453 G - Copy Query</a></li>
