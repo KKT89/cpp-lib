@@ -1,406 +1,92 @@
 from __future__ import annotations
 
-import hashlib
-import json
 import sys
-from collections import defaultdict
+from dataclasses import dataclass, field
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-INCLUDE_ROOT = ROOT / "include"
-BUNDLE_ROOT = ROOT / "bundled"
-VERIFY_ROOT = ROOT / "verify"
-DOCSRC = ROOT / "docsrc"
-STATUS_PATH = VERIFY_ROOT / "status.json"
+SCRIPTS_DIR = Path(__file__).resolve().parent
+if str(SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_DIR))
 
-_SCRIPTS_DIR = str(ROOT / "scripts")
-if _SCRIPTS_DIR not in sys.path:
-    sys.path.insert(0, _SCRIPTS_DIR)
-
-import re
-
-from bundle_header import bundle_header, bundle_header_to_string  # noqa: E402
-
-_INCLUDE_RE = re.compile(r'^\s*#\s*include\s*"([^"]+)"\s*$')
-DOCSRC_LIBRARY = DOCSRC / "library"
-DOCSRC_NOTE = DOCSRC / "note"
-
-
-def _read_title(md_path: Path) -> str:
-    """Read title from first # heading, falling back to stem-based title."""
-    title = md_path.stem.replace("_", " ").title()
-    for line in md_path.read_text(encoding="utf-8").splitlines():
-        if line.startswith("# "):
-            return line[2:].strip()
-    return title
+from bundle_header import bundle_header  # noqa: E402
+from docs_catalog import (  # noqa: E402
+    GroupedDocEntries,
+    build_library_nav,
+    build_library_sections,
+    build_note_nav,
+    generate_library_index,
+    generate_note_index,
+    scan_library_docs,
+    scan_note_docs,
+    strip_managed_library_sections,
+)
+from project_paths import BUNDLE_ROOT, INCLUDE_ROOT, ROOT, VERIFY_ROOT  # noqa: E402
+from verify_data import load_status  # noqa: E402
+from verify_docs import build_verify_map, build_verify_nav, generate_verify_index, generate_verify_pages  # noqa: E402
 
 
-def _build_library_sections(lib_header: str, verifies: list[tuple[str, str]]) -> str:
-    """Build managed sections for a library page."""
-    lines: list[str] = []
-
-    if verifies:
-        lines.extend(["## Verify", ""])
-        for v_title, v_doc in verifies:
-            lines.append(f"- [{v_title}](../../verify/{v_doc})")
-        lines.append("")
-
-    lines.extend(
-        [
-            "## Code",
-            "",
-            "```cpp",
-            f'--8<-- "include/{lib_header}"',
-            "```",
-            "",
-            "## Bundled",
-            "",
-            "```cpp",
-            f'--8<-- "bundled/{lib_header}"',
-            "```",
-        ]
-    )
-    return "\n".join(lines)
+@dataclass
+class HookState:
+    library_groups: GroupedDocEntries = field(default_factory=list)
+    library_titles: dict[str, str] = field(default_factory=dict)
+    note_entries: list[tuple[str, str]] = field(default_factory=list)
+    verify_map: dict[str, list[tuple[str, str]]] = field(default_factory=dict)
 
 
-def _strip_managed_library_sections(markdown: str, lib_header: str) -> str:
-    """Strip legacy manually-written Code/Bundled sections from a library page."""
-    body = markdown.rstrip()
-    for bundled_heading in ("## Bundled", "## Bundled (Copy & Paste)"):
-        managed_tail = "\n".join(
-            [
-                "## Code",
-                "",
-                "```cpp",
-                f'--8<-- "include/{lib_header}"',
-                "```",
-                "",
-                bundled_heading,
-                "",
-                "```cpp",
-                f'--8<-- "bundled/{lib_header}"',
-                "```",
-            ]
-        )
-        if body.endswith(managed_tail):
-            body = body[: -len(managed_tail)].rstrip()
-            break
-    return body
-
-
-def _detect_libraries(verify_path: Path) -> list[str]:
-    """Parse verify .cpp to find library headers it includes."""
-    libs: list[str] = []
-    for line in verify_path.read_text(encoding="utf-8").splitlines():
-        m = _INCLUDE_RE.match(line)
-        if m and (INCLUDE_ROOT / m.group(1)).exists():
-            libs.append(m.group(1))
-    return libs
-
-
-def _load_status() -> dict:
-    if STATUS_PATH.exists():
-        return json.loads(STATUS_PATH.read_text(encoding="utf-8"))
-    return {}
-
-
-def _compute_verify_hash(verify_path: Path) -> str:
-    include_dirs = [INCLUDE_ROOT.resolve(), VERIFY_ROOT.resolve(), ROOT.resolve()]
-    text = bundle_header_to_string(verify_path, include_dirs, ROOT)
-    return "sha256:" + hashlib.sha256(text.encode("utf-8")).hexdigest()
-
-
-def _judge_category(key: str) -> str:
-    """Derive judge category from verify key: 'verify/library_checker/foo.cpp' → 'Library Checker'."""
-    parts = key.removeprefix("verify/").split("/")
-    if len(parts) >= 2:
-        return parts[0].replace("_", " ").title()
-    return "Other"
-
-
-def _write_if_changed(path: Path, text: str) -> None:
-    if path.exists() and path.read_text(encoding="utf-8") == text:
-        return
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8")
-
-
-def _generate_verify_pages(status: dict) -> None:
-    """Auto-generate individual verify .md pages from status.json."""
-    for key, entry in status.items():
-        # key: "verify/library_checker/lowest_common_ancestor.cpp"
-        verify_path = Path(key)
-        doc_rel = str(verify_path.relative_to("verify")).replace(".cpp", ".md")
-        out_path = DOCSRC / "verify" / doc_rel
-
-        title = entry.get("title", verify_path.stem.replace("_", " ").title())
-        judge_url = entry.get("judge_url", "")
-        cpp_path = ROOT / key
-        libraries = _detect_libraries(cpp_path) if cpp_path.exists() else []
-
-        lines = [
-            f"# {title}",
-            "",
-            "<!-- This file is auto-generated by scripts/mkdocs_hooks.py -->",
-            "",
-        ]
-
-        if libraries:
-            lines.append("## Target Library")
-            lines.append("")
-            for lib in libraries:
-                lib_name = _library_titles.get(lib, Path(lib).stem.replace("_", " ").title())
-                lib_doc = f"../../library/{lib.replace('.hpp', '.md')}"
-                lines.append(f"- [{lib_name}]({lib_doc})")
-            lines.append("")
-
-        if judge_url:
-            lines.append("## Judge")
-            lines.append("")
-            lines.append(f"- [{title}]({judge_url})")
-            lines.append("")
-
-        lines.append("## Verify Code")
-        lines.append("")
-        bundled_rel = f"bundled/{key}"
-        lines.append(f"Source: `{key}`")
-        lines.append("")
-        lines.append("```cpp")
-        lines.append(f'--8<-- "{bundled_rel}"')
-        lines.append("```")
-
-        _write_if_changed(out_path, "\n".join(lines).rstrip() + "\n")
-
-
-def _generate_verify_index(status: dict) -> None:
-    """Auto-generate docsrc/verify/index.md with staleness status."""
-    # Group entries by judge
-    groups: dict[str, list[tuple[str, str, dict]]] = defaultdict(list)
-    for key, entry in sorted(status.items()):
-        category = _judge_category(key)
-        doc_path = key.removeprefix("verify/").replace(".cpp", ".md")
-        title = entry.get("title", Path(key).stem.replace("_", " ").title())
-        groups[category].append((title, doc_path, entry))
-
-    lines = [
-        "# Verify Top",
-        "",
-        "<!-- This file is auto-generated by scripts/mkdocs_hooks.py -->",
-        "",
-    ]
-
-    for group_name, entries in sorted(groups.items()):
-        lines.append(f"## {group_name}")
-        lines.append("")
-        for title, doc_path, entry in entries:
-            cpp_rel = "verify/" + doc_path.replace(".md", ".cpp")
-            cpp_path = ROOT / cpp_rel
-
-            if cpp_path.exists():
-                current_hash = _compute_verify_hash(cpp_path)
-                date = entry.get("verified_at", "")[:10]
-                if entry.get("bundled_hash") == current_hash:
-                    lines.append(f"- ✅ [{title}]({doc_path}) — {date}")
-                else:
-                    lines.append(f"- ⚠️ [{title}]({doc_path}) — STALE ({date})")
-            else:
-                lines.append(f"- ❓ [{title}]({doc_path})")
-        lines.append("")
-
-    _write_if_changed(DOCSRC / "verify" / "index.md", "\n".join(lines).rstrip() + "\n")
-
-
-def _build_verify_nav(status: dict) -> list:
-    """Build Verify nav entries from status.json."""
-    groups: dict[str, list[tuple[str, str]]] = defaultdict(list)
-    for key, entry in sorted(status.items()):
-        category = _judge_category(key)
-        title = entry.get("title", Path(key).stem.replace("_", " ").title())
-        doc_path = "verify/" + key.removeprefix("verify/").replace(".cpp", ".md")
-        groups[category].append((title, doc_path))
-
-    nav: list = [{"Verify Top": "verify/index.md"}]
-    for group_name, entries in sorted(groups.items()):
-        nav.append({group_name: [{t: p} for t, p in entries]})
-    return nav
-
-
-def _scan_library_docs() -> tuple[list[tuple[str, list[tuple[str, str]]]], dict[str, str]]:
-    """Scan docsrc/library/ for .md files and build navigation groups and title map."""
-    groups: dict[str, list[tuple[str, str]]] = defaultdict(list)
-    titles: dict[str, str] = {}
-    for md_path in sorted(DOCSRC_LIBRARY.rglob("*.md")):
-        if md_path.name == "index.md":
-            continue
-        rel = md_path.relative_to(DOCSRC_LIBRARY)
-        if len(rel.parts) != 2:  # expect category/file.md
-            continue
-        category_dir = rel.parts[0]
-        category_name = category_dir.replace("_", " ").title()
-        title = _read_title(md_path)
-
-        doc_path = f"library/{rel.as_posix()}"
-        groups[category_name].append((title, doc_path))
-        titles[rel.with_suffix(".hpp").as_posix()] = title
-
-    return sorted(groups.items()), titles
-
-
-def _build_library_nav(
-    groups: list[tuple[str, list[tuple[str, str]]]],
-) -> list:
-    """Build Library nav entries from scanned docs."""
-    nav: list = [{"Library Top": "library/index.md"}]
-    for category_name, entries in groups:
-        nav.append({category_name: [{t: p} for t, p in entries]})
-    return nav
-
-
-def _generate_library_index(
-    groups: list[tuple[str, list[tuple[str, str]]]],
-) -> None:
-    """Auto-generate docsrc/library/index.md from scanned docs."""
-    lines = [
-        "# Library Top",
-        "",
-        "ライブラリ実装の一覧ページです。",
-        "",
-        "<!-- This file is auto-generated by scripts/mkdocs_hooks.py -->",
-        "",
-    ]
-    for category_name, entries in groups:
-        lines.append(f"## {category_name}")
-        lines.append("")
-        for title, doc_path in entries:
-            rel_path = doc_path.removeprefix("library/")
-            lines.append(f"- [{title}]({rel_path})")
-        lines.append("")
-
-    _write_if_changed(DOCSRC_LIBRARY / "index.md", "\n".join(lines).rstrip() + "\n")
-
-
-def _scan_note_docs() -> list[tuple[str, str]]:
-    """Scan docsrc/note/ for .md files and return (title, doc_path) list."""
-    entries: list[tuple[str, str]] = []
-    for md_path in sorted(DOCSRC_NOTE.glob("*.md")):
-        if md_path.name == "index.md":
-            continue
-        title = _read_title(md_path)
-        doc_path = f"note/{md_path.name}"
-        entries.append((title, doc_path))
-    return entries
-
-
-def _build_note_nav(entries: list[tuple[str, str]]) -> list:
-    """Build Note nav entries from scanned docs."""
-    nav: list = [{"Note Top": "note/index.md"}]
-    for title, doc_path in entries:
-        nav.append({title: doc_path})
-    return nav
-
-
-def _generate_note_index(entries: list[tuple[str, str]]) -> None:
-    """Auto-generate docsrc/note/index.md from scanned docs."""
-    lines = [
-        "# Note",
-        "",
-        "いろいろメモ　旧scrapboxに書いてた内容を引っ越し予定",
-        "",
-        "<!-- This file is auto-generated by scripts/mkdocs_hooks.py -->",
-        "",
-    ]
-    for title, doc_path in entries:
-        rel_path = doc_path.removeprefix("note/")
-        lines.append(f"- [{title}]({rel_path})")
-    lines.append("")
-
-    _write_if_changed(DOCSRC_NOTE / "index.md", "\n".join(lines).rstrip() + "\n")
-
-
-_library_groups: list[tuple[str, list[tuple[str, str]]]] = []
-_library_titles: dict[str, str] = {}
-_note_entries: list[tuple[str, str]] = []
+STATE = HookState()
 
 
 def _replace_nav_section(config, section_name: str, section_nav: list) -> None:
     for item in config["nav"]:
         if isinstance(item, dict) and section_name in item:
             item[section_name] = section_nav
-            break
+            return
 
 
 def _refresh_doc_state() -> None:
-    global _library_groups, _library_titles, _note_entries
-    _library_groups, _library_titles = _scan_library_docs()
-    _note_entries = _scan_note_docs()
+    STATE.library_groups, STATE.library_titles = scan_library_docs()
+    STATE.note_entries = scan_note_docs()
+
+
+def _refresh_nav(config, status: dict) -> None:
+    _replace_nav_section(config, "Library", build_library_nav(STATE.library_groups))
+    _replace_nav_section(config, "Note", build_note_nav(STATE.note_entries))
+    if status:
+        _replace_nav_section(config, "Verify", build_verify_nav(status))
+
+
+def _bundle_generated_sources() -> None:
+    for path in INCLUDE_ROOT.rglob("*.hpp"):
+        bundle_header(path, BUNDLE_ROOT / path.relative_to(INCLUDE_ROOT), include_dirs=[INCLUDE_ROOT])
+    for path in VERIFY_ROOT.rglob("*.cpp"):
+        bundle_header(
+            path,
+            BUNDLE_ROOT / path.relative_to(ROOT),
+            include_dirs=[INCLUDE_ROOT, VERIFY_ROOT, ROOT],
+        )
 
 
 def on_config(config):
-    """Inject Library and Verify nav into mkdocs config."""
     _refresh_doc_state()
-
-    library_nav = _build_library_nav(_library_groups)
-    _replace_nav_section(config, "Library", library_nav)
-
-    status = _load_status()
-    if status:
-        verify_nav = _build_verify_nav(status)
-        _replace_nav_section(config, "Verify", verify_nav)
-
-    note_nav = _build_note_nav(_note_entries)
-    _replace_nav_section(config, "Note", note_nav)
-
+    _refresh_nav(config, load_status())
     return config
-
-
-def _build_verify_map(status: dict) -> dict[str, list[tuple[str, str]]]:
-    """Build library → [(verify_title, verify_doc_path)] mapping from actual .cpp files."""
-    lib_to_verifies: dict[str, list[tuple[str, str]]] = defaultdict(list)
-    for key, entry in sorted(status.items()):
-        title = entry.get("title", Path(key).stem.replace("_", " ").title())
-        verify_doc = key.removeprefix("verify/").replace(".cpp", ".md")
-        cpp_path = ROOT / key
-        libraries = _detect_libraries(cpp_path) if cpp_path.exists() else []
-        for lib in libraries:
-            lib_to_verifies[lib].append((title, verify_doc))
-    return lib_to_verifies
-
-
-_verify_map: dict[str, list[tuple[str, str]]] = {}
 
 
 def on_pre_build(config):
     _refresh_doc_state()
+    status = load_status()
+    _refresh_nav(config, status)
 
-    _replace_nav_section(config, "Library", _build_library_nav(_library_groups))
-    _replace_nav_section(config, "Note", _build_note_nav(_note_entries))
-
-    status = _load_status()
-    if status:
-        _replace_nav_section(config, "Verify", _build_verify_nav(status))
-
-    _generate_library_index(_library_groups)
-    _generate_note_index(_note_entries)
-
-    for path in INCLUDE_ROOT.rglob("*.hpp"):
-        rel = path.relative_to(INCLUDE_ROOT)
-        out_path = BUNDLE_ROOT / rel
-        bundle_header(path, out_path, include_dirs=[INCLUDE_ROOT])
-    for path in VERIFY_ROOT.rglob("*.cpp"):
-        rel = path.relative_to(ROOT)
-        out_path = BUNDLE_ROOT / rel
-        bundle_header(path, out_path, include_dirs=[INCLUDE_ROOT, VERIFY_ROOT, ROOT])
-
-    _generate_verify_pages(status)
-    _generate_verify_index(status)
-
-    global _verify_map
-    _verify_map = _build_verify_map(status)
+    generate_library_index(STATE.library_groups)
+    generate_note_index(STATE.note_entries)
+    _bundle_generated_sources()
+    generate_verify_pages(status, STATE.library_titles)
+    generate_verify_index(status)
+    STATE.verify_map = build_verify_map(status)
 
 
 def on_page_markdown(markdown, page, config, files):
-    """Inject managed sections into library pages in-memory."""
-    src_path = page.file.src_path  # e.g. "library/tree/lowest_common_ancestor.md"
+    src_path = page.file.src_path
     if not src_path.startswith("library/"):
         return markdown
 
@@ -408,7 +94,6 @@ def on_page_markdown(markdown, page, config, files):
     if not (INCLUDE_ROOT / lib_header).exists():
         return markdown
 
-    verifies = _verify_map.get(lib_header, [])
-    body = _strip_managed_library_sections(markdown, lib_header)
-    sections = _build_library_sections(lib_header, verifies)
+    body = strip_managed_library_sections(markdown, lib_header)
+    sections = build_library_sections(lib_header, STATE.verify_map.get(lib_header, []))
     return body.rstrip() + "\n\n" + sections + "\n"

@@ -38,7 +38,7 @@ target_link_libraries(main PRIVATE cpplib)
 提出コードと問題情報の登録を行います。
 
 ```shell
-uv run scripts/verify_status.py add main.cpp \
+uv run scripts/verify.py add main.cpp \
   --url https://judge.yosupo.jp/problem/lca \
   --title "Lowest Common Ancestor"
 ```
@@ -48,5 +48,5 @@ uv run scripts/verify_status.py add main.cpp \
 ライブラリ変更後、ジャッジで再度 AC を確認したら次のスクリプトを実行します。
 
 ```shell
-uv run scripts/verify_status.py mark --all
+uv run scripts/verify.py mark --all
 ```
