@@ -84,6 +84,3 @@ nav:
       - Verify Top: verify/index.md
   - Note:
       - Note Top: note/index.md
-
-not_in_nav: |
-  /site-map.md
