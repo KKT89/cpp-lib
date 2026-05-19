@@ -5,22 +5,8 @@
 ## Interface
 
 ```cpp
-LowestCommonAncestor lca(n);
-
-// 木の辺を追加
-lca.add_edge(u, v);
-
-// 根 root で前処理
-lca.build(root);
-
-// LCA を取得
-int p = lca.lca(u, v);
+LowestCommonAncestor lca(n);   // n 頂点で初期化
+lca.add_edge(u, v);            // 木の辺を追加
+lca.build(root);               // 根 root で前処理
+int p = lca.lca(u, v);         // LCA を取得
 ```
-
-| 操作 | 計算量 |
-|------|--------|
-| `LowestCommonAncestor(n)` | $O(n)$ |
-| `add_edge(u, v)` | $O(1)$ |
-| `build(root)` | $O(n)$ |
-| `lca(u, v)` | $O(1)$ |
-

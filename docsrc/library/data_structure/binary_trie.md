@@ -5,15 +5,8 @@
 ## Interface
 
 ```cpp
-binary_trie<T, LOG> bt;             // 空の集合で初期化 (T は整数型, LOG はビット幅)
-bt.insert(x);                       // x を追加
-bt.erase(x);                        // x を 1 つ削除 (存在前提)
-int cnt = bt.count_xor_leq(val, k); // x XOR val <= k を満たす x の個数
+binary_trie<T, LOG> bt;               // 空の集合で初期化 (T は整数型, LOG はビット幅)
+bt.insert(x);                         // x を追加
+bt.erase(x);                          // x を 1 つ削除 (存在前提)
+int cnt = bt.count_xor_leq(val, k);   // x XOR val <= k を満たす x の個数
 ```
-
-| 操作 | 計算量 |
-|------|--------|
-| `insert(x)` | $O(\text{LOG})$ |
-| `erase(x)` | $O(\text{LOG})$ |
-| `count_xor_leq(val, k)` | $O(\text{LOG})$ |
-

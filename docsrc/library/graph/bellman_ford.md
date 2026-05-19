@@ -5,25 +5,17 @@
 ## Interface
 
 ```cpp
-BellmanFord<int> bf(n);
-bf.add_edge(from, to, cost);
-bf.build(s);                                // 単一始点
-bf.build(sources.begin(), sources.end());   // 複数始点
+BellmanFord<int> bf(n);                     // 頂点数 n で初期化
+bf.add_edge(from, to, cost);                // 有向辺を追加
+bf.build(s);                                // 単一始点、O(VE)
+bf.build(sources.begin(), sources.end());   // 複数始点、O(VE)
 
-bool ok    = bf.valid(v);
-bool reach = bf.reachable(v);
-bool neg   = bf.on_negative_cycle(v);
-int  d     = bf.distance(v);
+bool ok = bf.valid(v);                      // v の距離が定まるか
+bool reach = bf.reachable(v);               // v が到達可能か
+bool neg = bf.on_negative_cycle(v);         // v が負閉路の影響を受けるか
+int d = bf.distance(v);                     // v までの最短距離
 ```
-
-| 操作 | 計算量 |
-|------|--------|
-| `BellmanFord(n)` | $O(n)$ |
-| `add_edge(from, to, cost)` | $O(1)$ |
-| `build(s)` | $O(VE)$ |
-| `valid(v)`, `distance(v)` 等 | $O(1)$ |
 
 ## Reference
 
 - [ABC137-E:Coins Respawn ~負閉路検出について~ - 思考の墓場](https://sigma1113.hatenablog.com/entry/2019/08/12/130042)
-

@@ -5,17 +5,9 @@
 ## Interface
 
 ```cpp
-segtree<S, op, e> seg(n);          // 長さ n, 全要素 e() で初期化
-segtree<S, op, e> seg(v);          // vector v で初期化
-S  x = seg[i];                     // i 番目の要素を取得
-seg.set(i, x);                     // i 番目の要素を x に更新
-S  x = seg.query(l, r);            // [l, r) の op 集約値を取得
+segtree<S, op, e> seg(n);   // 長さ n, 全要素 e() で初期化
+segtree<S, op, e> seg(v);   // vector v で初期化
+S x = seg.query(l, r);      // [l, r) の op 集約値を取得、O(log n)
+S x = seg[i];               // i 番目の要素を取得、O(1)
+seg.set(i, x);              // i 番目の要素を x に更新、O(log n)
 ```
-
-| 操作 | 計算量 |
-|------|--------|
-| `segtree(n)`, `segtree(v)` | $O(n)$ |
-| `set(i, x)` | $O(\log n)$ |
-| `query(l, r)` | $O(\log n)$ |
-| `operator[](i)` | $O(1)$ |
-
