@@ -6,8 +6,9 @@ import argparse
 import shutil
 import sys
 from pathlib import Path
-from project_paths import ROOT, VERIFY_ROOT
-from verify_data import (
+
+from _internal.project_paths import ROOT, VERIFY_ROOT
+from _internal.verify_data import (
     compute_hash,
     current_timestamp,
     derive_title,

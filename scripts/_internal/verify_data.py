@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from bundle_header import bundle_header_to_string
-from project_paths import INCLUDE_ROOT, JUDGES_PATH, ROOT, STATUS_PATH, VERIFY_ROOT
+from .project_paths import INCLUDE_ROOT, JUDGES_PATH, ROOT, STATUS_PATH, VERIFY_ROOT
 
 _INCLUDE_RE = re.compile(r'^\s*#\s*include\s*"([^"]+)"\s*$')
 

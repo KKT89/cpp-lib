@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-from docs_common import read_title, write_if_changed
-from project_paths import DOCSRC_LIBRARY, DOCSRC_NOTE
+from .docs_common import read_title, write_if_changed
+from .project_paths import DOCSRC_LIBRARY, DOCSRC_NOTE
 
 type DocEntry = tuple[str, str]
 type GroupedDocEntries = list[tuple[str, list[DocEntry]]]

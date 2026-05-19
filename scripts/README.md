@@ -30,13 +30,15 @@ uv run scripts/verify.py mark --all
 
 - `mkdocs_hooks.py`
   MkDocs のフック本体です。nav 差し替え、`bundled/` 生成、`docsrc/library/` / `docsrc/verify/` の自動生成を行います。
-- `docs_catalog.py`
+- `_internal/docs_catalog.py`
   Library / Note のスキャン、nav / index 生成、ライブラリページ末尾の管理セクション生成を担当します。
-- `verify_docs.py`
+- `_internal/verify_docs.py`
   Verify ページ、Verify index、Verify nav の生成を担当します。
-- `verify_data.py`
+- `_internal/verify_data.py`
   `verify/status.json` の読み書き、ハッシュ計算、judge URL 解決など Verify 系の共通処理です。
 - `bundle_header.py`
   `#include` を展開して `bundled/` の単一ファイルを生成します。
-- `project_paths.py`
+- `_internal/docs_common.py`
+  タイトル読取や `write_if_changed` など、docs 系の小さい共通処理です。
+- `_internal/project_paths.py`
   `scripts/` 内で共有するパス定義です。

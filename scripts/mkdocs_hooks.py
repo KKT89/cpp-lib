@@ -9,7 +9,7 @@ if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
 from bundle_header import bundle_header  # noqa: E402
-from docs_catalog import (  # noqa: E402
+from _internal.docs_catalog import (  # noqa: E402
     GroupedDocEntries,
     build_library_nav,
     build_library_sections,
@@ -20,9 +20,14 @@ from docs_catalog import (  # noqa: E402
     scan_note_docs,
     strip_managed_library_sections,
 )
-from project_paths import BUNDLE_ROOT, INCLUDE_ROOT, ROOT, VERIFY_ROOT  # noqa: E402
-from verify_data import load_status  # noqa: E402
-from verify_docs import build_verify_map, build_verify_nav, generate_verify_index, generate_verify_pages  # noqa: E402
+from _internal.project_paths import BUNDLE_ROOT, INCLUDE_ROOT, ROOT, VERIFY_ROOT  # noqa: E402
+from _internal.verify_data import load_status  # noqa: E402
+from _internal.verify_docs import (  # noqa: E402
+    build_verify_map,
+    build_verify_nav,
+    generate_verify_index,
+    generate_verify_pages,
+)
 
 
 @dataclass

@@ -3,9 +3,9 @@ from __future__ import annotations
 from collections import defaultdict
 from pathlib import Path
 
-from docs_common import write_if_changed
-from project_paths import DOCSRC, ROOT
-from verify_data import compute_hash, detect_libraries
+from .docs_common import write_if_changed
+from .project_paths import DOCSRC, ROOT
+from .verify_data import compute_hash, detect_libraries
 
 
 def _entry_title(key: str, entry: dict) -> str:
