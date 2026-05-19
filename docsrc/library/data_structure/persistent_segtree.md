@@ -27,14 +27,3 @@ int vc = seg.version_count();          // 現在のバージョン数
 | `query(root_id, l, r)` | $O(\log n)$ |
 | `get(root_id, k)` | $O(\log n)$ |
 
-## Code
-
-```cpp
---8<-- "include/data_structure/persistent_segtree.hpp"
-```
-
-## Bundled (Copy & Paste)
-
-```cpp
---8<-- "bundled/data_structure/persistent_segtree.hpp"
-```

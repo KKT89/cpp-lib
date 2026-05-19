@@ -1,6 +1,6 @@
 # 重み付き Union-Find
 
-各要素に重みを持たせた Union-Find。`unite(x, y, w)` で $\text{weight}(y) - \text{weight}(x) = w$ という差分制約を課し、矛盾検出を行う。
+各要素に重みを持たせた Union-Find です。
 
 ## Interface
 
@@ -14,20 +14,3 @@ int  s   = uf.size(x);          // x が属する連結成分のサイズ
 int  r   = uf.find(x);          // x の根
 ```
 
-| 操作 | 計算量 |
-|------|--------|
-| `WeightedUnionFind(n)` | $O(n)$ |
-| `unite(x, y, w)` | $O(\alpha(n))$ |
-| `same`, `diff`, `weight`, `size`, `find` | $O(\alpha(n))$ |
-
-## Code
-
-```cpp
---8<-- "include/data_structure/weighted_union_find.hpp"
-```
-
-## Bundled (Copy & Paste)
-
-```cpp
---8<-- "bundled/data_structure/weighted_union_find.hpp"
-```

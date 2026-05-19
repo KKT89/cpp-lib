@@ -26,6 +26,68 @@ DOCSRC_LIBRARY = DOCSRC / "library"
 DOCSRC_NOTE = DOCSRC / "note"
 
 
+def _read_title(md_path: Path) -> str:
+    """Read title from first # heading, falling back to stem-based title."""
+    title = md_path.stem.replace("_", " ").title()
+    for line in md_path.read_text(encoding="utf-8").splitlines():
+        if line.startswith("# "):
+            return line[2:].strip()
+    return title
+
+
+def _build_library_sections(lib_header: str, verifies: list[tuple[str, str]]) -> str:
+    """Build managed sections for a library page."""
+    lines: list[str] = []
+
+    if verifies:
+        lines.extend(["## Verify", ""])
+        for v_title, v_doc in verifies:
+            lines.append(f"- [{v_title}](../../verify/{v_doc})")
+        lines.append("")
+
+    lines.extend(
+        [
+            "## Code",
+            "",
+            "```cpp",
+            f'--8<-- "include/{lib_header}"',
+            "```",
+            "",
+            "## Bundled",
+            "",
+            "```cpp",
+            f'--8<-- "bundled/{lib_header}"',
+            "```",
+        ]
+    )
+    return "\n".join(lines)
+
+
+def _strip_managed_library_sections(markdown: str, lib_header: str) -> str:
+    """Strip legacy manually-written Code/Bundled sections from a library page."""
+    body = markdown.rstrip()
+    for bundled_heading in ("## Bundled", "## Bundled (Copy & Paste)"):
+        managed_tail = "\n".join(
+            [
+                "## Code",
+                "",
+                "```cpp",
+                f'--8<-- "include/{lib_header}"',
+                "```",
+                "",
+                bundled_heading,
+                "",
+                "```cpp",
+                f'--8<-- "bundled/{lib_header}"',
+                "```",
+            ]
+        )
+        if body.endswith(managed_tail):
+            body = body[: -len(managed_tail)].rstrip()
+            break
+    return body
+
+
 def _detect_libraries(verify_path: Path) -> list[str]:
     """Parse verify .cpp to find library headers it includes."""
     libs: list[str] = []
@@ -87,7 +149,7 @@ def _generate_verify_pages(status: dict) -> None:
             lines.append("## Target Library")
             lines.append("")
             for lib in libraries:
-                lib_name = Path(lib).stem.replace("_", " ").title()
+                lib_name = _library_titles.get(lib, Path(lib).stem.replace("_", " ").title())
                 lib_doc = f"../../library/{lib.replace('.hpp', '.md')}"
                 lines.append(f"- [{lib_name}]({lib_doc})")
             lines.append("")
@@ -163,9 +225,10 @@ def _build_verify_nav(status: dict) -> list:
     return nav
 
 
-def _scan_library_docs() -> list[tuple[str, list[tuple[str, str]]]]:
-    """Scan docsrc/library/ for .md files and build navigation groups."""
+def _scan_library_docs() -> tuple[list[tuple[str, list[tuple[str, str]]]], dict[str, str]]:
+    """Scan docsrc/library/ for .md files and build navigation groups and title map."""
     groups: dict[str, list[tuple[str, str]]] = defaultdict(list)
+    titles: dict[str, str] = {}
     for md_path in sorted(DOCSRC_LIBRARY.rglob("*.md")):
         if md_path.name == "index.md":
             continue
@@ -174,18 +237,13 @@ def _scan_library_docs() -> list[tuple[str, list[tuple[str, str]]]]:
             continue
         category_dir = rel.parts[0]
         category_name = category_dir.replace("_", " ").title()
-
-        # Read title from first # heading
-        title = rel.stem.replace("_", " ").title()
-        for line in md_path.read_text(encoding="utf-8").splitlines():
-            if line.startswith("# "):
-                title = line[2:].strip()
-                break
+        title = _read_title(md_path)
 
         doc_path = f"library/{rel.as_posix()}"
         groups[category_name].append((title, doc_path))
+        titles[rel.with_suffix(".hpp").as_posix()] = title
 
-    return sorted(groups.items())
+    return sorted(groups.items()), titles
 
 
 def _build_library_nav(
@@ -227,11 +285,7 @@ def _scan_note_docs() -> list[tuple[str, str]]:
     for md_path in sorted(DOCSRC_NOTE.glob("*.md")):
         if md_path.name == "index.md":
             continue
-        title = md_path.stem.replace("_", " ").title()
-        for line in md_path.read_text(encoding="utf-8").splitlines():
-            if line.startswith("# "):
-                title = line[2:].strip()
-                break
+        title = _read_title(md_path)
         doc_path = f"note/{md_path.name}"
         entries.append((title, doc_path))
     return entries
@@ -264,34 +318,37 @@ def _generate_note_index(entries: list[tuple[str, str]]) -> None:
 
 
 _library_groups: list[tuple[str, list[tuple[str, str]]]] = []
+_library_titles: dict[str, str] = {}
 _note_entries: list[tuple[str, str]] = []
+
+
+def _replace_nav_section(config, section_name: str, section_nav: list) -> None:
+    for item in config["nav"]:
+        if isinstance(item, dict) and section_name in item:
+            item[section_name] = section_nav
+            break
+
+
+def _refresh_doc_state() -> None:
+    global _library_groups, _library_titles, _note_entries
+    _library_groups, _library_titles = _scan_library_docs()
+    _note_entries = _scan_note_docs()
 
 
 def on_config(config):
     """Inject Library and Verify nav into mkdocs config."""
-    global _library_groups, _note_entries
-    _library_groups = _scan_library_docs()
-    _note_entries = _scan_note_docs()
+    _refresh_doc_state()
 
     library_nav = _build_library_nav(_library_groups)
-    for item in config["nav"]:
-        if isinstance(item, dict) and "Library" in item:
-            item["Library"] = library_nav
-            break
+    _replace_nav_section(config, "Library", library_nav)
 
     status = _load_status()
     if status:
         verify_nav = _build_verify_nav(status)
-        for item in config["nav"]:
-            if isinstance(item, dict) and "Verify" in item:
-                item["Verify"] = verify_nav
-                break
+        _replace_nav_section(config, "Verify", verify_nav)
 
     note_nav = _build_note_nav(_note_entries)
-    for item in config["nav"]:
-        if isinstance(item, dict) and "Note" in item:
-            item["Note"] = note_nav
-            break
+    _replace_nav_section(config, "Note", note_nav)
 
     return config
 
@@ -313,6 +370,15 @@ _verify_map: dict[str, list[tuple[str, str]]] = {}
 
 
 def on_pre_build(config):
+    _refresh_doc_state()
+
+    _replace_nav_section(config, "Library", _build_library_nav(_library_groups))
+    _replace_nav_section(config, "Note", _build_note_nav(_note_entries))
+
+    status = _load_status()
+    if status:
+        _replace_nav_section(config, "Verify", _build_verify_nav(status))
+
     _generate_library_index(_library_groups)
     _generate_note_index(_note_entries)
 
@@ -325,7 +391,6 @@ def on_pre_build(config):
         out_path = BUNDLE_ROOT / rel
         bundle_header(path, out_path, include_dirs=[INCLUDE_ROOT, VERIFY_ROOT, ROOT])
 
-    status = _load_status()
     _generate_verify_pages(status)
     _generate_verify_index(status)
 
@@ -334,21 +399,16 @@ def on_pre_build(config):
 
 
 def on_page_markdown(markdown, page, config, files):
-    """Inject ## Verify sections into library pages in-memory."""
+    """Inject managed sections into library pages in-memory."""
     src_path = page.file.src_path  # e.g. "library/tree/lowest_common_ancestor.md"
     if not src_path.startswith("library/"):
         return markdown
 
     lib_header = src_path.removeprefix("library/").replace(".md", ".hpp")
-    verifies = _verify_map.get(lib_header)
-    if not verifies:
+    if not (INCLUDE_ROOT / lib_header).exists():
         return markdown
 
-    verify_lines = ["## Verify", ""]
-    for v_title, v_doc in verifies:
-        verify_lines.append(f"- [{v_title}](../../verify/{v_doc})")
-    new_section = "\n".join(verify_lines)
-
-    if "## Code" in markdown:
-        return markdown.replace("## Code", new_section + "\n\n## Code", 1)
-    return markdown
+    verifies = _verify_map.get(lib_header, [])
+    body = _strip_managed_library_sections(markdown, lib_header)
+    sections = _build_library_sections(lib_header, verifies)
+    return body.rstrip() + "\n\n" + sections + "\n"

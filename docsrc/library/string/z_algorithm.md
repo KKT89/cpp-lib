@@ -21,14 +21,3 @@ std::vector<int> z = z_algorithm(v);
 |------|--------|
 | `z_algorithm(s)` | $O(n)$ |
 
-## Code
-
-```cpp
---8<-- "include/string/z_algorithm.hpp"
-```
-
-## Bundled (Copy & Paste)
-
-```cpp
---8<-- "bundled/string/z_algorithm.hpp"
-```

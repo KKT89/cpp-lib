@@ -24,14 +24,3 @@ int p = lca.lca(u, v);
 | `build(root)` | $O(n)$ |
 | `lca(u, v)` | $O(1)$ |
 
-## Code
-
-```cpp
---8<-- "include/tree/lowest_common_ancestor.hpp"
-```
-
-## Bundled (Copy & Paste)
-
-```cpp
---8<-- "bundled/tree/lowest_common_ancestor.hpp"
-```

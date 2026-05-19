@@ -19,14 +19,3 @@ S  x = seg.query(l, r);            // [l, r) の op 集約値を取得
 | `query(l, r)` | $O(\log n)$ |
 | `operator[](i)` | $O(1)$ |
 
-## Code
-
-```cpp
---8<-- "include/data_structure/segtree.hpp"
-```
-
-## Bundled (Copy & Paste)
-
-```cpp
---8<-- "bundled/data_structure/segtree.hpp"
-```

@@ -17,14 +17,3 @@ int cnt = bt.count_xor_leq(val, k); // x XOR val <= k を満たす x の個数
 | `erase(x)` | $O(\text{LOG})$ |
 | `count_xor_leq(val, k)` | $O(\text{LOG})$ |
 
-## Code
-
-```cpp
---8<-- "include/data_structure/binary_trie.hpp"
-```
-
-## Bundled (Copy & Paste)
-
-```cpp
---8<-- "bundled/data_structure/binary_trie.hpp"
-```

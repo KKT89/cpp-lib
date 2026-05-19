@@ -37,14 +37,3 @@ for (int i = 0; i < 5; ++i) {
 テンプレート引数はコンパイル時定数なので `dynamic_modint<i>` のようにループ変数を渡すことはできない。
 複数 mod を同時に使う必要がある場合は `dynamic_modint<0>`, `dynamic_modint<1>`, ... と id を分ける。
 
-## Code
-
-```cpp
---8<-- "include/math/dynamic_modint.hpp"
-```
-
-## Bundled (Copy & Paste)
-
-```cpp
---8<-- "bundled/math/dynamic_modint.hpp"
-```

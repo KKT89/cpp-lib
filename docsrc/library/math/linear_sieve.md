@@ -15,14 +15,3 @@ sieve.lp[i]                    // i の最小素因数 (lp[0] = lp[1] = -1)
 |------|--------|
 | `LinearSieve<N>()` | $O(N)$ |
 
-## Code
-
-```cpp
---8<-- "include/math/linear_sieve.hpp"
-```
-
-## Bundled (Copy & Paste)
-
-```cpp
---8<-- "bundled/math/linear_sieve.hpp"
-```

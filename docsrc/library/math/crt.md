@@ -27,14 +27,3 @@ auto [x, lcm] = crt(r, m);
 - 答えの法 (各 `m[i]` の lcm) が `long long` に収まる必要があります。
 - 法が互いに素でない場合も正しく処理します（拡張 CRT）。
 
-## Code
-
-```cpp
---8<-- "include/math/crt.hpp"
-```
-
-## Bundled (Copy & Paste)
-
-```cpp
---8<-- "bundled/math/crt.hpp"
-```

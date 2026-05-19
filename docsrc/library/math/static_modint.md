@@ -26,14 +26,3 @@ modint c = modint(2).pow(10);
 - `pow(n)` は `n >= 0` を想定しています。
 - ACL と同様にテンプレート引数 `mod` は正の `int` を想定しています。
 
-## Code
-
-```cpp
---8<-- "include/math/static_modint.hpp"
-```
-
-## Bundled (Copy & Paste)
-
-```cpp
---8<-- "bundled/math/static_modint.hpp"
-```
