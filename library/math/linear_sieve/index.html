@@ -821,7 +821,7 @@
   <span class="md-ellipsis">
     
   
-    動的 modint
+    modint (dynamic)
   
 
     
@@ -913,6 +913,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#code" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -957,7 +968,7 @@
   <span class="md-ellipsis">
     
   
-    静的 modint
+    modint (static)
   
 
     
@@ -1803,30 +1814,22 @@
 
 
 <h1 id="_1">線形篩<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>線形篩 (Linear Sieve) により、<span class="arithmatex">\(n\)</span> 以下の各整数の最小素因数と素数リストを <span class="arithmatex">\(O(n)\)</span> で求めます。</p>
+<p>線形篩 (Linear Sieve) により、<span class="arithmatex">\(N\)</span> 以下の各整数の最小素因数と素数リストを求めます。</p>
 <h2 id="interface">Interface<a class="headerlink" href="#interface" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">LinearSieve</span><span class="o">&lt;</span><span class="n">N</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sieve</span><span class="p">;</span><span class="w">          </span><span class="c1">// N 以下を篩にかける (グローバルに置く)</span>
-<span class="n">sieve</span><span class="p">.</span><span class="n">primes</span><span class="p">[</span><span class="mf">0.</span><span class="p">.</span><span class="n">prime_cnt</span><span class="p">)</span><span class="w">     </span><span class="c1">// N 以下の素数リスト</span>
-<span class="n">sieve</span><span class="p">.</span><span class="n">prime_cnt</span><span class="w">                </span><span class="c1">// 素数の個数</span>
-<span class="n">sieve</span><span class="p">.</span><span class="n">lp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w">                    </span><span class="c1">// i の最小素因数 (lp[0] = lp[1] = -1)</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">LinearSieve</span><span class="o">&lt;</span><span class="n">N</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sieve</span><span class="p">;</span><span class="w">          </span><span class="c1">// N 以下を篩にかける, O(N)</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sieve</span><span class="p">.</span><span class="n">lp</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w">           </span><span class="c1">// i の最小素因数</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">cnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sieve</span><span class="p">.</span><span class="n">prime_cnt</span><span class="p">;</span><span class="w">     </span><span class="c1">// N 以下の素数の個数</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">prime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sieve</span><span class="p">.</span><span class="n">primes</span><span class="p">[</span><span class="n">k</span><span class="p">];</span><span class="w">   </span><span class="c1">// k 番目の素数</span>
 </code></pre></div></td></tr></table></div>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>計算量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>LinearSieve&lt;N&gt;()</code></td>
-<td><span class="arithmatex">\(O(N)\)</span></td>
-</tr>
-</tbody>
-</table>
+<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>lp[0] = lp[1] = -1</code> です。</li>
+<li><code>lp[i] == i</code> なら <code>i</code> は素数です。</li>
+<li>配列を大きく持つため、大きい <code>N</code> ではグローバルに置くのが安全です。</li>
+</ul>
 <h2 id="code">Code<a class="headerlink" href="#code" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>

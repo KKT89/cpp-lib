@@ -743,17 +743,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reference
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#code" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -912,7 +901,7 @@
   <span class="md-ellipsis">
     
   
-    動的 modint
+    modint (dynamic)
   
 
     
@@ -968,7 +957,7 @@
   <span class="md-ellipsis">
     
   
-    静的 modint
+    modint (static)
   
 
     
@@ -1814,7 +1803,7 @@
 
 
 <h1 id="bellman-ford">Bellman Ford (負閉路検出)<a class="headerlink" href="#bellman-ford" title="Permanent link">&para;</a></h1>
-<p>単一始点（または複数始点）の最短路を求め、負閉路の影響を受ける頂点を検出する実装です。</p>
+<p>単一始点（または複数始点）の最短路を求めます。負閉路の影響を受ける頂点の検出も可能です。</p>
 <h2 id="interface">Interface<a class="headerlink" href="#interface" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1826,18 +1815,14 @@
 <span class="normal">8</span>
 <span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">BellmanFord</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bf</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w">                     </span><span class="c1">// 頂点数 n で初期化</span>
 <span class="n">bf</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="p">,</span><span class="w"> </span><span class="n">cost</span><span class="p">);</span><span class="w">                </span><span class="c1">// 有向辺を追加</span>
-<span class="n">bf</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="n">s</span><span class="p">);</span><span class="w">                                </span><span class="c1">// 単一始点、O(VE)</span>
-<span class="n">bf</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="n">sources</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">sources</span><span class="p">.</span><span class="n">end</span><span class="p">());</span><span class="w">   </span><span class="c1">// 複数始点、O(VE)</span>
+<span class="n">bf</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="n">s</span><span class="p">);</span><span class="w">                                </span><span class="c1">// 単一始点, O(VE)</span>
+<span class="n">bf</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="n">sources</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">sources</span><span class="p">.</span><span class="n">end</span><span class="p">());</span><span class="w">   </span><span class="c1">// 複数始点, O(VE)</span>
 
 <span class="kt">bool</span><span class="w"> </span><span class="n">ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="n">valid</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">                      </span><span class="c1">// v の距離が定まるか</span>
 <span class="kt">bool</span><span class="w"> </span><span class="n">reach</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="n">reachable</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">               </span><span class="c1">// v が到達可能か</span>
 <span class="kt">bool</span><span class="w"> </span><span class="n">neg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="n">on_negative_cycle</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">         </span><span class="c1">// v が負閉路の影響を受けるか</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="n">distance</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">                     </span><span class="c1">// v までの最短距離</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="https://sigma1113.hatenablog.com/entry/2019/08/12/130042">ABC137-E:Coins Respawn ~負閉路検出について~ - 思考の墓場</a></li>
-</ul>
 <h2 id="code">Code<a class="headerlink" href="#code" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>

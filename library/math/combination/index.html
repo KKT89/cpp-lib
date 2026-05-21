@@ -923,7 +923,7 @@
   <span class="md-ellipsis">
     
   
-    動的 modint
+    modint (dynamic)
   
 
     
@@ -979,7 +979,7 @@
   <span class="md-ellipsis">
     
   
-    静的 modint
+    modint (static)
   
 
     
@@ -1825,7 +1825,7 @@
 
 
 <h1 id="_1">二項係数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>mod 素数での二項係数を計算します。階乗テーブルは範囲外アクセス時に自動拡張されます。</p>
+<p><code>mod</code> が素数のときの二項係数を計算します。階乗テーブルは必要に応じて自動拡張します。</p>
 <h2 id="interface">Interface<a class="headerlink" href="#interface" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1834,50 +1834,19 @@
 <span class="normal">5</span>
 <span class="normal">6</span>
 <span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="n">modint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">static_modint</span><span class="o">&lt;</span><span class="mi">998244353</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="n">Combination</span><span class="o">&lt;</span><span class="n">modint</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">20</span><span class="o">&gt;</span><span class="w"> </span><span class="n">comb</span><span class="p">;</span><span class="w">  </span><span class="c1">// [0, 2^20] を前計算</span>
+<span class="n">Combination</span><span class="o">&lt;</span><span class="n">modint</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">20</span><span class="o">&gt;</span><span class="w"> </span><span class="n">comb</span><span class="p">;</span><span class="w">                            </span><span class="c1">// [0, 2^20] を前計算</span>
 
-<span class="n">modint</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comb</span><span class="p">.</span><span class="n">comb</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w">             </span><span class="c1">// C(10, 3) (n &lt; mod 前提)</span>
-<span class="n">modint</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comb</span><span class="p">.</span><span class="n">comb</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w">        </span><span class="c1">// 範囲外 → 自動拡張</span>
-<span class="n">modint</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comb</span><span class="p">.</span><span class="n">big_comb</span><span class="p">(</span><span class="mf">1e18</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w">       </span><span class="c1">// n が modint のとき (r が小さい場合)</span>
-<span class="n">modint</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comb</span><span class="p">.</span><span class="n">lucas</span><span class="p">(</span><span class="mf">1e15</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w">            </span><span class="c1">// n &gt;= mod でも OK (Lucas の定理)</span>
+<span class="n">modint</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comb</span><span class="p">.</span><span class="n">comb</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w">                                  </span><span class="c1">// C(10, 3), 償却 O(1) (n &lt; mod 前提)</span>
+<span class="n">modint</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comb</span><span class="p">.</span><span class="n">comb</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w">                             </span><span class="c1">// 範囲外なら自動拡張</span>
+<span class="n">modint</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comb</span><span class="p">.</span><span class="n">big_comb</span><span class="p">(</span><span class="n">modint</span><span class="p">(</span><span class="mf">1000000000000000000L</span><span class="n">L</span><span class="p">),</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w">   </span><span class="c1">// n が大きく r が小さい場合, O(r)</span>
+<span class="n">modint</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comb</span><span class="p">.</span><span class="n">lucas</span><span class="p">(</span><span class="mf">1000000000000000L</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w">                 </span><span class="c1">// n &gt;= mod でも OK</span>
 </code></pre></div></td></tr></table></div>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>計算量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Combination()</code></td>
-<td><span class="arithmatex">\(O(N + \log \mathrm{mod})\)</span></td>
-</tr>
-<tr>
-<td><code>extend(n)</code></td>
-<td>拡張分に対して <span class="arithmatex">\(O(\Delta + \log \mathrm{mod})\)</span></td>
-</tr>
-<tr>
-<td><code>comb(n, r)</code></td>
-<td>償却 <span class="arithmatex">\(O(1)\)</span>（拡張時を除く）</td>
-</tr>
-<tr>
-<td><code>big_comb(n, r)</code></td>
-<td><span class="arithmatex">\(O(r)\)</span></td>
-</tr>
-<tr>
-<td><code>lucas(n, r)</code></td>
-<td><span class="arithmatex">\(O(\mathrm{mod} + \log_{\mathrm{mod}} n)\)</span></td>
-</tr>
-</tbody>
-</table>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>comb(n, r)</code> は <code>n &lt; mod</code> が前提です。<code>n &gt;= mod</code> のときは <code>0</code> を返します。</li>
-<li><code>lucas(n, r)</code> は <code>n &gt;= mod</code> でも正しく計算します。mod は <code>T::get_mod()</code> から取得します。内部で <code>comb</code> を呼ぶため、初回呼び出し時に <code>mod - 1</code> まで自動拡張されます。</li>
-<li><code>comb(n, r)</code> は <code>r &lt; 0</code> または <code>n &lt; r</code> のとき <code>0</code> を返します。</li>
-<li><code>big_comb(n, r)</code> は <code>n</code> が大きく <code>r &lt; mod</code> の場合に使います。<code>n</code> は modint 型で渡します。<code>r &gt;= mod</code> のときは <code>0</code> を返します。</li>
-<li><code>extend(n)</code> は現在のテーブルサイズ以下の <code>n</code> では何もしません。</li>
+<li><code>mod</code> が素数であることを仮定します。</li>
+<li><code>comb(n, r)</code> は <code>n &lt; mod</code> が前提で、<code>r &lt; 0</code>, <code>n &lt; r</code>, <code>n &gt;= mod</code> のとき <code>0</code> を返します。</li>
+<li><code>big_comb(n, r)</code> は <code>r &lt; mod</code> を想定し、<code>r &gt;= mod</code> のとき <code>0</code> を返します。</li>
+<li><code>lucas(n, r)</code> は初回呼び出し時に <code>mod - 1</code> まで自動拡張します。</li>
 </ul>
 <h2 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
 <ul>

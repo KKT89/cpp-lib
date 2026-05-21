@@ -901,7 +901,7 @@
   <span class="md-ellipsis">
     
   
-    動的 modint
+    modint (dynamic)
   
 
     
@@ -957,7 +957,7 @@
   <span class="md-ellipsis">
     
   
-    静的 modint
+    modint (static)
   
 
     
@@ -1811,9 +1811,9 @@
 <span class="normal">4</span>
 <span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">segtree</span><span class="o">&lt;</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seg</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w">   </span><span class="c1">// 長さ n, 全要素 e() で初期化</span>
 <span class="n">segtree</span><span class="o">&lt;</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seg</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">   </span><span class="c1">// vector v で初期化</span>
-<span class="n">S</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span><span class="w">      </span><span class="c1">// [l, r) の op 集約値を取得、O(log n)</span>
-<span class="n">S</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w">               </span><span class="c1">// i 番目の要素を取得、O(1)</span>
-<span class="n">seg</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w">              </span><span class="c1">// i 番目の要素を x に更新、O(log n)</span>
+<span class="n">S</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span><span class="w">      </span><span class="c1">// [l, r) の op 集約値を取得, O(log n)</span>
+<span class="n">S</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w">               </span><span class="c1">// i 番目の要素を取得, O(1)</span>
+<span class="n">seg</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w">              </span><span class="c1">// i 番目の要素を x に更新, O(log n)</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="code">Code<a class="headerlink" href="#code" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
