@@ -1,6 +1,6 @@
-# 静的 modint
+# modint (static)
 
-コンパイル時定数の mod を持つ modint です。`+`, `-`, `*`, `/`, `pow`, `inv` をサポートしています。`/` と `inv` はフェルマーの小定理を使うため、mod が素数であることを仮定します。制約は ACL と同様に `1 <= mod` です。
+コンパイル時定数の mod を持つ modint です。ACL と同様に `1 <= mod` を想定し、`/` と `inv()` では mod が素数であることを仮定します。
 
 ## Interface
 
@@ -9,20 +9,15 @@ constexpr int MOD = 998244353;
 using modint = static_modint<MOD>;
 
 modint a = 42;
-modint b = a / 5;
-int v = b.val();
-modint c = modint(2).pow(10);
+modint b = a / 5;               // O(log mod)
+int v = b.val();                // O(1)
+modint c = modint(2).pow(10);   // O(log n)
 ```
 
-| 操作 | 計算量 |
-|------|--------|
-| `+`, `-`, `*`, `/` | $O(1)$ |
-| `pow(n)` | $O(\log n)$ |
-| `inv()` | $O(\log \mathrm{mod})$ |
+`get_mod()`, `val()`, `+`, `-`, `*` は $O(1)$ です。
 
 ## Notes
 
-- `int64_t` から構築できます。
-- `pow(n)` は `n >= 0` を想定しています。
-- ACL と同様にテンプレート引数 `mod` は正の `int` を想定しています。
-
+- ACL と同様に `1 <= mod` を想定します。
+- `/` と `inv()` を使う場合は mod が素数であることを仮定します。
+- `pow(n)` は `n >= 0` を想定します。
