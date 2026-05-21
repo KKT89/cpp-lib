@@ -80,6 +80,9 @@ def scan_library_docs() -> tuple[GroupedDocEntries, dict[str, str]]:
         groups[category_name].append((title, doc_path))
         titles[rel.with_suffix(".hpp").as_posix()] = title
 
+    for entries in groups.values():
+        entries.sort(key=lambda entry: entry[0].casefold())
+
     return sorted(groups.items()), titles
 
 
