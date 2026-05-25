@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 
-// 二項係数 (mod 素数, n < mod): 階乗テーブルを自動拡張
 template <typename T, int N = 0>
 struct Combination {
     std::vector<T> p, invp;
@@ -10,7 +9,7 @@ struct Combination {
 
     void extend(long long n) {
         long long m = (long long)T::get_mod() - 1;
-        if (m >= 0 && n > m) n = m; // n! が 0 にならない範囲に制限
+        if (m >= 0 && n > m) n = m;
         if (n < (long long)p.size()) return;
         long long old_sz = p.size();
         p.resize(n + 1);
@@ -26,9 +25,18 @@ struct Combination {
 
     T comb(long long n, long long r) {
         if (r < 0 || n < r) return 0;
-        if (n >= (long long)T::get_mod()) return 0;
-        extend(n);
-        return p[n] * invp[n - r] * invp[r];
+        long long m = (long long)T::get_mod();
+        if (m <= 1) return 0;
+        if (n < m) return small_comb(n, r);
+        T res = 1;
+        while (n > 0 || r > 0) {
+            long long ni = n % m, ri = r % m;
+            if (ni < ri) return 0;
+            res *= small_comb(ni, ri);
+            n /= m;
+            r /= m;
+        }
+        return res;
     }
 
     T big_comb(T n, long long r) {
@@ -42,18 +50,9 @@ struct Combination {
         return res;
     }
 
-    // Lucas の定理: n >= mod でも正しく計算 (mod は素数)
-    T lucas(long long n, long long r) {
-        if (r < 0 || n < r) return 0;
-        long long m = T::get_mod();
-        T res = 1;
-        while (n > 0) {
-            long long ni = n % m, ri = r % m;
-            if (ni < ri) return 0;
-            res *= comb(ni, ri);
-            n /= m;
-            r /= m;
-        }
-        return res;
+private:
+    T small_comb(long long n, long long r) {
+        extend(n);
+        return p[n] * invp[n - r] * invp[r];
     }
 };

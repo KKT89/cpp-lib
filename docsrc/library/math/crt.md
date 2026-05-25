@@ -5,11 +5,9 @@
 ## Interface
 
 ```cpp
-vector<long long> r = {2, 3, 2};
-vector<long long> m = {3, 5, 7};
-auto [x, lcm] = crt(r, m);   // O(n log lcm)
-// x = 23, lcm = 105
-// 23 ≡ 2 (mod 3), 23 ≡ 3 (mod 5), 23 ≡ 2 (mod 7)
+vector<long long> r = {2, 3, 2};   // x = 23, lcm = 105
+vector<long long> m = {3, 5, 7};   // 23 ≡ 2 (mod 3), 23 ≡ 3 (mod 5), 23 ≡ 2 (mod 7)
+auto [x, lcm] = crt(r, m);         // O(n log lcm)
 ```
 
 ## Notes
