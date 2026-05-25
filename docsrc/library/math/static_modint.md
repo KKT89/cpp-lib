@@ -1,6 +1,6 @@
 # modint (static)
 
-コンパイル時定数の mod を持つ modint です。ACL と同様に `1 <= mod` を想定し、`/` と `inv()` では mod が素数であることを仮定します。
+コンパイル時定数の mod を持つ modint です。
 
 ## Interface
 
@@ -14,10 +14,7 @@ int v = b.val();                // O(1)
 modint c = modint(2).pow(10);   // O(log n)
 ```
 
-`get_mod()`, `val()`, `+`, `-`, `*` は $O(1)$ です。
-
 ## Notes
 
-- ACL と同様に `1 <= mod` を想定します。
+- `1 <= mod` を想定します。
 - `/` と `inv()` を使う場合は mod が素数であることを仮定します。
-- `pow(n)` は `n >= 0` を想定します。
