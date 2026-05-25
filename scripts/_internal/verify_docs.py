@@ -34,9 +34,25 @@ def build_verify_nav(status: dict) -> list:
     return nav
 
 
+def _resolve_libraries(verify_path: Path, parent_of: dict[str, str] | None) -> list[str]:
+    libraries = detect_libraries(verify_path) if verify_path.exists() else []
+    if not parent_of:
+        return libraries
+    seen: set[str] = set()
+    resolved: list[str] = []
+    for lib in libraries:
+        canonical = parent_of.get(lib, lib)
+        if canonical in seen:
+            continue
+        seen.add(canonical)
+        resolved.append(canonical)
+    return resolved
+
+
 def generate_verify_pages(
     status: dict,
     library_titles: dict[str, str],
+    parent_of: dict[str, str] | None = None,
     generator_name: str = "scripts/mkdocs_hooks.py",
 ) -> None:
     for key, entry in status.items():
@@ -45,7 +61,7 @@ def generate_verify_pages(
         title = _entry_title(key, entry)
         judge_url = entry.get("judge_url", "")
         cpp_path = ROOT / key
-        libraries = detect_libraries(cpp_path) if cpp_path.exists() else []
+        libraries = _resolve_libraries(cpp_path, parent_of)
 
         lines = [
             f"# {title}",
@@ -126,11 +142,14 @@ def generate_verify_index(status: dict, generator_name: str = "scripts/mkdocs_ho
     write_if_changed(DOCSRC / "verify" / "index.md", "\n".join(lines).rstrip() + "\n")
 
 
-def build_verify_map(status: dict) -> dict[str, list[tuple[str, str]]]:
+def build_verify_map(
+    status: dict,
+    parent_of: dict[str, str] | None = None,
+) -> dict[str, list[tuple[str, str]]]:
     lib_to_verifies: dict[str, list[tuple[str, str]]] = defaultdict(list)
     for key, entry in sorted(status.items()):
         cpp_path = ROOT / key
-        libraries = detect_libraries(cpp_path) if cpp_path.exists() else []
+        libraries = _resolve_libraries(cpp_path, parent_of)
         for lib in libraries:
             lib_to_verifies[lib].append((_entry_title(key, entry), _verify_doc_path(key)))
     return lib_to_verifies

@@ -11,9 +11,11 @@ if str(SCRIPTS_DIR) not in sys.path:
 from bundle_header import bundle_header  # noqa: E402
 from _internal.docs_catalog import (  # noqa: E402
     GroupedDocEntries,
+    SubLibEntry,
     build_library_nav,
     build_library_sections,
     build_note_nav,
+    build_sub_library_sections,
     generate_library_index,
     generate_note_index,
     scan_library_docs,
@@ -34,6 +36,8 @@ from _internal.verify_docs import (  # noqa: E402
 class HookState:
     library_groups: GroupedDocEntries = field(default_factory=list)
     library_titles: dict[str, str] = field(default_factory=dict)
+    sub_library_map: dict[str, list[SubLibEntry]] = field(default_factory=dict)
+    parent_of: dict[str, str] = field(default_factory=dict)
     note_entries: list[tuple[str, str]] = field(default_factory=list)
     verify_map: dict[str, list[tuple[str, str]]] = field(default_factory=dict)
 
@@ -48,7 +52,12 @@ def _replace_nav_section(config, section_name: str, section_nav: list) -> None:
 
 
 def _refresh_doc_state() -> None:
-    STATE.library_groups, STATE.library_titles = scan_library_docs()
+    (
+        STATE.library_groups,
+        STATE.library_titles,
+        STATE.sub_library_map,
+        STATE.parent_of,
+    ) = scan_library_docs()
     STATE.note_entries = scan_note_docs()
 
 
@@ -104,9 +113,9 @@ def on_pre_build(config):
     generate_library_index(STATE.library_groups)
     generate_note_index(STATE.note_entries)
     _bundle_generated_sources()
-    generate_verify_pages(status, STATE.library_titles)
+    generate_verify_pages(status, STATE.library_titles, STATE.parent_of)
     generate_verify_index(status)
-    STATE.verify_map = build_verify_map(status)
+    STATE.verify_map = build_verify_map(status, STATE.parent_of)
 
 
 def on_page_markdown(markdown, page, config, files):
@@ -119,5 +128,15 @@ def on_page_markdown(markdown, page, config, files):
         return markdown
 
     body = strip_managed_library_sections(markdown, lib_header)
-    sections = build_library_sections(lib_header, STATE.verify_map.get(lib_header, []))
+    parent_hpp = STATE.parent_of.get(lib_header)
+    if parent_hpp:
+        parent_title = STATE.library_titles.get(parent_hpp, parent_hpp)
+        sections = build_sub_library_sections(lib_header, src_path, parent_hpp, parent_title)
+    else:
+        sections = build_library_sections(
+            lib_header,
+            src_path,
+            STATE.verify_map.get(lib_header, []),
+            STATE.sub_library_map.get(lib_header, []),
+        )
     return body.rstrip() + "\n\n" + sections + "\n"
