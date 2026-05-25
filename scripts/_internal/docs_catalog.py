@@ -23,6 +23,8 @@ def build_library_sections(lib_header: str, verifies: list[tuple[str, str]]) -> 
         [
             "## Code",
             "",
+            f"Source: `{lib_header}`",
+            "",
             "```cpp",
             f'--8<-- "include/{lib_header}"',
             "```",
@@ -41,24 +43,34 @@ def strip_managed_library_sections(markdown: str, lib_header: str) -> str:
     """Strip managed Code/Bundled sections from a library page."""
     body = markdown.rstrip()
     for bundled_heading in ("## Bundled", "## Bundled (Copy & Paste)"):
-        managed_tail = "\n".join(
-            [
-                "## Code",
-                "",
-                "```cpp",
-                f'--8<-- "include/{lib_header}"',
-                "```",
-                "",
-                bundled_heading,
-                "",
-                "```cpp",
-                f'--8<-- "bundled/{lib_header}"',
-                "```",
-            ]
-        )
+        managed_tail = _managed_library_tail(lib_header, bundled_heading, with_source=True)
         if body.endswith(managed_tail):
             return body[: -len(managed_tail)].rstrip()
+
+        legacy_tail = _managed_library_tail(lib_header, bundled_heading, with_source=False)
+        if body.endswith(legacy_tail):
+            return body[: -len(legacy_tail)].rstrip()
     return body
+
+
+def _managed_library_tail(lib_header: str, bundled_heading: str, with_source: bool) -> str:
+    code_lines = ["## Code", ""]
+    if with_source:
+        code_lines.extend([f"Source: `{lib_header}`", ""])
+    code_lines.extend(
+        [
+            "```cpp",
+            f'--8<-- "include/{lib_header}"',
+            "```",
+            "",
+            bundled_heading,
+            "",
+            "```cpp",
+            f'--8<-- "bundled/{lib_header}"',
+            "```",
+        ]
+    )
+    return "\n".join(code_lines)
 
 
 def scan_library_docs() -> tuple[GroupedDocEntries, dict[str, str]]:
