@@ -941,17 +941,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Notes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#code" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1819,17 +1808,13 @@
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">LinearSieve</span><span class="o">&lt;</span><span class="n">N</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sieve</span><span class="p">;</span><span class="w">          </span><span class="c1">// N 以下を篩にかける, O(N)</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sieve</span><span class="p">.</span><span class="n">lp</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w">           </span><span class="c1">// i の最小素因数</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">LinearSieve</span><span class="o">&lt;</span><span class="n">N</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sieve</span><span class="p">;</span><span class="w">          </span><span class="c1">// N 以下を篩にかける, O(N)</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sieve</span><span class="p">.</span><span class="n">lp</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w">           </span><span class="c1">// i の最小素因数 (lp[0] = lp[1] = -1)</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sieve</span><span class="p">.</span><span class="n">isprime</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w">     </span><span class="c1">// i が素数なら true</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">cnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sieve</span><span class="p">.</span><span class="n">prime_cnt</span><span class="p">;</span><span class="w">     </span><span class="c1">// N 以下の素数の個数</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">prime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sieve</span><span class="p">.</span><span class="n">primes</span><span class="p">[</span><span class="n">k</span><span class="p">];</span><span class="w">   </span><span class="c1">// k 番目の素数</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>lp[0] = lp[1] = -1</code> です。</li>
-<li><code>lp[i] == i</code> なら <code>i</code> は素数です。</li>
-<li>配列を大きく持つため、大きい <code>N</code> ではグローバルに置くのが安全です。</li>
-</ul>
 <h2 id="code">Code<a class="headerlink" href="#code" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -1854,7 +1839,9 @@
 <span class="normal">21</span>
 <span class="normal">22</span>
 <span class="normal">23</span>
-<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#pragma once</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#pragma once</span>
 
 <span class="c1">// 線形篩</span>
 <span class="c1">// primes[0..prime_cnt): 素数リスト, lp[i]: i の最小素因数 (lp[0] = lp[1] = -1)</span>
@@ -1877,6 +1864,8 @@
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isprime</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">lp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="bundled">Bundled<a class="headerlink" href="#bundled" title="Permanent link">&para;</a></h2>
@@ -1906,7 +1895,9 @@
 <span class="normal">24</span>
 <span class="normal">25</span>
 <span class="normal">26</span>
-<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// bundled by scripts/bundle_header.py</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// bundled by scripts/bundle_header.py</span>
 
 <span class="c1">// ---- begin: include/math/linear_sieve.hpp</span>
 
@@ -1931,6 +1922,8 @@
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isprime</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">lp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="p">};</span>
 <span class="c1">// ---- end: include/math/linear_sieve.hpp</span>
 </code></pre></div></td></tr></table></div>
