@@ -21,4 +21,6 @@ struct LinearSieve {
             }
         }
     }
+
+    bool isprime(int i) const { return lp[i] == i; }
 };
