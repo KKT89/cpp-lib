@@ -1825,7 +1825,7 @@
 
 
 <h1 id="modint-dynamic">modint (dynamic)<a class="headerlink" href="#modint-dynamic" title="Permanent link">&para;</a></h1>
-<p>テンプレート引数 <code>id</code> ごとに法を持つ動的 modint です。複数の mod を同時に扱えます。<code>/</code> と <code>inv()</code> を使う場合は mod が素数で、<code>mod &lt; 2^{63}</code> であることを仮定します。</p>
+<p>テンプレート引数 <code>id</code> ごとに法を持つ動的 modint です。複数の mod を同時に扱えます。</p>
 <h2 id="interface">Interface<a class="headerlink" href="#interface" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -1842,7 +1842,7 @@
 <span class="n">modint0</span><span class="o">::</span><span class="n">set_mod</span><span class="p">(</span><span class="mi">1000000007</span><span class="p">);</span><span class="w">     </span><span class="c1">// 利用前に mod を設定 (64bit OK)</span>
 <span class="n">modint1</span><span class="o">::</span><span class="n">set_mod</span><span class="p">(</span><span class="mi">998244353</span><span class="p">);</span><span class="w">      </span><span class="c1">// id ごとに別の mod を設定できる</span>
 
-<span class="n">modint0</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span><span class="w">                   </span><span class="c1">// 値を構築</span>
+<span class="n">modint0</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
 <span class="n">modint0</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w">                </span><span class="c1">// O(log mod)</span>
 <span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">val</span><span class="p">();</span><span class="w">            </span><span class="c1">// O(1)</span>
 <span class="n">modint0</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modint0</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w">   </span><span class="c1">// O(log n)</span>
@@ -1850,7 +1850,7 @@
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
 <li>利用前に <code>set_mod(m)</code> を呼ぶ必要があります。</li>
-<li><code>/</code> と <code>inv()</code> を使う場合は mod が素数で、<code>mod &lt; 2^{63}</code> であることを仮定します。</li>
+<li><code>/</code> と <code>inv()</code> を使う場合は mod が素数であることを仮定します。</li>
 <li>同じ <code>id</code> の <code>dynamic_modint</code> は同じ mod を共有します。</li>
 <li>同時に複数の mod を保持しないなら、同じ <code>id</code> に対して <code>set_mod</code> を呼び直して使い回せます。</li>
 </ul>

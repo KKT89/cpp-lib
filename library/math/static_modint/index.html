@@ -1814,7 +1814,7 @@
 
 
 <h1 id="modint-static">modint (static)<a class="headerlink" href="#modint-static" title="Permanent link">&para;</a></h1>
-<p>コンパイル時定数の mod を持つ modint です。ACL と同様に <code>1 &lt;= mod</code> を想定し、<code>/</code> と <code>inv()</code> では mod が素数であることを仮定します。</p>
+<p>コンパイル時定数の mod を持つ modint です。</p>
 <h2 id="interface">Interface<a class="headerlink" href="#interface" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1830,12 +1830,10 @@
 <span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">val</span><span class="p">();</span><span class="w">                </span><span class="c1">// O(1)</span>
 <span class="n">modint</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modint</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w">   </span><span class="c1">// O(log n)</span>
 </code></pre></div></td></tr></table></div>
-<p><code>get_mod()</code>, <code>val()</code>, <code>+</code>, <code>-</code>, <code>*</code> は <span class="arithmatex">\(O(1)\)</span> です。</p>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
-<li>ACL と同様に <code>1 &lt;= mod</code> を想定します。</li>
+<li><code>1 &lt;= mod</code> を想定します。</li>
 <li><code>/</code> と <code>inv()</code> を使う場合は mod が素数であることを仮定します。</li>
-<li><code>pow(n)</code> は <code>n &gt;= 0</code> を想定します。</li>
 </ul>
 <h2 id="code">Code<a class="headerlink" href="#code" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
