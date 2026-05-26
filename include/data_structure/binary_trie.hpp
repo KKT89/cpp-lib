@@ -1,5 +1,6 @@
 #pragma once
 #include <array>
+#include <cassert>
 #include <vector>
 
 template <class T, int LOG> struct binary_trie {
@@ -10,6 +11,8 @@ template <class T, int LOG> struct binary_trie {
     std::vector<node> nodes;
 
     binary_trie() { nodes.emplace_back(); }
+
+    int size() const { return nodes[0].cnt; }
 
     void insert(T x) {
         int cur = 0;
@@ -33,6 +36,24 @@ template <class T, int LOG> struct binary_trie {
             cur = nodes[cur].ch[b];
             nodes[cur].cnt--;
         }
+    }
+
+    T operator[](int k) const {
+        assert(0 <= k && k < size());
+        int cur = 0;
+        T x = 0;
+        for (int i = LOG - 1; i >= 0; --i) {
+            int left = nodes[cur].ch[0];
+            int left_cnt = left == -1 ? 0 : nodes[left].cnt;
+            if (k < left_cnt) {
+                cur = left;
+            } else {
+                k -= left_cnt;
+                cur = nodes[cur].ch[1];
+                x |= (T(1) << i);
+            }
+        }
+        return x;
     }
 
     // x XOR val <= k となる整数 x の個数
