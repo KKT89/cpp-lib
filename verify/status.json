@@ -40,5 +40,11 @@
     "verified_at": "2026-05-26T10:58:14+09:00",
     "judge_url": "https://atcoder.jp/contests/abc458/tasks/abc458_d",
     "title": "ABC458 D - Chalkboard Median"
+  },
+  "verify/library_checker/primality_test.cpp": {
+    "bundled_hash": "sha256:0b5ca0546d2cc5b395b3a39396995546ede4230645f531b99f63d284594fca1d",
+    "verified_at": "2026-05-28T23:12:27+09:00",
+    "judge_url": "https://judge.yosupo.jp/problem/primality_test",
+    "title": "Primality Test"
   }
 }
