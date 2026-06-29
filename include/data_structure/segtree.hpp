@@ -1,12 +1,13 @@
 #pragma once
 #include <vector>
 
-template <class S, S (*op)(S, S), S (*e)()> struct segtree {
+template <class S, S (*op)(S, S), S (*e)()>
+struct segtree {
     int n;
     std::vector<S> tree;
     segtree() : segtree(0) {}
-    explicit segtree(int n) : n(n), tree(vector<S>(n << 1, e())) {}
-    explicit segtree(const std::vector<S> &v) : n((int)v.size()) {
+    explicit segtree(int n) : n(n), tree(std::vector<S>(n << 1, e())) {}
+    explicit segtree(const std::vector<S>& v) : n((int)v.size()) {
         tree.resize(n * 2);
         for (int i = 0; i < n; ++i) {
             tree[n + i] = v[i];

@@ -20,14 +20,12 @@ struct persistent_segtree {
         roots.push_back(0);
     }
 
-    explicit persistent_segtree(const std::vector<S> &v) : persistent_segtree((int)v.size()) {
+    explicit persistent_segtree(const std::vector<S>& v) : persistent_segtree((int)v.size()) {
         if (n > 0) roots[0] = build(0, n, v);
     }
 
     // [l, r)
-    S query(int root_id, int l, int r) {
-        return query_(roots[root_id], l, r, 0, n);
-    }
+    S query(int root_id, int l, int r) { return query_(roots[root_id], l, r, 0, n); }
 
     S get(int root_id, int k) { return query(root_id, k, k + 1); }
 
@@ -50,9 +48,7 @@ struct persistent_segtree {
     int version_count() const { return (int)roots.size(); }
 
   private:
-    int resolve(int id) {
-        return id < 0 ? (int)roots.size() - 1 : id;
-    }
+    int resolve(int id) { return id < 0 ? (int)roots.size() - 1 : id; }
 
     int new_node(S data) {
         pool.push_back({data, 0, 0});
@@ -64,7 +60,7 @@ struct persistent_segtree {
         return (int)pool.size() - 1;
     }
 
-    int build(int l, int r, const std::vector<S> &v) {
+    int build(int l, int r, const std::vector<S>& v) {
         if (l + 1 == r) return new_node(v[l]);
         int m = (l + r) >> 1;
         return pull(build(l, m, v), build(m, r, v));

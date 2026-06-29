@@ -3,7 +3,8 @@
 #include <cassert>
 #include <vector>
 
-template <class T, int LOG> struct binary_trie {
+template <class T, int LOG>
+struct binary_trie {
     struct node {
         int cnt = 0;
         std::array<int, 2> ch = {-1, -1};

@@ -47,7 +47,7 @@ int main() {
                 v = min(v, v ^ b);
             }
             if (v != 0) {
-                for (int &b : base) {
+                for (int& b : base) {
                     b = min(b, b ^ v);
                 }
                 base.push_back(v);

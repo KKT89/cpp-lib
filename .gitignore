@@ -1,5 +1,4 @@
 # Editor / IDE
-.clang-format
 .idea/
 
 # C++ build outputs

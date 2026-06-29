@@ -3,7 +3,8 @@
 #include <queue>
 #include <vector>
 
-template <typename T> struct BellmanFord {
+template <typename T>
+struct BellmanFord {
   private:
     static constexpr T INF = std::numeric_limits<T>::max() / 2 - 1;
 
@@ -20,7 +21,8 @@ template <typename T> struct BellmanFord {
     explicit BellmanFord(int n) : n(n), G(n), dist(n, INF) {}
 
     void add_edge(int from, int to, T cost) { G[from].emplace_back(to, cost); }
-    template <class Iter> void build(Iter first, Iter last) {
+    template <class Iter>
+    void build(Iter first, Iter last) {
         dist.assign(n, INF);
         for (auto it = first; it != last; ++it) {
             dist[*it] = 0;

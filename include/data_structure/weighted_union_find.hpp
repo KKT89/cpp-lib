@@ -9,9 +9,7 @@ struct WeightedUnionFind {
     std::vector<int> par, sz;
     std::vector<T> ws;
 
-    explicit WeightedUnionFind(int n) : par(n), sz(n, 1), ws(n, T{0}) {
-        std::iota(par.begin(), par.end(), 0);
-    }
+    explicit WeightedUnionFind(int n) : par(n), sz(n, 1), ws(n, T{0}) { std::iota(par.begin(), par.end(), 0); }
 
     int find(int x) {
         if (par[x] == x) return x;

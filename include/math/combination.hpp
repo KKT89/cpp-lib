@@ -5,7 +5,9 @@ template <typename T, int N = 0>
 struct Combination {
     std::vector<T> p, invp;
 
-    Combination() : p(1, T(1)), invp(1, T(1)) { if constexpr (N > 0) extend(N); }
+    Combination() : p(1, T(1)), invp(1, T(1)) {
+        if constexpr (N > 0) extend(N);
+    }
 
     void extend(long long n) {
         long long m = (long long)T::get_mod() - 1;
@@ -50,7 +52,7 @@ struct Combination {
         return res;
     }
 
-private:
+  private:
     T small_comb(long long n, long long r) {
         extend(n);
         return p[n] * invp[n - r] * invp[r];

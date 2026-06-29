@@ -28,9 +28,7 @@ u64 binary_gcd(u64 a, u64 b) {
     return a << shift;
 }
 
-u64 mod_mul(u64 a, u64 b, u64 mod) {
-    return (u64)((u128)a * b % mod);
-}
+u64 mod_mul(u64 a, u64 b, u64 mod) { return (u64)((u128)a * b % mod); }
 
 u64 mod_pow(u64 a, u64 n, u64 mod) {
     u64 res = 1;
@@ -85,13 +83,13 @@ u64 pollard_rho(u64 n) {
         u64 ys = 0;
         constexpr u64 batch = 128;
 
-        auto f = [&](u64 v) {
-            return (mod_mul(v, v, n) + c) % n;
-        };
+        auto f = [&](u64 v) { return (mod_mul(v, v, n) + c) % n; };
 
         while (g == 1) {
             x = y;
-            for (u64 i = 0; i < r; i++) y = f(y);
+            for (u64 i = 0; i < r; i++) {
+                y = f(y);
+            }
             for (u64 k = 0; k < r && g == 1; k += batch) {
                 ys = y;
                 for (u64 i = 0; i < std::min(batch, r - k); i++) {
@@ -132,14 +130,18 @@ std::vector<T> prime_factor(T n) {
 
     std::vector<T> res;
     res.reserve(tmp.size());
-    for (u64 p : tmp) res.push_back((T)p);
+    for (u64 p : tmp) {
+        res.push_back((T)p);
+    }
     return res;
 }
 
 template <typename T>
 std::map<T, int> factor_count(T n) {
     std::map<T, int> res;
-    for (T p : prime_factor(n)) res[p]++;
+    for (T p : prime_factor(n)) {
+        res[p]++;
+    }
     return res;
 }
 
@@ -147,7 +149,9 @@ template <typename T>
 std::vector<T> divisors(T n) {
     if (n == 0) return {};
     std::vector<std::pair<T, int>> factors;
-    for (auto p : factor_count(n)) factors.push_back(p);
+    for (auto p : factor_count(n)) {
+        factors.push_back(p);
+    }
 
     std::vector<T> res;
     auto dfs = [&](auto self, int i, T x) -> void {
@@ -165,4 +169,4 @@ std::vector<T> divisors(T n) {
     return res;
 }
 
-}  // namespace factorize
+} // namespace factorize
