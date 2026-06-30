@@ -13,11 +13,11 @@ struct LowestCommonAncestor {
     int n;
     int root = -1;
     std::vector<std::vector<int>> g;
-    std::vector<int> preorder, par;
+    std::vector<int> preorder, par, depth;
     std::vector<uint> idx, inlabel, ascendant;
     std::vector<int> head;
 
-    explicit LowestCommonAncestor(int n = 0) : n(n), g(n), par(n, -1), idx(n, 0) { preorder.reserve(n); }
+    explicit LowestCommonAncestor(int n = 0) : n(n), g(n), par(n, -1), depth(n, 0), idx(n, 0) { preorder.reserve(n); }
 
     void add_edge(int x, int y) {
         g[x].push_back(y);
@@ -30,6 +30,7 @@ struct LowestCommonAncestor {
 
         preorder.clear();
         std::fill(par.begin(), par.end(), -1);
+        std::fill(depth.begin(), depth.end(), 0);
         root = r;
 
         std::vector<int> st;
@@ -45,6 +46,7 @@ struct LowestCommonAncestor {
                 int to = g[v][i];
                 if (to == par[v]) continue;
                 par[to] = v;
+                depth[to] = depth[v] + 1;
                 st.push_back(to);
             }
         }
@@ -104,5 +106,10 @@ struct LowestCommonAncestor {
             y = head[(idx[u] & ~mask | (mask + 1)) - 1];
         }
         return idx[x] < idx[y] ? x : y;
+    }
+
+    int distance(int u, int v) const {
+        int w = lca(u, v);
+        return depth[u] + depth[v] - 2 * depth[w];
     }
 };
