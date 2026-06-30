@@ -1,7 +1,7 @@
 {
   "verify/library_checker/lowest_common_ancestor.cpp": {
-    "bundled_hash": "sha256:3c50db02392cdf09d90535658da77bba4e3874fb7381b2e7651a00b8159683d0",
-    "verified_at": "2026-02-27T04:40:38+09:00",
+    "bundled_hash": "sha256:31b110d1af977ec86883ef1a5b027a300eb177158bf0461fdda946425804ac90",
+    "verified_at": "2026-06-30T09:24:34+09:00",
     "judge_url": "https://judge.yosupo.jp/problem/lca",
     "title": "Lowest Common Ancestor"
   },
