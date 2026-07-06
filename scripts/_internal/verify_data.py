@@ -59,6 +59,13 @@ def load_judge_patterns() -> list[tuple[re.Pattern, str]]:
     return [(re.compile(cfg["url_pattern"]), judge_dir) for judge_dir, cfg in judges.items()]
 
 
+def load_judge_display_names() -> dict[str, str]:
+    if not JUDGES_PATH.exists():
+        return {}
+    judges = json.loads(JUDGES_PATH.read_text(encoding="utf-8"))
+    return {judge_dir: cfg["display_name"] for judge_dir, cfg in judges.items() if "display_name" in cfg}
+
+
 def parse_judge_dir(url: str) -> str:
     for pattern, judge_dir in load_judge_patterns():
         if pattern.match(url):

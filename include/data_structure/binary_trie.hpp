@@ -15,9 +15,12 @@ struct binary_trie {
 
     int size() const { return nodes[0].cnt; }
 
+    // ノード idx を根とする部分木の要素数
+    int cnt(int idx) const { return idx == -1 ? 0 : nodes[idx].cnt; }
+
     void insert(T x) {
         int cur = 0;
-        nodes[cur].cnt++;
+        nodes[cur].cnt += 1;
         for (int i = LOG - 1; i >= 0; --i) {
             int b = (x >> i) & 1;
             if (nodes[cur].ch[b] == -1) {
@@ -25,17 +28,17 @@ struct binary_trie {
                 nodes.emplace_back();
             }
             cur = nodes[cur].ch[b];
-            nodes[cur].cnt++;
+            nodes[cur].cnt += 1;
         }
     }
 
     void erase(T x) {
         int cur = 0;
-        nodes[cur].cnt--;
+        nodes[cur].cnt -= 1;
         for (int i = LOG - 1; i >= 0; --i) {
             int b = (x >> i) & 1;
             cur = nodes[cur].ch[b];
-            nodes[cur].cnt--;
+            nodes[cur].cnt -= 1;
         }
     }
 
@@ -45,7 +48,7 @@ struct binary_trie {
         T x = 0;
         for (int i = LOG - 1; i >= 0; --i) {
             int left = nodes[cur].ch[0];
-            int left_cnt = left == -1 ? 0 : nodes[left].cnt;
+            int left_cnt = cnt(left);
             if (k < left_cnt) {
                 cur = left;
             } else {
@@ -66,14 +69,13 @@ struct binary_trie {
             int vb = (val >> i) & 1;
             int kb = (k >> i) & 1;
             if (kb == 1) {
-                int c = nodes[cur].ch[vb];
-                if (c != -1) res += nodes[c].cnt;
+                res += cnt(nodes[cur].ch[vb]);
                 cur = nodes[cur].ch[vb ^ 1];
             } else {
                 cur = nodes[cur].ch[vb];
             }
         }
-        if (cur != -1) res += nodes[cur].cnt;
+        res += cnt(cur);
         return res;
     }
 };

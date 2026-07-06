@@ -5,7 +5,7 @@ from pathlib import Path
 
 from .docs_common import write_if_changed
 from .project_paths import DOCSRC, ROOT
-from .verify_data import compute_hash, detect_libraries
+from .verify_data import compute_hash, detect_libraries, load_judge_display_names
 
 
 def _entry_title(key: str, entry: dict) -> str:
@@ -19,7 +19,8 @@ def _verify_doc_path(key: str) -> str:
 def _judge_category(key: str) -> str:
     parts = key.removeprefix("verify/").split("/")
     if len(parts) >= 2:
-        return parts[0].replace("_", " ").title()
+        name = parts[0]
+        return load_judge_display_names().get(name, name.replace("_", " ").title())
     return "Other"
 
 

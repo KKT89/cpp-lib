@@ -1,11 +1,18 @@
 {
   "library_checker": {
-    "url_pattern": "https?://judge\\.yosupo\\.jp/problem/(\\w+)"
+    "url_pattern": "https?://judge\\.yosupo\\.jp/problem/(\\w+)",
+    "display_name": "Library Checker"
   },
   "aizu": {
-    "url_pattern": "https?://onlinejudge\\.u-aizu\\.ac\\.jp/.+/(\\w+)"
+    "url_pattern": "https?://onlinejudge\\.u-aizu\\.ac\\.jp/.+/(\\w+)",
+    "display_name": "AOJ"
   },
   "atcoder": {
-    "url_pattern": "https?://atcoder\\.jp/contests/(\\w+)/tasks/(\\w+)"
+    "url_pattern": "https?://atcoder\\.jp/contests/(\\w+)/tasks/(\\w+)",
+    "display_name": "AtCoder"
+  },
+  "qoj": {
+    "url_pattern": "https?://qoj\\.ac/(?:contest/\\w+/)?problem/(\\w+)",
+    "display_name": "QOJ"
   }
 }

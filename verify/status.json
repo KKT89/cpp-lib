@@ -24,8 +24,8 @@
     "title": "Z Algorithm"
   },
   "verify/atcoder/abc451_g_minimum_xor_walk.cpp": {
-    "bundled_hash": "sha256:7428c2f97bed61d3b1f024bbfbab614ac913723f473e5ac9ccbf6c7dd554f71c",
-    "verified_at": "2026-06-29T14:43:46+09:00",
+    "bundled_hash": "sha256:e08a909c7ef0970814f07dacec87e4941d303961d25cf2927a26cca3ce149352",
+    "verified_at": "2026-07-06T11:32:44+09:00",
     "judge_url": "https://atcoder.jp/contests/abc451/tasks/abc451_g",
     "title": "ABC451 G - Minimum XOR Walk"
   },
@@ -36,8 +36,8 @@
     "title": "ABC453 G - Copy Query"
   },
   "verify/atcoder/abc458_d_chalkboard_median.cpp": {
-    "bundled_hash": "sha256:7df907d81bcb9a01afa3135f67b170fad573dbd169d9446dac41402c4c0546e3",
-    "verified_at": "2026-06-29T14:43:46+09:00",
+    "bundled_hash": "sha256:d4e5b6ce9758d0d7635f9b8c2648e2c951a798017f6c5e402daae7b7cdb1fec8",
+    "verified_at": "2026-07-06T11:32:44+09:00",
     "judge_url": "https://atcoder.jp/contests/abc458/tasks/abc458_d",
     "title": "ABC458 D - Chalkboard Median"
   },
@@ -52,5 +52,11 @@
     "verified_at": "2026-06-29T14:43:46+09:00",
     "judge_url": "https://judge.yosupo.jp/problem/factorize",
     "title": "Factorize"
+  },
+  "verify/qoj/petrozavodsk_camp_summer_2019_day2_b_bitwise_xor.cpp": {
+    "bundled_hash": "sha256:65a16b5e46419d16337a90ed90a11b46f9cd65a0520841d40b3d3d99a8c93e76",
+    "verified_at": "2026-07-06T11:27:04+09:00",
+    "judge_url": "https://qoj.ac/contest/1357/problem/7411",
+    "title": "Petrozavodsk Camp Summer 2019 Day2 B - Bitwise Xor"
   }
 }
