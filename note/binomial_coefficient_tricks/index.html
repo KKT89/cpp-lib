@@ -8,31 +8,31 @@
       
       
       
-        <link rel="canonical" href="https://kkt89.github.io/cpp-lib/library/math/linear_sieve/">
+        <link rel="canonical" href="https://kkt89.github.io/cpp-lib/note/binomial_coefficient_tricks/">
       
       
-        <link rel="prev" href="../combination/">
+        <link rel="prev" href="../">
       
       
-        <link rel="next" href="../factorize/">
+        <link rel="next" href="../bitwise_operation/">
       
       
         
       
       
-      <link rel="icon" href="../../../img/kkt89.jpg">
+      <link rel="icon" href="../../img/kkt89.jpg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>線形篩 - KKT89's Library</title>
+        <title>二項係数テクニック集 - KKT89's Library</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,13 +55,13 @@
     
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     
-      <link rel="stylesheet" href="../../../css/logo.css">
+      <link rel="stylesheet" href="../../css/logo.css">
     
-      <link rel="stylesheet" href="../../../css/layout.css">
+      <link rel="stylesheet" href="../../css/layout.css">
     
-      <link rel="stylesheet" href="../../../css/code.css">
+      <link rel="stylesheet" href="../../css/code.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -100,9 +100,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="ヘッダー">
-    <a href="../../.." title="KKT89&#39;s Library" class="md-header__button md-logo" aria-label="KKT89's Library" data-md-component="logo">
+    <a href="../.." title="KKT89&#39;s Library" class="md-header__button md-logo" aria-label="KKT89's Library" data-md-component="logo">
       
-  <img src="../../../img/kkt89.jpg" alt="logo">
+  <img src="../../img/kkt89.jpg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              線形篩
+              二項係数テクニック集
             
           </span>
         </div>
@@ -228,13 +228,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../library/" class="md-tabs__link">
           
   
   
@@ -254,7 +252,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../verify/" class="md-tabs__link">
+        <a href="../../verify/" class="md-tabs__link">
           
   
   
@@ -270,11 +268,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../note/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -310,9 +310,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="ナビゲーション" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="KKT89&#39;s Library" class="md-nav__button md-logo" aria-label="KKT89's Library" data-md-component="logo">
+    <a href="../.." title="KKT89&#39;s Library" class="md-nav__button md-logo" aria-label="KKT89's Library" data-md-component="logo">
       
-  <img src="../../../img/kkt89.jpg" alt="logo">
+  <img src="../../img/kkt89.jpg" alt="logo">
 
     </a>
     KKT89's Library
@@ -336,29 +336,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
         
           
-          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
             
   
   
@@ -376,7 +371,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -394,7 +389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../../library/" class="md-nav__link">
         
   
   
@@ -472,7 +467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data_structure/binary_trie/" class="md-nav__link">
+      <a href="../../library/data_structure/binary_trie/" class="md-nav__link">
         
   
   
@@ -500,7 +495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data_structure/persistent_segtree/" class="md-nav__link">
+      <a href="../../library/data_structure/persistent_segtree/" class="md-nav__link">
         
   
   
@@ -528,7 +523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data_structure/segtree/" class="md-nav__link">
+      <a href="../../library/data_structure/segtree/" class="md-nav__link">
         
   
   
@@ -556,7 +551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data_structure/union_find/" class="md-nav__link">
+      <a href="../../library/data_structure/union_find/" class="md-nav__link">
         
   
   
@@ -584,7 +579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data_structure/weighted_union_find/" class="md-nav__link">
+      <a href="../../library/data_structure/weighted_union_find/" class="md-nav__link">
         
   
   
@@ -670,7 +665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../graph/bellman_ford/" class="md-nav__link">
+      <a href="../../library/graph/bellman_ford/" class="md-nav__link">
         
   
   
@@ -703,8 +698,6 @@
                 
   
   
-    
-  
   
   
     
@@ -715,11 +708,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_4" >
         
           
           <label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="0">
@@ -740,7 +733,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -758,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dynamic_modint/" class="md-nav__link">
+      <a href="../../library/math/dynamic_modint/" class="md-nav__link">
         
   
   
@@ -786,7 +779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../static_modint/" class="md-nav__link">
+      <a href="../../library/math/static_modint/" class="md-nav__link">
         
   
   
@@ -814,7 +807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../crt/" class="md-nav__link">
+      <a href="../../library/math/crt/" class="md-nav__link">
         
   
   
@@ -842,7 +835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../combination/" class="md-nav__link">
+      <a href="../../library/math/combination/" class="md-nav__link">
         
   
   
@@ -867,37 +860,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    線形篩
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../library/math/linear_sieve/" class="md-nav__link">
         
   
   
@@ -913,59 +879,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目次">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#interface" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interface
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#code" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Code
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bundled" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Bundled
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -978,7 +891,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../factorize/" class="md-nav__link">
+      <a href="../../library/math/factorize/" class="md-nav__link">
         
   
   
@@ -1064,7 +977,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../string/z_algorithm/" class="md-nav__link">
+      <a href="../../library/string/z_algorithm/" class="md-nav__link">
         
   
   
@@ -1150,7 +1063,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tree/lowest_common_ancestor/" class="md-nav__link">
+      <a href="../../library/tree/lowest_common_ancestor/" class="md-nav__link">
         
   
   
@@ -1243,7 +1156,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/" class="md-nav__link">
+      <a href="../../verify/" class="md-nav__link">
         
   
   
@@ -1321,7 +1234,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/aizu/aoj_3327_beam_beam_beam/" class="md-nav__link">
+      <a href="../../verify/aizu/aoj_3327_beam_beam_beam/" class="md-nav__link">
         
   
   
@@ -1407,7 +1320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/atcoder/abc451_g_minimum_xor_walk/" class="md-nav__link">
+      <a href="../../verify/atcoder/abc451_g_minimum_xor_walk/" class="md-nav__link">
         
   
   
@@ -1435,7 +1348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/atcoder/abc453_g_copy_query/" class="md-nav__link">
+      <a href="../../verify/atcoder/abc453_g_copy_query/" class="md-nav__link">
         
   
   
@@ -1463,7 +1376,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/atcoder/abc458_d_chalkboard_median/" class="md-nav__link">
+      <a href="../../verify/atcoder/abc458_d_chalkboard_median/" class="md-nav__link">
         
   
   
@@ -1549,7 +1462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/library_checker/binomial_coefficient_prime_mod/" class="md-nav__link">
+      <a href="../../verify/library_checker/binomial_coefficient_prime_mod/" class="md-nav__link">
         
   
   
@@ -1577,7 +1490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/library_checker/factorize/" class="md-nav__link">
+      <a href="../../verify/library_checker/factorize/" class="md-nav__link">
         
   
   
@@ -1605,7 +1518,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/library_checker/lowest_common_ancestor/" class="md-nav__link">
+      <a href="../../verify/library_checker/lowest_common_ancestor/" class="md-nav__link">
         
   
   
@@ -1633,7 +1546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/library_checker/primality_test/" class="md-nav__link">
+      <a href="../../verify/library_checker/primality_test/" class="md-nav__link">
         
   
   
@@ -1661,7 +1574,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/library_checker/z_algorithm/" class="md-nav__link">
+      <a href="../../verify/library_checker/z_algorithm/" class="md-nav__link">
         
   
   
@@ -1747,7 +1660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/qoj/petrozavodsk_camp_summer_2019_day2_b_bitwise_xor/" class="md-nav__link">
+      <a href="../../verify/qoj/petrozavodsk_camp_summer_2019_day2_b_bitwise_xor/" class="md-nav__link">
         
   
   
@@ -1787,24 +1700,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -1822,7 +1740,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1840,7 +1758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../note/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -1865,10 +1783,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../note/binomial_coefficient_tricks/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二項係数テクニック集
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1884,6 +1829,65 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ホッケースティック恒等式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ホッケースティック恒等式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        組み合わせ的解釈
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        出題例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1896,7 +1900,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../note/bitwise_operation/" class="md-nav__link">
+      <a href="../bitwise_operation/" class="md-nav__link">
         
   
   
@@ -1924,7 +1928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../note/digital_fps_theory/" class="md-nav__link">
+      <a href="../digital_fps_theory/" class="md-nav__link">
         
   
   
@@ -1952,7 +1956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../note/inline_dp/" class="md-nav__link">
+      <a href="../inline_dp/" class="md-nav__link">
         
   
   
@@ -1980,7 +1984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../note/rephrasing_tricks/" class="md-nav__link">
+      <a href="../rephrasing_tricks/" class="md-nav__link">
         
   
   
@@ -2028,132 +2032,19 @@
   
 
 
-<h1 id="_1">線形篩<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>線形篩 (Linear Sieve) により、<span class="arithmatex">\(N\)</span> 以下の各整数の最小素因数と素数リストを求めます。</p>
-<h2 id="interface">Interface<a class="headerlink" href="#interface" title="Permanent link">&para;</a></h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">LinearSieve</span><span class="o">&lt;</span><span class="n">N</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sieve</span><span class="p">;</span><span class="w">          </span><span class="c1">// N 以下を篩にかける, O(N)</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sieve</span><span class="p">.</span><span class="n">lp</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w">           </span><span class="c1">// i の最小素因数 (lp[0] = lp[1] = -1)</span>
-<span class="kt">bool</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sieve</span><span class="p">.</span><span class="n">isprime</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w">     </span><span class="c1">// i が素数なら true</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">cnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sieve</span><span class="p">.</span><span class="n">prime_cnt</span><span class="p">;</span><span class="w">     </span><span class="c1">// N 以下の素数の個数</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">prime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sieve</span><span class="p">.</span><span class="n">primes</span><span class="p">[</span><span class="n">k</span><span class="p">];</span><span class="w">   </span><span class="c1">// k 番目の素数</span>
-</code></pre></div></td></tr></table></div>
-<h2 id="code">Code<a class="headerlink" href="#code" title="Permanent link">&para;</a></h2>
-<p>Source: <code>math/linear_sieve.hpp</code></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#pragma once</span>
-
-<span class="c1">// 線形篩</span>
-<span class="c1">// primes[0..prime_cnt): 素数リスト, lp[i]: i の最小素因数 (lp[0] = lp[1] = -1)</span>
-<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="o">&gt;</span>
-<span class="k">struct</span><span class="w"> </span><span class="nc">LinearSieve</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">lp</span><span class="p">[</span><span class="n">N</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]{};</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">primes</span><span class="p">[</span><span class="n">N</span><span class="p">]{};</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">prime_cnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">LinearSieve</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">lp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">lp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
-<span class="w">                </span><span class="n">primes</span><span class="p">[</span><span class="n">prime_cnt</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
-<span class="w">                </span><span class="n">prime_cnt</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">prime_cnt</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">primes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">lp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="p">)</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">primes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">lp</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">primes</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">primes</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isprime</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">lp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div></td></tr></table></div>
-<h2 id="bundled">Bundled<a class="headerlink" href="#bundled" title="Permanent link">&para;</a></h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// bundled by scripts/bundle_header.py</span>
-
-<span class="c1">// ---- begin: include/math/linear_sieve.hpp</span>
-
-<span class="c1">// 線形篩</span>
-<span class="c1">// primes[0..prime_cnt): 素数リスト, lp[i]: i の最小素因数 (lp[0] = lp[1] = -1)</span>
-<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="o">&gt;</span>
-<span class="k">struct</span><span class="w"> </span><span class="nc">LinearSieve</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">lp</span><span class="p">[</span><span class="n">N</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]{};</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">primes</span><span class="p">[</span><span class="n">N</span><span class="p">]{};</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">prime_cnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">LinearSieve</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">lp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">lp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
-<span class="w">                </span><span class="n">primes</span><span class="p">[</span><span class="n">prime_cnt</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
-<span class="w">                </span><span class="n">prime_cnt</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">prime_cnt</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">primes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">lp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="p">)</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">primes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">lp</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">primes</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">primes</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isprime</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">lp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-<span class="p">};</span>
-<span class="c1">// ---- end: include/math/linear_sieve.hpp</span>
-</code></pre></div></td></tr></table></div>
+<h1 id="_1">二項係数テクニック集<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>二項係数に関する、競技プログラミングで役立つ恒等式やテクニックをまとめる。</p>
+<h2 id="_2">ホッケースティック恒等式<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="arithmatex">\[
+\sum_{i=r}^{N} \binom{i}{r} = \binom{N+1}{r+1}
+\]</div>
+<h3 id="_3">組み合わせ的解釈<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>右辺 <span class="arithmatex">\(\binom{N+1}{r+1}\)</span> は、<span class="arithmatex">\(\{0, 1, 2, \ldots, N\}\)</span> という <span class="arithmatex">\(N+1\)</span> 個から <span class="arithmatex">\(r+1\)</span> 個を選ぶ方法の総数を表す。これを <strong>選んだ集合の最大値で分類</strong> して数える。</p>
+<p>最大値を <span class="arithmatex">\(i\)</span> とすると、残りの <span class="arithmatex">\(r\)</span> 個は <span class="arithmatex">\(\{0, 1, \ldots, i-1\}\)</span> の <span class="arithmatex">\(i\)</span> 個から選ぶので <span class="arithmatex">\(\binom{i}{r}\)</span> 通り。最大値は最小でも <span class="arithmatex">\(r\)</span> で、最大で <span class="arithmatex">\(N\)</span> まで動くので、<span class="arithmatex">\(i = r, r+1, \ldots, N\)</span> について足し合わせると左辺になり、両辺が一致する。</p>
+<h3 id="_4">出題例<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://qoj.ac/contest/1357/problem/7416">Petrozavodsk Camp Summer 2019 Day2 G - Grammarly</a></li>
+</ul>
 
 
 
@@ -2203,18 +2094,18 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tabs", "content.code.copy", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tabs", "content.code.copy", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js"></script>
       
-        <script src="../../../js/katex_init.js"></script>
+        <script src="../../js/katex_init.js"></script>
       
-        <script src="../../../js/open_in_new_tab.js"></script>
+        <script src="../../js/open_in_new_tab.js"></script>
       
     
   </body>
