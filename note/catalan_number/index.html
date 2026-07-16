@@ -8,31 +8,31 @@
       
       
       
-        <link rel="canonical" href="https://kkt89.github.io/cpp-lib/library/data_structure/union_find/">
+        <link rel="canonical" href="https://kkt89.github.io/cpp-lib/note/catalan_number/">
       
       
-        <link rel="prev" href="../segtree/">
+        <link rel="prev" href="../bitwise_operation/">
       
       
-        <link rel="next" href="../weighted_union_find/">
+        <link rel="next" href="../digital_fps_theory/">
       
       
         
       
       
-      <link rel="icon" href="../../../img/kkt89.jpg">
+      <link rel="icon" href="../../img/kkt89.jpg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Union-Find - KKT89's Library</title>
+        <title>カタラン数 - KKT89's Library</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,13 +55,13 @@
     
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     
-      <link rel="stylesheet" href="../../../css/logo.css">
+      <link rel="stylesheet" href="../../css/logo.css">
     
-      <link rel="stylesheet" href="../../../css/layout.css">
+      <link rel="stylesheet" href="../../css/layout.css">
     
-      <link rel="stylesheet" href="../../../css/code.css">
+      <link rel="stylesheet" href="../../css/code.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#union-find" class="md-skip">
+        <a href="#_1" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -100,9 +100,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="ヘッダー">
-    <a href="../../.." title="KKT89&#39;s Library" class="md-header__button md-logo" aria-label="KKT89's Library" data-md-component="logo">
+    <a href="../.." title="KKT89&#39;s Library" class="md-header__button md-logo" aria-label="KKT89's Library" data-md-component="logo">
       
-  <img src="../../../img/kkt89.jpg" alt="logo">
+  <img src="../../img/kkt89.jpg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Union-Find
+              カタラン数
             
           </span>
         </div>
@@ -228,13 +228,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../library/" class="md-tabs__link">
           
   
   
@@ -254,7 +252,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../verify/" class="md-tabs__link">
+        <a href="../../verify/" class="md-tabs__link">
           
   
   
@@ -270,11 +268,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../note/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -310,9 +310,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="ナビゲーション" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="KKT89&#39;s Library" class="md-nav__button md-logo" aria-label="KKT89's Library" data-md-component="logo">
+    <a href="../.." title="KKT89&#39;s Library" class="md-nav__button md-logo" aria-label="KKT89's Library" data-md-component="logo">
       
-  <img src="../../../img/kkt89.jpg" alt="logo">
+  <img src="../../img/kkt89.jpg" alt="logo">
 
     </a>
     KKT89's Library
@@ -336,29 +336,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
         
           
-          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
             
   
   
@@ -376,7 +371,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -394,7 +389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../../library/" class="md-nav__link">
         
   
   
@@ -419,8 +414,6 @@
                 
   
   
-    
-  
   
   
     
@@ -431,11 +424,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
         
           
           <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
@@ -456,7 +449,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -474,7 +467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../binary_trie/" class="md-nav__link">
+      <a href="../../library/data_structure/binary_trie/" class="md-nav__link">
         
   
   
@@ -502,7 +495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../persistent_segtree/" class="md-nav__link">
+      <a href="../../library/data_structure/persistent_segtree/" class="md-nav__link">
         
   
   
@@ -530,7 +523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../segtree/" class="md-nav__link">
+      <a href="../../library/data_structure/segtree/" class="md-nav__link">
         
   
   
@@ -555,37 +548,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Union-Find
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../library/data_structure/union_find/" class="md-nav__link">
         
   
   
@@ -601,70 +567,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目次">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#interface" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Interface
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#verify" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Verify
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#code" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Code
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bundled" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Bundled
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -677,7 +579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../weighted_union_find/" class="md-nav__link">
+      <a href="../../library/data_structure/weighted_union_find/" class="md-nav__link">
         
   
   
@@ -763,7 +665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../graph/bellman_ford/" class="md-nav__link">
+      <a href="../../library/graph/bellman_ford/" class="md-nav__link">
         
   
   
@@ -849,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/dynamic_modint/" class="md-nav__link">
+      <a href="../../library/math/dynamic_modint/" class="md-nav__link">
         
   
   
@@ -877,7 +779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/static_modint/" class="md-nav__link">
+      <a href="../../library/math/static_modint/" class="md-nav__link">
         
   
   
@@ -905,7 +807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/crt/" class="md-nav__link">
+      <a href="../../library/math/crt/" class="md-nav__link">
         
   
   
@@ -933,7 +835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/combination/" class="md-nav__link">
+      <a href="../../library/math/combination/" class="md-nav__link">
         
   
   
@@ -961,7 +863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/linear_sieve/" class="md-nav__link">
+      <a href="../../library/math/linear_sieve/" class="md-nav__link">
         
   
   
@@ -989,7 +891,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../math/factorize/" class="md-nav__link">
+      <a href="../../library/math/factorize/" class="md-nav__link">
         
   
   
@@ -1075,7 +977,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../string/z_algorithm/" class="md-nav__link">
+      <a href="../../library/string/z_algorithm/" class="md-nav__link">
         
   
   
@@ -1161,7 +1063,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tree/lowest_common_ancestor/" class="md-nav__link">
+      <a href="../../library/tree/lowest_common_ancestor/" class="md-nav__link">
         
   
   
@@ -1254,7 +1156,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/" class="md-nav__link">
+      <a href="../../verify/" class="md-nav__link">
         
   
   
@@ -1332,7 +1234,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/aizu/aoj_3327_beam_beam_beam/" class="md-nav__link">
+      <a href="../../verify/aizu/aoj_3327_beam_beam_beam/" class="md-nav__link">
         
   
   
@@ -1418,7 +1320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/atcoder/abc451_g_minimum_xor_walk/" class="md-nav__link">
+      <a href="../../verify/atcoder/abc451_g_minimum_xor_walk/" class="md-nav__link">
         
   
   
@@ -1446,7 +1348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/atcoder/abc453_g_copy_query/" class="md-nav__link">
+      <a href="../../verify/atcoder/abc453_g_copy_query/" class="md-nav__link">
         
   
   
@@ -1474,7 +1376,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/atcoder/abc458_d_chalkboard_median/" class="md-nav__link">
+      <a href="../../verify/atcoder/abc458_d_chalkboard_median/" class="md-nav__link">
         
   
   
@@ -1560,7 +1462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/library_checker/binomial_coefficient_prime_mod/" class="md-nav__link">
+      <a href="../../verify/library_checker/binomial_coefficient_prime_mod/" class="md-nav__link">
         
   
   
@@ -1588,7 +1490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/library_checker/factorize/" class="md-nav__link">
+      <a href="../../verify/library_checker/factorize/" class="md-nav__link">
         
   
   
@@ -1616,7 +1518,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/library_checker/lowest_common_ancestor/" class="md-nav__link">
+      <a href="../../verify/library_checker/lowest_common_ancestor/" class="md-nav__link">
         
   
   
@@ -1644,7 +1546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/library_checker/primality_test/" class="md-nav__link">
+      <a href="../../verify/library_checker/primality_test/" class="md-nav__link">
         
   
   
@@ -1672,7 +1574,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/library_checker/z_algorithm/" class="md-nav__link">
+      <a href="../../verify/library_checker/z_algorithm/" class="md-nav__link">
         
   
   
@@ -1758,7 +1660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../verify/qoj/petrozavodsk_camp_summer_2019_day2_b_bitwise_xor/" class="md-nav__link">
+      <a href="../../verify/qoj/petrozavodsk_camp_summer_2019_day2_b_bitwise_xor/" class="md-nav__link">
         
   
   
@@ -1798,24 +1700,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -1833,7 +1740,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1851,7 +1758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../note/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -1879,7 +1786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../note/binomial_coefficient_tricks/" class="md-nav__link">
+      <a href="../binomial_coefficient_tricks/" class="md-nav__link">
         
   
   
@@ -1907,7 +1814,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../note/bitwise_operation/" class="md-nav__link">
+      <a href="../bitwise_operation/" class="md-nav__link">
         
   
   
@@ -1932,10 +1839,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../note/catalan_number/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    カタラン数
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1951,6 +1885,98 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定義
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        括弧列
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        反射原理による導出
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        順列を高々2個の増加列に分解できる総数
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="順列を高々2個の増加列に分解できる総数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        出題例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一般化：最後に開き括弧が余る括弧列
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1963,7 +1989,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../note/digital_fps_theory/" class="md-nav__link">
+      <a href="../digital_fps_theory/" class="md-nav__link">
         
   
   
@@ -1991,7 +2017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../note/inline_dp/" class="md-nav__link">
+      <a href="../inline_dp/" class="md-nav__link">
         
   
   
@@ -2019,7 +2045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../note/rephrasing_tricks/" class="md-nav__link">
+      <a href="../rephrasing_tricks/" class="md-nav__link">
         
   
   
@@ -2067,104 +2093,103 @@
   
 
 
-<h1 id="union-find">Union-Find<a class="headerlink" href="#union-find" title="Permanent link">&para;</a></h1>
-<p>グループ分けを効率的に管理する、根付き木を用いたデータ構造です。</p>
-<h2 id="interface">Interface<a class="headerlink" href="#interface" title="Permanent link">&para;</a></h2>
+<h1 id="_1">カタラン数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>カタラン数に関する、競技プログラミングで出てくる数え上げをまとめる。</p>
+<h2 id="_2">定義<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><span class="arithmatex">\(n\)</span> 番目のカタラン数 <span class="arithmatex">\(C_n\)</span> は、次の式で表す。
+$$
+C_n = \frac{1}{n+1}\binom{2n}{n}
+$$
+反射原理から、次の形でも表せる。
+$$
+C_n = \binom{2n}{n} - \binom{2n}{n-1}
+$$
+小さい値は以下の通り。
+$$
+C_0 = 1,\quad
+C_1 = 1,\quad
+C_2 = 2,\quad
+C_3 = 5,\quad
+C_4 = 14,\quad
+C_5 = 42
+$$</p>
+<h2 id="_3">括弧列<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>開き括弧 <code>(</code> が <span class="arithmatex">\(n\)</span> 個、閉じ括弧 <code>)</code> が <span class="arithmatex">\(n\)</span> 個あるとする。
+どの prefix でも閉じ括弧の個数が開き括弧の個数を超えない列の個数は <span class="arithmatex">\(C_n\)</span> である。開き括弧を <span class="arithmatex">\(+1\)</span>、閉じ括弧を <span class="arithmatex">\(-1\)</span> とみなすと、途中で高さが負にならず、最後に高さ <span class="arithmatex">\(0\)</span> へ戻る経路の個数と同じになる。</p>
+<h2 id="_4">反射原理による導出<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>制約を無視すると、開き括弧 <span class="arithmatex">\(n\)</span> 個、閉じ括弧 <span class="arithmatex">\(n\)</span> 個を並べる方法は、
+$$
+\binom{2n}{n}
+$$
+通りある。</p>
+<p>ここから、途中で一度でも高さが <span class="arithmatex">\(-1\)</span> になる列を引く。</p>
+<p>不正な列について、最初に高さが <span class="arithmatex">\(-1\)</span> になったところまで開閉を反転する。すると、開き括弧が <span class="arithmatex">\(n+1\)</span> 個、閉じ括弧が <span class="arithmatex">\(n-1\)</span> 個の列と一対一に対応する。したがって、不正な列の個数は、
+$$
+\binom{2n}{n-1}
+$$
+通りである。</p>
+<p>よって、正しい括弧列の個数は、
+$$
+C_n
+=
+\binom{2n}{n}
+-
+\binom{2n}{n-1}
+$$
+となる。これを整理すると、
+$$
+C_n
+=
+\frac{1}{n+1}\binom{2n}{n}
+$$
+を得る。</p>
+<h2 id="2">順列を高々2個の増加列に分解できる総数<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>長さ <span class="arithmatex">\(n\)</span> の順列のうち、高々 <span class="arithmatex">\(2\)</span> 個の増加列に分解できるものの総数は <span class="arithmatex">\(C_n\)</span> である。</p>
+<p>例えば</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>2 1 4 3
+</code></pre></div></td></tr></table></div>
+<p>は、</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">UnionFind</span><span class="w"> </span><span class="nf">uf</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w">          </span><span class="c1">// n 頂点で初期化</span>
-<span class="n">uf</span><span class="p">.</span><span class="n">unite</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">);</span><span class="w">           </span><span class="c1">// u と v を併合</span>
-<span class="kt">bool</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uf</span><span class="p">.</span><span class="n">same</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">);</span><span class="w">   </span><span class="c1">// u と v が同じ連結成分か</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uf</span><span class="p">.</span><span class="n">size</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">       </span><span class="c1">// v の属する連結成分のサイズ</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uf</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">       </span><span class="c1">// v の根を取得</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>2 4
+1 3
 </code></pre></div></td></tr></table></div>
-<h2 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
+<p>のように <span class="arithmatex">\(2\)</span> 個の増加列へ分解できる。</p>
+<h3 id="_5">出題例<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="../../../verify/atcoder/abc451_g_minimum_xor_walk/">ABC451 G - Minimum XOR Walk</a></li>
+<li><a href="https://atcoder.jp/contests/arc068/tasks/arc068_d">ARC068 D - Solitaire</a></li>
 </ul>
-<h2 id="code">Code<a class="headerlink" href="#code" title="Permanent link">&para;</a></h2>
-<p>Source: <code>data_structure/union_find.hpp</code></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#pragma once</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;numeric&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
-
-<span class="k">struct</span><span class="w"> </span><span class="nc">UnionFind</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">par</span><span class="p">,</span><span class="w"> </span><span class="n">num</span><span class="p">;</span>
-<span class="w">    </span><span class="n">UnionFind</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">par</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="n">num</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">iota</span><span class="p">(</span><span class="n">par</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">par</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">par</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">par</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="n">par</span><span class="p">[</span><span class="n">v</span><span class="p">]));</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">unite</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="n">u</span><span class="p">),</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">u</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num</span><span class="p">[</span><span class="n">v</span><span class="p">])</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">);</span>
-<span class="w">        </span><span class="n">num</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">num</span><span class="p">[</span><span class="n">v</span><span class="p">];</span>
-<span class="w">        </span><span class="n">par</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">same</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">num</span><span class="p">[</span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">)];</span><span class="w"> </span><span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div></td></tr></table></div>
-<h2 id="bundled">Bundled<a class="headerlink" href="#bundled" title="Permanent link">&para;</a></h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// bundled by scripts/bundle_header.py</span>
-
-<span class="c1">// ---- begin: include/data_structure/union_find.hpp</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;numeric&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
-
-<span class="k">struct</span><span class="w"> </span><span class="nc">UnionFind</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">par</span><span class="p">,</span><span class="w"> </span><span class="n">num</span><span class="p">;</span>
-<span class="w">    </span><span class="n">UnionFind</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">par</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="n">num</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">iota</span><span class="p">(</span><span class="n">par</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">par</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">par</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">par</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="n">par</span><span class="p">[</span><span class="n">v</span><span class="p">]));</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">unite</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="n">u</span><span class="p">),</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">u</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num</span><span class="p">[</span><span class="n">v</span><span class="p">])</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">);</span>
-<span class="w">        </span><span class="n">num</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">num</span><span class="p">[</span><span class="n">v</span><span class="p">];</span>
-<span class="w">        </span><span class="n">par</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">same</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">num</span><span class="p">[</span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">)];</span><span class="w"> </span><span class="p">}</span>
-<span class="p">};</span>
-<span class="c1">// ---- end: include/data_structure/union_find.hpp</span>
-</code></pre></div></td></tr></table></div>
+<h2 id="_6">一般化：最後に開き括弧が余る括弧列<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>普通のカタラン数では、開き括弧と閉じ括弧が同じ個数だけある。</p>
+<p>ここでは、最後に開き括弧が余ってもよい括弧列を考える。この個数を <span class="arithmatex">\(B(r,b)\)</span> と書くことにする。</p>
+<ul>
+<li>開き括弧が <span class="arithmatex">\(r+b\)</span> 個</li>
+<li>閉じ括弧が <span class="arithmatex">\(r\)</span> 個</li>
+<li>どの prefix でも閉じ括弧の個数が開き括弧の個数を超えない</li>
+</ul>
+<p><span class="arithmatex">\(b = 0\)</span> のときは普通のカタラン数 <span class="arithmatex">\(C_r\)</span> である。
+<span class="arithmatex">\(b &gt; 0\)</span> のときは、対応する閉じ括弧を持たない開き括弧が最後に <span class="arithmatex">\(b\)</span> 個残る。</p>
+<p>開き括弧を <span class="arithmatex">\(+1\)</span>、閉じ括弧を <span class="arithmatex">\(-1\)</span> とみなすと、途中で高さが負にならず、最後に高さ <span class="arithmatex">\(b\)</span> で終わる経路の個数と同じになる。</p>
+<p>制約を無視すると、列の全長は <span class="arithmatex">\(2r+b\)</span> である。
+閉じ括弧の位置を <span class="arithmatex">\(r\)</span> 個選べばよいので、全体の列の個数は
+$$
+\binom{2r+b}{r}
+$$
+通りである。</p>
+<p>ここから、途中で一度でも高さが <span class="arithmatex">\(-1\)</span> になる列を引く。不正な列について、最初に高さが <span class="arithmatex">\(-1\)</span> になったところまで開閉を反転する。すると、閉じ括弧が <span class="arithmatex">\(r-1\)</span> 個の列と一対一に対応する。したがって、
+$$
+B(r,b)
+=
+\binom{2r+b}{r}
+-
+\binom{2r+b}{r-1}
+$$
+となる。これを整理すると、
+$$
+B(r,b)
+=
+\frac{b+1}{r+b+1}\binom{2r+b}{r}
+$$
+を得る。</p>
 
 
 
@@ -2214,18 +2239,18 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tabs", "content.code.copy", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tabs", "content.code.copy", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js"></script>
       
-        <script src="../../../js/katex_init.js"></script>
+        <script src="../../js/katex_init.js"></script>
       
-        <script src="../../../js/open_in_new_tab.js"></script>
+        <script src="../../js/open_in_new_tab.js"></script>
       
     
   </body>
