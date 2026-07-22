@@ -58,5 +58,11 @@
     "verified_at": "2026-07-06T11:27:04+09:00",
     "judge_url": "https://qoj.ac/contest/1357/problem/7411",
     "title": "Petrozavodsk Camp Summer 2019 Day2 B - Bitwise Xor"
+  },
+  "verify/library_checker/range_affine_point_get.cpp": {
+    "bundled_hash": "sha256:d8a8d0c803c5be087c4cf08d9f067b08a5d9a51f2b24660dee7de569290d9455",
+    "verified_at": "2026-07-22T09:26:40+09:00",
+    "judge_url": "https://judge.yosupo.jp/problem/range_affine_point_get",
+    "title": "Range Affine Point Get"
   }
 }
