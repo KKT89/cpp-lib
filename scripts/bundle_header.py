@@ -49,6 +49,8 @@ def bundle_file(
         # Keep includes written in the entry file (for example bits/stdc++.h),
         # but omit redundant system includes from expanded local headers by default.
         if SYSTEM_INCLUDE_RE.match(line) and not (is_entry or keep_system_includes):
+            if out_lines and out_lines[-1] == "":
+                out_lines.pop()
             continue
         m = INCLUDE_RE.match(line)
         if m:
