@@ -70,7 +70,12 @@ def _refresh_nav(config, status: dict) -> None:
 
 def _bundle_generated_sources() -> None:
     for path in INCLUDE_ROOT.rglob("*.hpp"):
-        bundle_header(path, BUNDLE_ROOT / path.relative_to(INCLUDE_ROOT), include_dirs=[INCLUDE_ROOT])
+        bundle_header(
+            path,
+            BUNDLE_ROOT / path.relative_to(INCLUDE_ROOT),
+            include_dirs=[INCLUDE_ROOT],
+            keep_system_includes=True,
+        )
     for path in VERIFY_ROOT.rglob("*.cpp"):
         bundle_header(
             path,

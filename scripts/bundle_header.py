@@ -8,6 +8,7 @@ import sys
 
 
 INCLUDE_RE = re.compile(r'^\s*#\s*include\s*"([^"]+)"\s*$')
+SYSTEM_INCLUDE_RE = re.compile(r"^\s*#\s*include\s*<[^>]+>\s*$")
 
 
 def resolve_include(
@@ -28,6 +29,8 @@ def bundle_file(
     include_dirs: list[Path],
     visited: set[Path],
     out_lines: list[str],
+    keep_system_includes: bool = False,
+    is_entry: bool = False,
 ) -> None:
     path = path.resolve()
     if path in visited:
@@ -43,6 +46,10 @@ def bundle_file(
     for line in path.read_text(encoding="utf-8").splitlines():
         if line.strip() == "#pragma once":
             continue
+        # Keep includes written in the entry file (for example bits/stdc++.h),
+        # but omit redundant system includes from expanded local headers by default.
+        if SYSTEM_INCLUDE_RE.match(line) and not (is_entry or keep_system_includes):
+            continue
         m = INCLUDE_RE.match(line)
         if m:
             inc = m.group(1)
@@ -50,7 +57,14 @@ def bundle_file(
             if inc_path is None:
                 out_lines.append(line)
             else:
-                bundle_file(inc_path, project_root, include_dirs, visited, out_lines)
+                bundle_file(
+                    inc_path,
+                    project_root,
+                    include_dirs,
+                    visited,
+                    out_lines,
+                    keep_system_includes,
+                )
             continue
         out_lines.append(line)
 
@@ -61,6 +75,7 @@ def _bundle_to_string(
     input_path: Path,
     include_dirs: list[Path] | None = None,
     project_root: Path | None = None,
+    keep_system_includes: bool = False,
 ) -> str:
     """Bundle input_path and return the result as a string."""
     script_dir = Path(__file__).resolve().parent
@@ -78,7 +93,15 @@ def _bundle_to_string(
     out_lines: list[str] = []
     out_lines.append("// bundled by scripts/bundle_header.py")
     out_lines.append("")
-    bundle_file(input_path, project_root, include_dirs, set(), out_lines)
+    bundle_file(
+        input_path,
+        project_root,
+        include_dirs,
+        set(),
+        out_lines,
+        keep_system_includes,
+        is_entry=True,
+    )
     return "\n".join(out_lines).rstrip() + "\n"
 
 
@@ -91,8 +114,14 @@ def bundle_header(
     output_path: Path,
     include_dirs: list[Path] | None = None,
     project_root: Path | None = None,
+    keep_system_includes: bool = False,
 ) -> None:
-    out_text = _bundle_to_string(input_path, include_dirs, project_root)
+    out_text = _bundle_to_string(
+        input_path,
+        include_dirs,
+        project_root,
+        keep_system_includes,
+    )
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     # Avoid touching timestamps when generated content is unchanged.
@@ -114,11 +143,21 @@ def main() -> int:
         default=[],
         help="additional include directories (repeatable)",
     )
+    parser.add_argument(
+        "--keep-system-includes",
+        action="store_true",
+        help="keep system includes from expanded local headers",
+    )
     args = parser.parse_args()
 
     include_dirs = [d.resolve() for d in args.include_dir]
     try:
-        bundle_header(args.input, args.output, include_dirs)
+        bundle_header(
+            args.input,
+            args.output,
+            include_dirs,
+            keep_system_includes=args.keep_system_includes,
+        )
     except FileNotFoundError:
         print(f"input not found: {args.input}", file=sys.stderr)
         return 1

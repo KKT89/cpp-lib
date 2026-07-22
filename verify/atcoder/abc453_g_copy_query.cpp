@@ -1,7 +1,8 @@
-#include "data_structure/persistent_segtree.hpp"
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
+
+#include "data_structure/persistent_segtree.hpp"
 
 ll op(ll a, ll b) { return a + b; }
 ll e() { return 0; }

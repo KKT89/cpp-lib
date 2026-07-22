@@ -65,12 +65,22 @@ def main() -> int:
         default=[],
         help="additional include directories (repeatable)",
     )
+    parser.add_argument(
+        "--keep-system-includes",
+        action="store_true",
+        help="keep system includes from expanded library headers",
+    )
     args = parser.parse_args()
 
     include_dirs: list[Path] = [DEFAULT_INCLUDE_DIR, *args.include_dir]
 
     try:
-        bundle_header(args.input, args.output, include_dirs=include_dirs)
+        bundle_header(
+            args.input,
+            args.output,
+            include_dirs=include_dirs,
+            keep_system_includes=args.keep_system_includes,
+        )
     except FileNotFoundError as e:
         print(f"input not found: {e}", file=sys.stderr)
         return 1
