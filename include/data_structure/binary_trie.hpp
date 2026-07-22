@@ -4,14 +4,14 @@
 #include <vector>
 
 template <class T, int LOG>
-struct binary_trie {
-    struct node {
+struct BinaryTrie {
+    struct Node {
         int cnt = 0;
         std::array<int, 2> ch = {-1, -1};
     };
-    std::vector<node> nodes;
+    std::vector<Node> nodes;
 
-    binary_trie() { nodes.emplace_back(); }
+    BinaryTrie() { nodes.emplace_back(); }
 
     int size() const { return nodes[0].cnt; }
 

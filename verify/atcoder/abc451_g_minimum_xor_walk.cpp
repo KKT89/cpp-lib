@@ -62,7 +62,7 @@ int main() {
         };
 
         ll res = 0;
-        binary_trie<int, 30> trie;
+        BinaryTrie<int, 30> trie;
         for (int i = 0; i < n; ++i) {
             int v = reduce(val[i]);
             res += trie.count_xor_leq(v, K);

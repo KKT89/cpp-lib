@@ -14,7 +14,7 @@ int main() {
     for (int i = 0; i < n; ++i) {
         cin >> a[i];
     }
-    range_affine_point_get<modint> seg(a);
+    RangeAffinePointGet<modint> seg(a);
     while (q--) {
         int type;
         cin >> type;

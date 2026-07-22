@@ -2,25 +2,25 @@
 #include <vector>
 
 template <class S, S (*op)(S, S), S (*e)(), int POOL_SIZE = 20000000>
-struct persistent_segtree {
-    struct node {
+struct PersistentSegmentTree {
+    struct Node {
         S data;
         int l, r;
     };
 
     int n;
-    std::vector<node> pool;
+    std::vector<Node> pool;
     std::vector<int> roots;
 
-    persistent_segtree() : persistent_segtree(0) {}
+    PersistentSegmentTree() : PersistentSegmentTree(0) {}
 
-    explicit persistent_segtree(int n) : n(n) {
+    explicit PersistentSegmentTree(int n) : n(n) {
         pool.reserve(POOL_SIZE);
         pool.push_back({e(), 0, 0});
         roots.push_back(0);
     }
 
-    explicit persistent_segtree(const std::vector<S>& v) : persistent_segtree((int)v.size()) {
+    explicit PersistentSegmentTree(const std::vector<S>& v) : PersistentSegmentTree((int)v.size()) {
         if (n > 0) roots[0] = build(0, n, v);
     }
 

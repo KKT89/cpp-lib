@@ -13,7 +13,7 @@ int main() {
     int n, m, q;
     cin >> n >> m >> q;
 
-    persistent_segtree<ll, op, e> seg(m);
+    PersistentSegmentTree<ll, op, e> seg(m);
     vector<int> root(n, 0);
     while (q--) {
         int t;

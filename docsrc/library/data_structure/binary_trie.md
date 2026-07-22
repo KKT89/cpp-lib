@@ -5,7 +5,7 @@
 ## Interface
 
 ```cpp
-binary_trie<T, LOG> bt;               // 空の集合で初期化 (T は整数型, LOG はビット幅)
+BinaryTrie<T, LOG> bt;                // 空の集合で初期化 (T は整数型, LOG はビット幅)
 int n = bt.size();                    // 要素数
 bt.insert(x);                         // x を追加
 bt.erase(x);                          // x を 1 つ削除 (存在前提)

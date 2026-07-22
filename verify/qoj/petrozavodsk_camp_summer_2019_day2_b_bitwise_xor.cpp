@@ -16,7 +16,7 @@ int main() {
         cin >> a[i];
     }
 
-    binary_trie<ll, 60> bt;
+    BinaryTrie<ll, 60> bt;
     for (int i = 0; i < n; ++i) {
         bt.insert(a[i]);
     }

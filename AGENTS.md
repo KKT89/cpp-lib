@@ -78,9 +78,7 @@ struct Example {
 `.clang-format` に従うこと。また、既存ライブラリに合わせ、以下を意識する。
 
 - テンプレート型名は `T`, `S` など短くすることが多い。
-- 構造体名は既存に合わせる。
-    - 低レイヤのデータ構造は `binary_trie`, `segtree` など `lower_snake_case` が多い。
-    - 既存の `UnionFind`, `LowestCommonAncestor` のような `UpperCamelCase` もあるため、近いライブラリに合わせる。
+- 構造体・クラス名は原則 `UpperCamelCase` にする。ただし、数値型として扱う `static_modint` と `dynamic_modint` は例外としている。
 - `{}` は基本的に省略しない。`if` / `else` / `for` / `while` の本体が 1 文でもブロックを書く。
 - ただし、単純な早期 return や境界チェックなどの短い `if` は例外として 1 行で書いてよい。
 - 計算量・制約・非自明な実装意図はコメントで残す。

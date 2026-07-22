@@ -2,15 +2,15 @@
 #include <vector>
 
 template <class S, S (*e)(), class F, S (*mapping)(F, S), F (*composition)(F, F), F (*id)()>
-struct dual_segtree {
+struct DualSegmentTree {
     int n, size, log;
     std::vector<S> data;
     std::vector<F> lazy;
 
-    dual_segtree() : dual_segtree(0) {}
-    explicit dual_segtree(int n) : dual_segtree(n, e()) {}
-    dual_segtree(int n, S x) { init(n, x); }
-    explicit dual_segtree(const std::vector<S>& v) {
+    DualSegmentTree() : DualSegmentTree(0) {}
+    explicit DualSegmentTree(int n) : DualSegmentTree(n, e()) {}
+    DualSegmentTree(int n, S x) { init(n, x); }
+    explicit DualSegmentTree(const std::vector<S>& v) {
         init((int)v.size(), e());
         for (int i = 0; i < n; i += 1) {
             data[i] = v[i];

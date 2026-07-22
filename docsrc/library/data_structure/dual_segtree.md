@@ -5,13 +5,13 @@
 ## Interface
 
 ```cpp
-dual_segtree<S, e, F, mapping, composition, id> seg(n);      // 長さ n, 全要素 e() で初期化
-dual_segtree<S, e, F, mapping, composition, id> seg(n, x);   // 長さ n, 全要素 x で初期化
-dual_segtree<S, e, F, mapping, composition, id> seg(v);      // vector v で初期化
-seg.apply(l, r, f);                                          // [l, r) に作用 f を適用, O(log n)
-seg.set(i, x);                                               // i 番目の値を x に更新, O(log n)
-S x = seg.get(i);                                            // i 番目の値を取得, O(log n)
-S x = seg[i];                                                // i 番目の値を取得, O(log n)
+DualSegmentTree<S, e, F, mapping, composition, id> seg(n);      // 長さ n, 全要素 e() で初期化
+DualSegmentTree<S, e, F, mapping, composition, id> seg(n, x);   // 長さ n, 全要素 x で初期化
+DualSegmentTree<S, e, F, mapping, composition, id> seg(v);      // vector v で初期化
+seg.apply(l, r, f);                                             // [l, r) に作用 f を適用, O(log n)
+seg.set(i, x);                                                  // i 番目の値を x に更新, O(log n)
+S x = seg.get(i);                                               // i 番目の値を取得, O(log n)
+S x = seg[i];                                                   // i 番目の値を取得, O(log n)
 ```
 
 ## Notes

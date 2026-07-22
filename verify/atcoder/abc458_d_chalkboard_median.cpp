@@ -9,7 +9,7 @@ int main() {
     cin.tie(nullptr);
     int x;
     cin >> x;
-    binary_trie<int, 30> bt;
+    BinaryTrie<int, 30> bt;
     bt.insert(x);
     int q;
     cin >> q;
