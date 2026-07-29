@@ -1,5 +1,5 @@
 ---
-parent: data_structure/dual_segtree.hpp
+parent: segtree/dual_segtree.hpp
 ---
 
 # Range Add Point Get

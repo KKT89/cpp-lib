@@ -30,8 +30,8 @@
     "title": "ABC451 G - Minimum XOR Walk"
   },
   "verify/atcoder/abc453_g_copy_query.cpp": {
-    "bundled_hash": "sha256:01cc152b7df25c3fb97abb8a2bf757e6103cf241bdcae83d3b9afdcc2664ebec",
-    "verified_at": "2026-07-22T11:50:32+09:00",
+    "bundled_hash": "sha256:c36ccb6cbad9983d8fa3a027a41e3f779a2c0c2c371f29951d0e9313b87ace80",
+    "verified_at": "2026-07-29T15:34:26+09:00",
     "judge_url": "https://atcoder.jp/contests/abc453/tasks/abc453_g",
     "title": "ABC453 G - Copy Query"
   },
@@ -60,8 +60,8 @@
     "title": "Petrozavodsk Camp Summer 2019 Day2 B - Bitwise Xor"
   },
   "verify/library_checker/range_affine_point_get.cpp": {
-    "bundled_hash": "sha256:f8e18f784f7e743d959758443fc2a58c52c443d8c761e5ae55f1dd79884ceb35",
-    "verified_at": "2026-07-22T11:50:32+09:00",
+    "bundled_hash": "sha256:8ce341fbe89e430b574d0c72e246dc2644133ca064359e9eb2d8ff6eeb72b768",
+    "verified_at": "2026-07-29T15:34:26+09:00",
     "judge_url": "https://judge.yosupo.jp/problem/range_affine_point_get",
     "title": "Range Affine Point Get"
   }

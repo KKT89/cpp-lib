@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-#include "data_structure/dual_segtree.hpp"
+#include "segtree/dual_segtree.hpp"
 
 namespace range_add_point_get_internal {
 template <class T>

@@ -2,7 +2,7 @@
 using namespace std;
 typedef long long ll;
 
-#include "data_structure/range_affine_point_get.hpp"
+#include "segtree/range_affine_point_get.hpp"
 #include "math/static_modint_998244353.hpp"
 
 int main() {
