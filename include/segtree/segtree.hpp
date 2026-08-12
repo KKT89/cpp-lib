@@ -17,7 +17,7 @@ struct SegmentTree {
         }
     }
     void update(int k) { tree[k] = op(tree[k << 1 | 0], tree[k << 1 | 1]); }
-    S operator[](int i) { return tree[i + n]; }
+    S operator[](int i) const { return tree[i + n]; }
     void set(int i, S x) {
         i += n;
         tree[i] = x;
@@ -26,7 +26,7 @@ struct SegmentTree {
         }
     }
     // [l,r)
-    S query(int l, int r) {
+    S query(int l, int r) const {
         S sml = e(), smr = e();
         for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
             if (l & 1) sml = op(sml, tree[l++]);

@@ -64,5 +64,11 @@
     "verified_at": "2026-07-29T15:34:26+09:00",
     "judge_url": "https://judge.yosupo.jp/problem/range_affine_point_get",
     "title": "Range Affine Point Get"
+  },
+  "verify/library_checker/point_add_rectangle_sum.cpp": {
+    "bundled_hash": "sha256:19c6b45e14d8843e26fee49d50b4148030946b54b7c1987c683ee4c126bd3cf2",
+    "verified_at": "2026-08-13T05:12:55+09:00",
+    "judge_url": "https://judge.yosupo.jp/problem/point_add_rectangle_sum",
+    "title": "Point Add Rectangle Sum"
   }
 }
