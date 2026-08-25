@@ -2410,7 +2410,14 @@
 <span class="normal">168</span>
 <span class="normal">169</span>
 <span class="normal">170</span>
-<span class="normal">171</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// bundled by scripts/bundle_header.py</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// bundled by scripts/bundle_header.py</span>
 
 <span class="c1">// ---- begin: verify/atcoder/abc451_g_minimum_xor_walk.cpp</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
@@ -2431,6 +2438,13 @@
 <span class="w">    </span><span class="n">BinaryTrie</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">nodes</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cnt</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 要素数が n になるまで insert するための領域を確保する</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">reserve</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">current_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">size</span><span class="p">());</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">current_size</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="n">nodes</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">current_size</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">LOG</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// ノード idx を根とする部分木の要素数</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">cnt</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">idx</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">nodes</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="n">cnt</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
@@ -2478,7 +2492,7 @@
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">// x XOR val &lt;= k となる整数 x の個数</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count_xor_leq</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count_xor_leq</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">cur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LOG</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="o">--</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
