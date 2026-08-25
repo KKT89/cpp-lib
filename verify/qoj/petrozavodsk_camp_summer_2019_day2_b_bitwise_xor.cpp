@@ -27,8 +27,6 @@ int main() {
         po[i + 1] = po[i] + po[i];
     }
 
-    auto nodes = bt.nodes;
-
     auto dfs2 = [&](auto dfs2, int cur1, int cur2, int bit) -> modint {
         int cnt1 = bt.cnt(cur1), cnt2 = bt.cnt(cur2);
         if (cnt1 == 0 or cnt2 == 0) {
@@ -37,8 +35,8 @@ int main() {
         if (bit < 0) {
             return modint(cnt1) * modint(cnt2);
         }
-        int l1 = nodes[cur1].ch[0], r1 = nodes[cur1].ch[1];
-        int l2 = nodes[cur2].ch[0], r2 = nodes[cur2].ch[1];
+        auto [l1, r1] = bt.ch(cur1);
+        auto [l2, r2] = bt.ch(cur2);
         int cnt_l1 = bt.cnt(l1), cnt_r1 = bt.cnt(r1);
         int cnt_l2 = bt.cnt(l2), cnt_r2 = bt.cnt(r2);
         int xb = (X >> bit) & 1;
@@ -65,8 +63,7 @@ int main() {
             return po[cnt];
         }
 
-        int l = nodes[cur].ch[0];
-        int r = nodes[cur].ch[1];
+        auto [l, r] = bt.ch(cur);
         int xb = (X >> bit) & 1;
 
         if (xb == 0) {

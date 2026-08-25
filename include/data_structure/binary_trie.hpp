@@ -26,6 +26,12 @@ struct BinaryTrie {
     // ノード idx を根とする部分木の要素数
     int cnt(int idx) const { return idx == -1 ? 0 : nodes[idx].cnt; }
 
+    // ノード idx の子
+    const std::array<int, 2>& ch(int idx) const { return nodes[idx].ch; }
+
+    // ノード idx の bit 側の子
+    int ch(int idx, int bit) const { return nodes[idx].ch[bit]; }
+
     void insert(T x) {
         int cur = 0;
         nodes[cur].cnt += 1;
