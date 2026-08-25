@@ -1,6 +1,7 @@
 #pragma once
 #include <array>
 #include <cassert>
+#include <cstddef>
 #include <vector>
 
 template <class T, int LOG>
@@ -14,6 +15,13 @@ struct BinaryTrie {
     BinaryTrie() { nodes.emplace_back(); }
 
     int size() const { return nodes[0].cnt; }
+
+    // 要素数が n になるまで insert するための領域を確保する
+    void reserve(std::size_t n) {
+        std::size_t current_size = static_cast<std::size_t>(size());
+        if (n <= current_size) return;
+        nodes.reserve(nodes.size() + (n - current_size) * LOG);
+    }
 
     // ノード idx を根とする部分木の要素数
     int cnt(int idx) const { return idx == -1 ? 0 : nodes[idx].cnt; }
@@ -61,7 +69,7 @@ struct BinaryTrie {
     }
 
     // x XOR val <= k となる整数 x の個数
-    int count_xor_leq(T val, T k) {
+    int count_xor_leq(T val, T k) const {
         int cur = 0;
         int res = 0;
         for (int i = LOG - 1; i >= 0; --i) {

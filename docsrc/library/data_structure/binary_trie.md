@@ -6,6 +6,7 @@
 
 ```cpp
 BinaryTrie<T, LOG> bt;                // 空の集合で初期化 (T は整数型, LOG はビット幅)
+bt.reserve(n);                        // 要素数が n になるまで追加する領域を確保
 int n = bt.size();                    // 要素数
 bt.insert(x);                         // x を追加
 bt.erase(x);                          // x を 1 つ削除 (存在前提)
