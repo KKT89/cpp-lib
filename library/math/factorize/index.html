@@ -941,6 +941,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#verify" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2250,6 +2261,11 @@
 <span class="n">map</span><span class="o">&lt;</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factorize</span><span class="o">::</span><span class="n">factor_count</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w">   </span><span class="c1">// 素因数ごとの指数</span>
 <span class="n">vector</span><span class="o">&lt;</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factorize</span><span class="o">::</span><span class="n">divisors</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w">         </span><span class="c1">// 約数を昇順で列挙</span>
 </code></pre></div></td></tr></table></div>
+<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>素因数分解は <span class="arithmatex">\(n \ge 1\)</span>、<code>divisors(n)</code> は <span class="arithmatex">\(n \ge 0\)</span> を仮定します。</li>
+<li><span class="arithmatex">\(n=1\)</span> の素因数分解は空、約数は <code>{1}</code> です。<code>divisors(0)</code> は空を返します。</li>
+</ul>
 <h2 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../../verify/library_checker/factorize/">Factorize</a></li>

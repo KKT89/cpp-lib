@@ -2249,7 +2249,7 @@
 
 
 <h1 id="_1">二項係数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p><code>mod</code> が素数のときの二項係数を計算します。階乗テーブルは必要に応じて自動拡張します。</p>
+<p>階乗・逆階乗テーブルを使って二項係数を計算します。テーブルは必要に応じて拡張します。</p>
 <h2 id="interface">Interface<a class="headerlink" href="#interface" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -2257,15 +2257,18 @@
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="n">modint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">static_modint</span><span class="o">&lt;</span><span class="mi">998244353</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="n">Combination</span><span class="o">&lt;</span><span class="n">modint</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">20</span><span class="o">&gt;</span><span class="w"> </span><span class="n">comb</span><span class="p">;</span><span class="w">              </span><span class="c1">// [0, 2^20] を前計算</span>
+<span class="n">Combination</span><span class="o">&lt;</span><span class="n">modint</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">20</span><span class="o">&gt;</span><span class="w"> </span><span class="n">comb</span><span class="p">;</span><span class="w">                </span><span class="c1">// [0, 2^20] を前計算</span>
 
-<span class="n">modint</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comb</span><span class="p">.</span><span class="n">comb</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w">                    </span><span class="c1">// C(10, 3), 償却 O(1)</span>
-<span class="n">modint</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comb</span><span class="p">.</span><span class="n">comb</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w">               </span><span class="c1">// 範囲外なら自動拡張</span>
-<span class="n">modint</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comb</span><span class="p">.</span><span class="n">big_comb</span><span class="p">(</span><span class="n">modint</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">51</span><span class="p">),</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w">   </span><span class="c1">// n が大きく r が小さい場合, O(r)</span>
+<span class="n">modint</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comb</span><span class="p">.</span><span class="n">comb</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w">                      </span><span class="c1">// C(10, 3), 前計算済みかつ n &lt; mod なら O(1)</span>
+<span class="n">modint</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comb</span><span class="p">.</span><span class="n">comb</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w">                 </span><span class="c1">// 範囲外なら自動拡張</span>
+<span class="n">modint</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comb</span><span class="p">.</span><span class="n">big_comb</span><span class="p">(</span><span class="n">modint</span><span class="p">(</span><span class="mf">1L</span><span class="n">L</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">51</span><span class="p">),</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w">   </span><span class="c1">// n が大きく r が小さい場合, 前計算後 O(r)</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>mod</code> が素数であることを仮定します。</li>
+<li><code>comb(n, r)</code> は <span class="arithmatex">\(n \ge \mathrm{mod}\)</span> で Lucas の定理を使います。各桁の計算で、最大 <span class="arithmatex">\(\mathrm{mod}-1\)</span> までテーブルを拡張します。</li>
+<li><code>big_comb(n, r)</code> は <span class="arithmatex">\(0 \le r &lt; \mathrm{mod}\)</span> 用です。範囲外では <span class="arithmatex">\(0\)</span> を返します。</li>
+<li>テーブルを <span class="arithmatex">\(k\)</span> 要素拡張する時間は <span class="arithmatex">\(O(k+\log\mathrm{mod})\)</span> です。</li>
 </ul>
 <h2 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
 <ul>

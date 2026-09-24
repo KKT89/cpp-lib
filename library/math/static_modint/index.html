@@ -2272,14 +2272,14 @@
 <span class="k">using</span><span class="w"> </span><span class="n">modint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">static_modint</span><span class="o">&lt;</span><span class="n">MOD</span><span class="o">&gt;</span><span class="p">;</span>
 
 <span class="n">modint</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
-<span class="n">modint</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w">               </span><span class="c1">// O(log mod)</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">val</span><span class="p">();</span><span class="w">                </span><span class="c1">// O(1)</span>
-<span class="n">modint</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modint</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w">   </span><span class="c1">// O(log n)</span>
+<span class="n">modint</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w">                    </span><span class="c1">// O(log mod)</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">val</span><span class="p">();</span><span class="w">                     </span><span class="c1">// O(1)</span>
+<span class="n">modint</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modint</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w">        </span><span class="c1">// O(log n)</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>1 &lt;= mod</code> を想定します。</li>
-<li><code>/</code> と <code>inv()</code> を使う場合は mod が素数であることを仮定します。</li>
+<li><code>/</code> と <code>inv()</code> は法が素数で、除数・逆元を求める値が非零であることを仮定します。<code>pow(n)</code> は <span class="arithmatex">\(n \ge 0\)</span> 用です。</li>
 </ul>
 <h2 id="sub-libraries">Sub Libraries<a class="headerlink" href="#sub-libraries" title="Permanent link">&para;</a></h2>
 <ul>

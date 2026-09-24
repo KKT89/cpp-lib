@@ -9,16 +9,12 @@
 }
 
 .md-typeset h1 {
-    /* 太字 */
     font-weight: bold;
-    /* 下線の色 */
     border-bottom: solid 2px #f18b21;
-    /* 下線との余白 */
     padding-bottom: 5px;
 }
 
 .md-typeset h2 {
-    /* 点線下線 */
     border-bottom: 2px dotted #888;
 }
 
@@ -29,7 +25,6 @@
     margin-right: 5px;
 }
 
-/* テーブルのセル余白を広げる */
 .md-typeset table:not([class]) th,
 .md-typeset table:not([class]) td {
     padding: 0.6em 1.6em;

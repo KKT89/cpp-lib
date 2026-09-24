@@ -2273,7 +2273,9 @@
 </code></pre></div></td></tr></table></div>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
+<li>値と XOR クエリの <code>val</code>, <code>k</code> は <span class="arithmatex">\(0 \le x &lt; 2^{\mathrm{LOG}}\)</span> の範囲とし、<code>T</code> で表現できることを仮定します。</li>
 <li>ノード番号は根を <code>0</code> とし、存在しない子を <code>-1</code> とします。</li>
+<li><code>erase</code> はノードを解放しません。<code>ch</code> が返すノードにも、要素数が <span class="arithmatex">\(0\)</span> の場合があります。</li>
 </ul>
 <h2 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
 <ul>
@@ -2375,9 +2377,7 @@
 <span class="normal">90</span>
 <span class="normal">91</span>
 <span class="normal">92</span>
-<span class="normal">93</span>
-<span class="normal">94</span>
-<span class="normal">95</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#pragma once</span>
+<span class="normal">93</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#pragma once</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstddef&gt;</span>
@@ -2402,13 +2402,11 @@
 <span class="w">        </span><span class="n">nodes</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">current_size</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">LOG</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="c1">// ノード idx を根とする部分木の要素数</span>
+<span class="w">    </span><span class="c1">// 部分木の要素数。idx == -1 なら 0。</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">cnt</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">idx</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">nodes</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="n">cnt</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
-<span class="w">    </span><span class="c1">// ノード idx の子</span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">ch</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">idx</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">nodes</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="n">ch</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
-<span class="w">    </span><span class="c1">// ノード idx の bit 側の子</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ch</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">idx</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">bit</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">nodes</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="n">ch</span><span class="p">[</span><span class="n">bit</span><span class="p">];</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">insert</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -2569,9 +2567,7 @@
 <span class="normal">93</span>
 <span class="normal">94</span>
 <span class="normal">95</span>
-<span class="normal">96</span>
-<span class="normal">97</span>
-<span class="normal">98</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// bundled by scripts/bundle_header.py</span>
+<span class="normal">96</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// bundled by scripts/bundle_header.py</span>
 
 <span class="c1">// ---- begin: include/data_structure/binary_trie.hpp</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span>
@@ -2598,13 +2594,11 @@
 <span class="w">        </span><span class="n">nodes</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="n">nodes</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">current_size</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">LOG</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="c1">// ノード idx を根とする部分木の要素数</span>
+<span class="w">    </span><span class="c1">// 部分木の要素数。idx == -1 なら 0。</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">cnt</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">idx</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">nodes</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="n">cnt</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
-<span class="w">    </span><span class="c1">// ノード idx の子</span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">ch</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">idx</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">nodes</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="n">ch</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
-<span class="w">    </span><span class="c1">// ノード idx の bit 側の子</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ch</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">idx</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">bit</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">nodes</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="n">ch</span><span class="p">[</span><span class="n">bit</span><span class="p">];</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">insert</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>

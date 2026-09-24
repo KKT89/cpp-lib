@@ -2267,7 +2267,6 @@
 </code></pre></div></td></tr></table></div>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>op</code> は可換である必要があります。</li>
 <li><code>add_point</code> をすべて呼んだ後に <code>build</code> を一度だけ呼びます。</li>
 <li><code>add</code>、<code>set</code>、<code>get</code> には、<code>add_point</code> で登録した点を指定します。</li>
 <li>各点の初期値は <code>e()</code> です。</li>
@@ -2403,7 +2402,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;utility&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
-<span class="c1">// 可換モノイド上の一点更新・二次元矩形積を処理する領域木</span>
+<span class="c1">// op は可換モノイドの演算、e は単位元。</span>
 <span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">S</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">op</span><span class="p">)(</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="p">),</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">e</span><span class="p">)(),</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">RangeTree</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
@@ -2444,7 +2443,7 @@
 <span class="w">        </span><span class="n">points</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="c1">// O(N log N) </span>
+<span class="w">    </span><span class="c1">// O(N log N)</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">build</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">assert</span><span class="p">(</span><span class="o">!</span><span class="n">built</span><span class="p">);</span>
 <span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">points</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">points</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
@@ -2719,7 +2718,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;utility&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
-<span class="c1">// 可換モノイド上の一点更新・二次元矩形積を処理する領域木</span>
+<span class="c1">// op は可換モノイドの演算、e は単位元。</span>
 <span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">S</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">op</span><span class="p">)(</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="p">),</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">e</span><span class="p">)(),</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">RangeTree</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
@@ -2760,7 +2759,7 @@
 <span class="w">        </span><span class="n">points</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="c1">// O(N log N) </span>
+<span class="w">    </span><span class="c1">// O(N log N)</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">build</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">assert</span><span class="p">(</span><span class="o">!</span><span class="n">built</span><span class="p">);</span>
 <span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">points</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">points</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>

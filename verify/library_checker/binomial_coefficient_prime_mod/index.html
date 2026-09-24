@@ -2458,7 +2458,7 @@
 <span class="c1">// ---- end: include/math/combination.hpp</span>
 <span class="c1">// ---- begin: include/math/dynamic_modint.hpp</span>
 
-<span class="c1">// 動的 modint: id を変えることで複数 mod を同時に扱える (mod は素数, mod &lt; 2^63)</span>
+<span class="c1">// 1 &lt;= mod &lt; 2^63。逆元は mod が素数かつ対象が非零のときに使う。</span>
 <span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="o">&gt;</span>
 <span class="k">struct</span><span class="w"> </span><span class="nc">dynamic_modint</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">mint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dynamic_modint</span><span class="p">;</span>

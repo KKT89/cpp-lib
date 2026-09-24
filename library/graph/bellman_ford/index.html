@@ -715,6 +715,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#code" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2247,6 +2258,10 @@
 <span class="kt">bool</span><span class="w"> </span><span class="n">neg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="n">on_negative_cycle</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">         </span><span class="c1">// v が負閉路の影響を受けるか</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="n">distance</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">                     </span><span class="c1">// v までの最短距離</span>
 </code></pre></div></td></tr></table></div>
+<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>最短距離として <code>distance(v)</code> を使えるのは <code>valid(v)</code> が <code>true</code> の場合です。到達不能・負閉路の影響はそれぞれ <code>reachable</code>・<code>on_negative_cycle</code> で判定します。</li>
+</ul>
 <h2 id="code">Code<a class="headerlink" href="#code" title="Permanent link">&para;</a></h2>
 <p>Source: <code>graph/bellman_ford.hpp</code></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -2327,8 +2342,7 @@
 <span class="normal">76</span>
 <span class="normal">77</span>
 <span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#pragma once</span>
+<span class="normal">79</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#pragma once</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;queue&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
@@ -2368,7 +2382,6 @@
 <span class="w">    </span><span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">distance</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">];</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="c1">// ベルマンフォード</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">relax_edges</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="n">updated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
@@ -2385,7 +2398,7 @@
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">updated</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="c1">// 負閉路をBFSで伝播させる</span>
+<span class="w">    </span><span class="c1">// 負閉路から到達できる頂点も -INF にする。</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">spread_neg_cycles</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">q</span><span class="p">;</span>
 <span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">used</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
@@ -2491,8 +2504,7 @@
 <span class="normal">79</span>
 <span class="normal">80</span>
 <span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// bundled by scripts/bundle_header.py</span>
+<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// bundled by scripts/bundle_header.py</span>
 
 <span class="c1">// ---- begin: include/graph/bellman_ford.hpp</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span>
@@ -2534,7 +2546,6 @@
 <span class="w">    </span><span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">distance</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">];</span><span class="w"> </span><span class="p">}</span>
 
 <span class="w">  </span><span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="c1">// ベルマンフォード</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">relax_edges</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="n">updated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
@@ -2551,7 +2562,7 @@
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">updated</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="c1">// 負閉路をBFSで伝播させる</span>
+<span class="w">    </span><span class="c1">// 負閉路から到達できる頂点も -INF にする。</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">spread_neg_cycles</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">q</span><span class="p">;</span>
 <span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">used</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>

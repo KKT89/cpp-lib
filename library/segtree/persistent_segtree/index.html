@@ -1055,6 +1055,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#verify" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2249,7 +2260,7 @@
 <span class="normal">7</span>
 <span class="normal">8</span>
 <span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">PersistentSegmentTree</span><span class="o">&lt;</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seg</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w">             </span><span class="c1">// 長さ n, 全要素 e() で初期化 (version 0)</span>
-<span class="n">PersistentSegmentTree</span><span class="o">&lt;</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="mi">10000000</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seg</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w">   </span><span class="c1">// プールサイズを指定 (デフォルト: 20000000)</span>
+<span class="n">PersistentSegmentTree</span><span class="o">&lt;</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="mi">10000000</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seg</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w">   </span><span class="c1">// 初期予約ノード数を指定 (デフォルト: 20000000)</span>
 <span class="n">PersistentSegmentTree</span><span class="o">&lt;</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seg</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">             </span><span class="c1">// vector v で初期化 (version 0)</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">root_id</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w">                    </span><span class="c1">// version root_id の位置 k を x に変更した新 version を作成</span>
@@ -2258,7 +2269,12 @@
 <span class="n">S</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">root_id</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">);</span><span class="w">                          </span><span class="c1">// version root_id の位置 k の値を取得</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">vc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">version_count</span><span class="p">();</span><span class="w">                       </span><span class="c1">// 現在のバージョン数</span>
 </code></pre></div></td></tr></table></div>
-<p><code>set(k, x)</code>, <code>apply(k, x)</code> を使うと最新バージョンを更新します。</p>
+<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>set(k, x)</code>, <code>apply(k, x)</code> は最新バージョンを元に新しいバージョンを作ります。過去のバージョンは変更しません。</li>
+<li><code>POOL_SIZE</code> はノード数の上限ではなく、構築時の予約数です。超えるとプールを拡張します。</li>
+<li>更新・取得は <span class="arithmatex">\(O(\log n)\)</span>、更新ごとの追加領域は <span class="arithmatex">\(O(\log n)\)</span> です。</li>
+</ul>
 <h2 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../../verify/atcoder/abc453_g_copy_query/">ABC453 G - Copy Query</a></li>
