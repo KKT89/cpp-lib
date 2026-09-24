@@ -21,9 +21,13 @@ $ uv run mkdocs serve
 
 ### CMakeLists を使用する場合
 
+`cpp-lib` を利用側プロジェクトの直下に配置します。
+
 ```cmake
 add_library(cpplib INTERFACE)
-target_include_directories(cpplib INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(cpplib INTERFACE
+    "${CMAKE_CURRENT_SOURCE_DIR}/cpp-lib/include"
+)
 
 add_executable(main main.cpp)
 target_link_libraries(main PRIVATE cpplib)
