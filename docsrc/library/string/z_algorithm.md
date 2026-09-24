@@ -9,6 +9,10 @@ $$
 ## Interface
 
 ```cpp
-vector<int> z = z_algorithm(s);   // std::string
-vector<int> z = z_algorithm(v);   // std::vector<T>
+vector<int> z = z_algorithm(s);   // std::string, O(n)
+vector<int> z = z_algorithm(v);   // std::vector<T>, O(n)
 ```
+
+## Notes
+
+- 入力は空でない列とし、要素同士を `==` で比較できることを仮定します。

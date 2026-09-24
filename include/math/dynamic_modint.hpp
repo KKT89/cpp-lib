@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
-// 動的 modint: id を変えることで複数 mod を同時に扱える (mod は素数, mod < 2^63)
+// 1 <= mod < 2^63。逆元は mod が素数かつ対象が非零のときに使う。
 template <int id>
 struct dynamic_modint {
     using mint = dynamic_modint;

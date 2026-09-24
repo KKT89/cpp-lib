@@ -76,7 +76,6 @@ def cmd_mark(args: argparse.Namespace) -> int:
         current_hash = compute_hash(path)
         entry = status.get(key, {})
 
-        # Skip already-OK entries
         if entry.get("bundled_hash") == current_hash:
             print(f"  skip (OK): {key}")
             continue

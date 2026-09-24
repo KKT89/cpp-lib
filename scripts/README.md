@@ -2,10 +2,10 @@
 
 ## 手動で実行するもの
 
-通常のドキュメント閲覧には `uv run mkdocs serve` だけで十分です。以下は必要な場面で手動実行するスクリプトです。
+ドキュメントの閲覧には `uv run mkdocs serve` を使います。
 
 - `verify.py`
-  Verify コードの登録・検証状況の最新化を行う CLI です。Verify 運用を回すときに使用します。
+  Verify コードを登録し、AC 後に検証状況を更新します。
 - `combine.py`
   提出用の `submit.cpp` を生成し、必要ならクリップボードへコピーします。展開したライブラリ内の標準 `#include` はデフォルトで省略し、`--keep-system-includes` を指定すると残します。
 
@@ -29,7 +29,7 @@ uv run scripts/verify.py mark --all
 ## 内部処理
 
 - `mkdocs_hooks.py`
-  MkDocs のフック本体です。nav 差し替え、`bundled/` 生成、`docsrc/library/` / `docsrc/verify/` の自動生成を行います。ライブラリ単体の bundle では標準 `#include` を残し、コピペだけで利用できる形にします。
+  nav の更新、bundle・index・Verify ページの生成を行います。ライブラリ単体の bundle では標準 `#include` を残します。
 - `_internal/docs_catalog.py`
   Library / Note のスキャン、nav / index 生成、ライブラリページ末尾の管理セクション生成を担当します。
 - `_internal/verify_docs.py`
@@ -37,7 +37,7 @@ uv run scripts/verify.py mark --all
 - `_internal/verify_data.py`
   `verify/status.json` の読み書き、ハッシュ計算、judge URL 解決など Verify 系の共通処理です。
 - `bundle_header.py`
-  `#include` を展開して `bundled/` の単一ファイルを生成します。展開したローカルヘッダ内の標準 `#include` はデフォルトで省略し、`--keep-system-includes` を指定すると残します。
+  ローカル `#include` を展開して単一ファイルを生成します。エントリファイルの標準 `#include` は常に残し、展開先のものは `--keep-system-includes` 指定時に残します。
 - `_internal/docs_common.py`
   タイトル読取や `write_if_changed` など、docs 系の小さい共通処理です。
 - `_internal/project_paths.py`

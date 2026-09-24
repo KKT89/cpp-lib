@@ -15,3 +15,7 @@ bool reach = bf.reachable(v);               // v が到達可能か
 bool neg = bf.on_negative_cycle(v);         // v が負閉路の影響を受けるか
 int d = bf.distance(v);                     // v までの最短距離
 ```
+
+## Notes
+
+- 最短距離として `distance(v)` を使えるのは `valid(v)` が `true` の場合です。到達不能・負閉路の影響はそれぞれ `reachable`・`on_negative_cycle` で判定します。

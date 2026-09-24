@@ -4,7 +4,7 @@
 
 ## リファレンス生成方法
 
-[Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) を用いて作成しています。
+[Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) を使います。
 
 ### クイックスタート
 
@@ -15,7 +15,7 @@ $ uv run mkdocs serve
 
 ### 開発用スクリプト
 
-スクリプトに関する説明は [`scripts/README.md`](scripts/README.md) に記載しています。
+提出用コードの生成・検証状況の管理は [`scripts/README.md`](scripts/README.md) を参照してください。
 
 ## ライブラリ使用方法
 
@@ -35,11 +35,11 @@ target_link_libraries(main PRIVATE cpplib)
 
 ## Verify
 
-ジャッジへの提出のみ手動で行う半自動運用です。ライブラリやテストコードに変更が入ると、自動検知を行う仕組みになっています。
+ジャッジへの提出は手動です。ドキュメント生成時に、登録済みコードと依存ライブラリの変更を検出します。
 
 ### テストコードの追加
 
-提出コードと問題情報の登録を行います。
+提出コードと問題情報を登録します。
 
 ```shell
 uv run scripts/verify.py add main.cpp \

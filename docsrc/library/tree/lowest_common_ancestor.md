@@ -11,3 +11,7 @@ lca.build(root);               // 根 root で前処理
 int p = lca.lca(u, v);         // LCA を取得
 int d = lca.distance(u, v);    // u, v 間の距離（辺数）を取得
 ```
+
+## Notes
+
+- クエリの前に、連結な木を登録して `build` を呼びます。

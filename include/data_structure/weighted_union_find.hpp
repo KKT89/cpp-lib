@@ -2,7 +2,6 @@
 #include <numeric>
 #include <vector>
 
-// 重み付き Union-Find
 // unite(x, y, w): weight(y) - weight(x) = w を課す
 template <typename T>
 struct WeightedUnionFind {

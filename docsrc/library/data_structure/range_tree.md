@@ -16,7 +16,6 @@ S result = tree.prod(xl, xr, yl, yr);   // [xl, xr) x [yl, yr) の積を取得, 
 
 ## Notes
 
-- `op` は可換である必要があります。
 - `add_point` をすべて呼んだ後に `build` を一度だけ呼びます。
 - `add`、`set`、`get` には、`add_point` で登録した点を指定します。
 - 各点の初期値は `e()` です。

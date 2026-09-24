@@ -38,7 +38,6 @@ struct BellmanFord {
     [[nodiscard]] T distance(int v) const { return dist[v]; }
 
   private:
-    // ベルマンフォード
     void relax_edges() {
         for (int i = 0; i < n; ++i) {
             bool updated = false;
@@ -55,7 +54,7 @@ struct BellmanFord {
             if (!updated) break;
         }
     }
-    // 負閉路をBFSで伝播させる
+    // 負閉路から到達できる頂点も -INF にする。
     void spread_neg_cycles() {
         std::queue<int> q;
         std::vector<bool> used(n, false);

@@ -8,18 +8,17 @@
 using modint0 = dynamic_modint<0>;
 using modint1 = dynamic_modint<1>;
 
-modint0::set_mod(1000000007);     // 利用前に mod を設定 (64bit OK)
-modint1::set_mod(998244353);      // id ごとに別の mod を設定できる
+modint0::set_mod(1000000007);        // 利用前に mod を設定
+modint1::set_mod(998244353);         // id ごとに別の mod を設定できる
 
 modint0 a = 42;
-modint0 b = a / 5;                // O(log mod)
-long long v = b.val();            // O(1)
-modint0 c = modint0(2).pow(10);   // O(log n)
+modint0 b = a / 5;                   // O(log mod)
+unsigned long long v = b.val();      // O(1)
+modint0 c = modint0(2).pow(10);      // O(log n)
 ```
 
 ## Notes
 
-- 利用前に `set_mod(m)` を呼ぶ必要があります。
-- `/` と `inv()` を使う場合は mod が素数であることを仮定します。
-- 同じ `id` の `dynamic_modint` は同じ mod を共有します。
-- 同時に複数の mod を保持しないなら、同じ `id` に対して `set_mod` を呼び直して使い回せます。
+- 法は $1 \le m < 2^{63}$ とします。
+- `/` と `inv()` は法が素数で、除数・逆元を求める値が非零であることを仮定します。`pow(n)` は $n \ge 0$ 用です。
+- `set_mod` で法を変えた後は、同じ `id` の既存の値を作り直してください。

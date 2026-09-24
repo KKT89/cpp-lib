@@ -107,7 +107,6 @@ def _bundle_to_string(
     return "\n".join(out_lines).rstrip() + "\n"
 
 
-# Public alias
 bundle_header_to_string = _bundle_to_string
 
 

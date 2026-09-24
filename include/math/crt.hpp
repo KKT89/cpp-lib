@@ -3,7 +3,6 @@
 #include <utility>
 #include <vector>
 
-// 中国剰余定理 (拡張: 法が互いに素でなくても可)
 // crt(r, m): x ≡ r[i] (mod m[i]) を満たす (最小非負 x, lcm) を返す
 // 解なし → {0, 0}, 空入力 → {0, 1}
 // 制約: m[i] >= 1, 答えの lcm が long long に収まること

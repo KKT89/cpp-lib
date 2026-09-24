@@ -6,7 +6,7 @@
 #include <utility>
 #include <vector>
 
-// 可換モノイド上の一点更新・二次元矩形積を処理する領域木
+// op は可換モノイドの演算、e は単位元。
 template <class S, S (*op)(S, S), S (*e)(), class T>
 class RangeTree {
     using Point = std::pair<T, T>;
@@ -47,7 +47,7 @@ class RangeTree {
         points.emplace_back(x, y);
     }
 
-    // O(N log N) 
+    // O(N log N)
     void build() {
         assert(!built);
         std::sort(points.begin(), points.end());
