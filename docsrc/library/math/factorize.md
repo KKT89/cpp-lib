@@ -1,6 +1,6 @@
 # 高速素因数分解
 
-Miller-Rabin と Pollard Rho による 64bit 整数の素数判定・素因数分解です。
+[素数判定](is_prime.md) と Pollard Rho を使って、64bit 整数を素因数分解します。
 
 ## Interface
 

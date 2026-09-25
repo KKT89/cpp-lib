@@ -8,10 +8,15 @@
 #include <utility>
 #include <vector>
 
+#include "math/is_prime.hpp"
+
 namespace factorize {
 
 using u64 = std::uint64_t;
 using u128 = __uint128_t;
+using ::is_prime;
+using is_prime_internal::mod_mul;
+using is_prime_internal::mod_pow;
 
 inline std::mt19937_64 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 
@@ -26,47 +31,6 @@ u64 binary_gcd(u64 a, u64 b) {
         b -= a;
     }
     return a << shift;
-}
-
-u64 mod_mul(u64 a, u64 b, u64 mod) { return (u64)((u128)a * b % mod); }
-
-u64 mod_pow(u64 a, u64 n, u64 mod) {
-    u64 res = 1;
-    while (n > 0) {
-        if (n & 1) res = mod_mul(res, a, mod);
-        a = mod_mul(a, a, mod);
-        n >>= 1;
-    }
-    return res;
-}
-
-bool is_prime(u64 n) {
-    if (n < 2) return false;
-    for (u64 p : {2ULL, 3ULL, 5ULL, 7ULL, 11ULL, 13ULL, 17ULL, 19ULL, 23ULL, 29ULL, 31ULL, 37ULL}) {
-        if (n % p == 0) return n == p;
-    }
-
-    u64 d = n - 1;
-    int s = 0;
-    while ((d & 1) == 0) {
-        d >>= 1;
-        s++;
-    }
-    for (u64 a : {2ULL, 325ULL, 9375ULL, 28178ULL, 450775ULL, 9780504ULL, 1795265022ULL}) {
-        if (a % n == 0) continue;
-        u64 x = mod_pow(a, d, n);
-        if (x == 1 || x == n - 1) continue;
-        bool composite = true;
-        for (int r = 1; r < s; r++) {
-            x = mod_mul(x, x, n);
-            if (x == n - 1) {
-                composite = false;
-                break;
-            }
-        }
-        if (composite) return false;
-    }
-    return true;
 }
 
 u64 pollard_rho(u64 n) {
