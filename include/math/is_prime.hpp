@@ -2,32 +2,11 @@
 #include <cstdint>
 #include <initializer_list>
 
-namespace is_prime_internal {
-
-using u64 = std::uint64_t;
-using u128 = __uint128_t;
-
-constexpr u64 mod_mul(u64 a, u64 b, u64 mod) { return (u64)((u128)a * b % mod); }
-
-constexpr u64 mod_pow(u64 a, u64 n, u64 mod) {
-    u64 res = 1;
-    while (n > 0) {
-        if (n & 1) {
-            res = mod_mul(res, a, mod);
-        }
-        a = mod_mul(a, a, mod);
-        n >>= 1;
-    }
-    return res;
-}
-
-} // namespace is_prime_internal
+#include "math/mod_arithmetic.hpp"
 
 // 64bit 非負整数の素数判定。固定した 7 基底の Miller-Rabin を使い、O(log(n + 1)) 時間。
 constexpr bool is_prime(std::uint64_t n) {
     using u64 = std::uint64_t;
-    using is_prime_internal::mod_mul;
-    using is_prime_internal::mod_pow;
 
     if (n < 2) return false;
     for (u64 p : {2ULL, 3ULL, 5ULL, 7ULL, 11ULL, 13ULL, 17ULL, 19ULL, 23ULL, 29ULL, 31ULL, 37ULL}) {

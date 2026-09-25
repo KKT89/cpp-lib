@@ -9,14 +9,15 @@
 #include <vector>
 
 #include "math/is_prime.hpp"
+#include "math/mod_arithmetic.hpp"
 
 namespace factorize {
 
 using u64 = std::uint64_t;
 using u128 = __uint128_t;
 using ::is_prime;
-using is_prime_internal::mod_mul;
-using is_prime_internal::mod_pow;
+using ::mod_mul;
+using ::mod_pow;
 
 inline std::mt19937_64 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 
