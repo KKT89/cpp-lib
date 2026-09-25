@@ -4,7 +4,6 @@
 
 #include "math/mod_arithmetic.hpp"
 
-// 64bit 非負整数の素数判定。固定した 7 基底の Miller-Rabin を使い、O(log(n + 1)) 時間。
 constexpr bool is_prime(std::uint64_t n) {
     using u64 = std::uint64_t;
 
