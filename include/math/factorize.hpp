@@ -41,11 +41,7 @@ u64 pollard_rho(u64 n) {
     while (true) {
         u64 c = std::uniform_int_distribution<u64>(1, n - 1)(rng);
         u64 y = std::uniform_int_distribution<u64>(0, n - 1)(rng);
-        u64 r = 1;
-        u64 q = 1;
-        u64 g = 1;
-        u64 x = 0;
-        u64 ys = 0;
+        u64 r = 1, q = 1, g = 1, x = 0, ys = 0;
         constexpr u64 batch = 128;
 
         auto f = [&](u64 v) { return (mod_mul(v, v, n) + c) % n; };
