@@ -53,6 +53,14 @@ parent: math/static_modint.hpp
 - 現状の「タグ付け」は `tags:` ではなく、この `parent:` frontmatter で行う（`read_meta` は `key: value` 形式のみ解釈）。
 - alias 系のサブライブラリでは、hpp 側も親を include して薄く包む（例: `static_modint_998244353.hpp` は `#include "math/static_modint.hpp"`）。
 
+## 汎用ライブラリの設計方針
+
+- 汎用本体は特定の演算・用途に依存させない。単なる使用例は Markdown に書き、繰り返し使う標準用途は別の hpp / md に薄い alias / ラッパーとして切り出す。
+- 用途別ライブラリは親を include し、共通の処理を重複実装しない。演算関数・補助型は `<name>_internal` namespace にまとめる。
+- 公開 API は利用者の値型を扱い、区間長などの補助情報は内部で管理する。コンストラクタや操作名は可能な範囲で既存の用途別クラスに揃える（`()`、`(n)`、`(n, x)`、`(vector)` など）。
+- hpp / md は親と同じカテゴリに置き、md の `parent:` に汎用本体を指定する。概要で用途と親への依存を示す。一般的な数値型の前提や Interface と重複する説明は省き、非自明な注意だけ必要なら Notes に書く。
+- 必要な用途だけ追加し、関連する標準用途を一律に増やさない。verify の追加・登録・検証はユーザーが行う。
+
 ## hpp の書き方
 
 ### 基本形
