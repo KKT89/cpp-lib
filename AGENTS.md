@@ -89,7 +89,7 @@ struct Example {
 - 構造体・クラス名は原則 `UpperCamelCase` にする。ただし、数値型として扱う `static_modint` と `dynamic_modint` は例外としている。
 - `{}` は基本的に省略しない。`if` / `else` / `for` / `while` の本体が 1 文でもブロックを書く。
 - ただし、単純な早期 return や境界チェックなどの短い `if` は例外として 1 行で書いてよい。
-- 計算量・制約・非自明な実装意図はコメントで残す。
+- API の仕様・計算量・制約は Markdown に書く。hpp のコメントは非自明な実装意図を簡潔に記す。
 - コメントは日本語でよい。
 - namespace を閉じるときは clang-format 後の形に合わせる。
 

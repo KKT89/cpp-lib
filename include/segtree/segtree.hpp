@@ -34,4 +34,72 @@ struct SegmentTree {
         }
         return op(sml, smr);
     }
+
+    template <class G>
+    int max_right(int l, G f) const {
+        if (l == n) return n;
+        std::vector<int> nodes, right;
+        for (int a = l + n, b = n * 2; a < b; a >>= 1, b >>= 1) {
+            if (a & 1) {
+                nodes.push_back(a++);
+            }
+            if (b & 1) {
+                right.push_back(--b);
+            }
+        }
+        nodes.insert(nodes.end(), right.rbegin(), right.rend());
+
+        S sm = e();
+        for (int k : nodes) {
+            S next = op(sm, tree[k]);
+            if (f(next)) {
+                sm = next;
+                continue;
+            }
+            while (k < n) {
+                k <<= 1;
+                next = op(sm, tree[k]);
+                if (f(next)) {
+                    sm = next;
+                    ++k;
+                }
+            }
+            return k - n;
+        }
+        return n;
+    }
+
+    template <class G>
+    int min_left(int r, G f) const {
+        if (r == 0) return 0;
+        std::vector<int> nodes, left;
+        for (int a = n, b = r + n; a < b; a >>= 1, b >>= 1) {
+            if (a & 1) {
+                left.push_back(a++);
+            }
+            if (b & 1) {
+                nodes.push_back(--b);
+            }
+        }
+        nodes.insert(nodes.end(), left.rbegin(), left.rend());
+
+        S sm = e();
+        for (int k : nodes) {
+            S next = op(tree[k], sm);
+            if (f(next)) {
+                sm = next;
+                continue;
+            }
+            while (k < n) {
+                k = k << 1 | 1;
+                next = op(tree[k], sm);
+                if (f(next)) {
+                    sm = next;
+                    --k;
+                }
+            }
+            return k - n + 1;
+        }
+        return 0;
+    }
 };
