@@ -66,8 +66,8 @@
     "title": "Range Affine Point Get"
   },
   "verify/library_checker/point_add_rectangle_sum.cpp": {
-    "bundled_hash": "sha256:69001c5c1287a6805298d7834b631dd0bf7d0d49d076889c5aeabecf88d7567a",
-    "verified_at": "2026-09-24T18:46:34+09:00",
+    "bundled_hash": "sha256:3f8c1898b7a779507ee76032b170f5b47a77cdfd39b439be56f82dce8d47743e",
+    "verified_at": "2026-10-12T14:54:42+09:00",
     "judge_url": "https://judge.yosupo.jp/problem/point_add_rectangle_sum",
     "title": "Point Add Rectangle Sum"
   }
