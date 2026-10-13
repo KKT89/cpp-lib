@@ -1195,6 +1195,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#notes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2273,6 +2284,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../note/ear_dp_segtree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    耳DPをセグメント木に載せる
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../note/inline_dp/" class="md-nav__link">
         
   
@@ -2365,6 +2404,29 @@
 <span class="n">seg</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w">                  </span><span class="c1">// i 番目の要素を x に更新, O(log n)</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">max_right</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">);</span><span class="w">    </span><span class="c1">// f(query(l, r)) を満たす最大 r, O(log n)</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">min_left</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">);</span><span class="w">     </span><span class="c1">// f(query(l, r)) を満たす最小 l, O(log n)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="template">Template<a class="headerlink" href="#template" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;segtree/segtree.hpp&quot;</span>
+
+<span class="n">S</span><span class="w"> </span><span class="nf">op</span><span class="p">(</span><span class="n">S</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="p">}</span>
+
+<span class="n">S</span><span class="w"> </span><span class="nf">e</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="p">}</span>
+
+<span class="k">using</span><span class="w"> </span><span class="n">Seg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SegmentTree</span><span class="o">&lt;</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="o">&gt;</span><span class="p">;</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>

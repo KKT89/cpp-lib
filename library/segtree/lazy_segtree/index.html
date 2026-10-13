@@ -1139,6 +1139,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#notes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2284,6 +2295,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../note/ear_dp_segtree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    耳DPをセグメント木に載せる
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../note/inline_dp/" class="md-nav__link">
         
   
@@ -2373,17 +2412,64 @@
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
 <span class="normal">10</span>
-<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="n">Seg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LazySegmentTree</span><span class="o">&lt;</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="n">F</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="p">,</span><span class="w"> </span><span class="n">composition</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="n">Seg</span><span class="w"> </span><span class="nf">seg</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w">                                                           </span><span class="c1">// 長さ n, 全要素 e() で初期化</span>
-<span class="n">Seg</span><span class="w"> </span><span class="nf">seg</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w">                                                        </span><span class="c1">// 長さ n, 全要素 x で初期化</span>
-<span class="n">Seg</span><span class="w"> </span><span class="nf">seg</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">                                                           </span><span class="c1">// vector v で初期化</span>
-<span class="n">seg</span><span class="p">.</span><span class="n">apply</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">);</span><span class="w">                                                   </span><span class="c1">// [l, r) に作用 f を適用, O(log n)</span>
-<span class="n">seg</span><span class="p">.</span><span class="n">apply</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">);</span><span class="w">                                                      </span><span class="c1">// i 番目に作用 f を適用, O(log n)</span>
-<span class="n">seg</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w">                                                        </span><span class="c1">// i 番目の値を x に更新, O(log n)</span>
-<span class="n">S</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span><span class="w">                                                </span><span class="c1">// [l, r) の op 集約値を取得, O(log n)</span>
-<span class="n">S</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">all_query</span><span class="p">();</span><span class="w">                                                </span><span class="c1">// 全体の op 集約値を取得, O(1)</span>
-<span class="n">S</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w">                                                     </span><span class="c1">// i 番目の値を取得, O(log n)</span>
-<span class="n">S</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w">                                                         </span><span class="c1">// i 番目の値を取得, O(log n)</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="n">LazySeg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LazySegmentTree</span><span class="o">&lt;</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="n">F</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="p">,</span><span class="w"> </span><span class="n">composition</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">LazySeg</span><span class="w"> </span><span class="nf">seg</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w">                                                           </span><span class="c1">// 長さ n, 全要素 e() で初期化</span>
+<span class="n">LazySeg</span><span class="w"> </span><span class="nf">seg</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w">                                                        </span><span class="c1">// 長さ n, 全要素 x で初期化</span>
+<span class="n">LazySeg</span><span class="w"> </span><span class="nf">seg</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">                                                           </span><span class="c1">// vector v で初期化</span>
+<span class="n">seg</span><span class="p">.</span><span class="n">apply</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">);</span><span class="w">                                                       </span><span class="c1">// [l, r) に作用 f を適用, O(log n)</span>
+<span class="n">seg</span><span class="p">.</span><span class="n">apply</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">);</span><span class="w">                                                          </span><span class="c1">// i 番目に作用 f を適用, O(log n)</span>
+<span class="n">seg</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w">                                                            </span><span class="c1">// i 番目の値を x に更新, O(log n)</span>
+<span class="n">S</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span><span class="w">                                                    </span><span class="c1">// [l, r) の op 集約値を取得, O(log n)</span>
+<span class="n">S</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">all_query</span><span class="p">();</span><span class="w">                                                    </span><span class="c1">// 全体の op 集約値を取得, O(1)</span>
+<span class="n">S</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w">                                                         </span><span class="c1">// i 番目の値を取得, O(log n)</span>
+<span class="n">S</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w">                                                             </span><span class="c1">// i 番目の値を取得, O(log n)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="template">Template<a class="headerlink" href="#template" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;segtree/lazy_segtree.hpp&quot;</span>
+
+<span class="n">S</span><span class="w"> </span><span class="nf">op</span><span class="p">(</span><span class="n">S</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="p">}</span>
+
+<span class="n">S</span><span class="w"> </span><span class="nf">e</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="p">}</span>
+
+<span class="n">S</span><span class="w"> </span><span class="nf">mapping</span><span class="p">(</span><span class="n">F</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="p">}</span>
+
+<span class="n">F</span><span class="w"> </span><span class="nf">composition</span><span class="p">(</span><span class="n">F</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">F</span><span class="w"> </span><span class="n">g</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="p">}</span>
+
+<span class="n">F</span><span class="w"> </span><span class="nf">id</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="p">}</span>
+
+<span class="k">using</span><span class="w"> </span><span class="n">LazySeg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LazySegmentTree</span><span class="o">&lt;</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="n">F</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="p">,</span><span class="w"> </span><span class="n">composition</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="o">&gt;</span><span class="p">;</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
@@ -2394,6 +2480,7 @@
 </ul>
 <h2 id="sub-libraries">Sub Libraries<a class="headerlink" href="#sub-libraries" title="Permanent link">&para;</a></h2>
 <ul>
+<li><a href="../range_add_range_min/">Range Add Range Min</a></li>
 <li><a href="../range_add_range_sum/">Range Add Range Sum</a></li>
 </ul>
 <h2 id="code">Code<a class="headerlink" href="#code" title="Permanent link">&para;</a></h2>
