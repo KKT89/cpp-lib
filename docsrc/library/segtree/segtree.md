@@ -14,6 +14,22 @@ int r = seg.max_right(l, f);    // f(query(l, r)) を満たす最大 r, O(log n)
 int l = seg.min_left(r, f);     // f(query(l, r)) を満たす最小 l, O(log n)
 ```
 
+## Template
+
+```cpp
+#include "segtree/segtree.hpp"
+
+S op(S a, S b) {
+
+}
+
+S e() {
+
+}
+
+using Seg = SegmentTree<S, op, e>;
+```
+
 ## Notes
 
 - 探索の判定 `f` は `f(e()) == true` を満たし、区間を伸ばすと `true` から `false` にだけ変化する必要があります。

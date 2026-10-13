@@ -5,17 +5,45 @@
 ## Interface
 
 ```cpp
-using Seg = LazySegmentTree<S, op, e, F, mapping, composition, id>;
-Seg seg(n);                                                           // 長さ n, 全要素 e() で初期化
-Seg seg(n, x);                                                        // 長さ n, 全要素 x で初期化
-Seg seg(v);                                                           // vector v で初期化
-seg.apply(l, r, f);                                                   // [l, r) に作用 f を適用, O(log n)
-seg.apply(i, f);                                                      // i 番目に作用 f を適用, O(log n)
-seg.set(i, x);                                                        // i 番目の値を x に更新, O(log n)
-S x = seg.query(l, r);                                                // [l, r) の op 集約値を取得, O(log n)
-S x = seg.all_query();                                                // 全体の op 集約値を取得, O(1)
-S x = seg.get(i);                                                     // i 番目の値を取得, O(log n)
-S x = seg[i];                                                         // i 番目の値を取得, O(log n)
+using LazySeg = LazySegmentTree<S, op, e, F, mapping, composition, id>;
+LazySeg seg(n);                                                           // 長さ n, 全要素 e() で初期化
+LazySeg seg(n, x);                                                        // 長さ n, 全要素 x で初期化
+LazySeg seg(v);                                                           // vector v で初期化
+seg.apply(l, r, f);                                                       // [l, r) に作用 f を適用, O(log n)
+seg.apply(i, f);                                                          // i 番目に作用 f を適用, O(log n)
+seg.set(i, x);                                                            // i 番目の値を x に更新, O(log n)
+S x = seg.query(l, r);                                                    // [l, r) の op 集約値を取得, O(log n)
+S x = seg.all_query();                                                    // 全体の op 集約値を取得, O(1)
+S x = seg.get(i);                                                         // i 番目の値を取得, O(log n)
+S x = seg[i];                                                             // i 番目の値を取得, O(log n)
+```
+
+## Template
+
+```cpp
+#include "segtree/lazy_segtree.hpp"
+
+S op(S a, S b) {
+
+}
+
+S e() {
+
+}
+
+S mapping(F f, S x) {
+
+}
+
+F composition(F f, F g) {
+
+}
+
+F id() {
+
+}
+
+using LazySeg = LazySegmentTree<S, op, e, F, mapping, composition, id>;
 ```
 
 ## Notes
